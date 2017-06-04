@@ -23,9 +23,10 @@ function mockLoadShopData() {
     products: [
       { id: 1, name: 'TV', type: 1, icon: 'tv' },
       { id: 2, name: 'Phone', type: 2, icon: 'phone_android' },
-      { id: 3, name: 'Security', type: 3, icon: 'lock' },
+      { id: 3, name: 'Headset', type: 3, icon: 'headset' },
+      { id: 4, name: 'Motorcycle', type: 4, icon: 'motorcycle' },
     ],
-    inventory: [1,3,2,1]
+    inventory: [1,3],
   };
 }
 

@@ -67,6 +67,7 @@ ul {
 
 .btn {
   position: relative;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   color: inherit;
   box-shadow: none;
