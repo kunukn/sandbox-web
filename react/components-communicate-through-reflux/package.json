@@ -1,0 +1,25 @@
+{
+  "name": "components-communicate-through-reflux",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+       "lodash": "^4.17.4",
+    "node-sass-chokidar": "0.0.2",
+    "react-redux": "^5.0.5",
+    "react-scripts": "1.0.7",
+    "redux": "^3.6.0",
+    "reflux": "^6.4.1"
+    },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+  }
+}
