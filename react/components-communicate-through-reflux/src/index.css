@@ -150,8 +150,10 @@ ul {
     opacity: 0;
     border-radius: 4px;
     background: linear-gradient(90deg, rgba(60, 184, 77, 0.1) 50%, transparent); }
-  .product-item.hover:after {
+  .product-item.hover:not(.disabled):after {
     opacity: 1; }
+  .product-item.disabled {
+    opacity: .3; }
   .product-item__info {
     z-index: 1;
     line-height: 1;
@@ -168,8 +170,10 @@ ul {
     padding: 0;
     border-radius: 50%;
     box-shadow: 0 0 4px #eee; }
-    .product-item__action:hover {
+    .product-item__action:hover:not([disabled]) {
       box-shadow: 0 0 20px #eee; }
+    .product-item__action[disabled] {
+      cursor: auto; }
 
 .products {
   padding-top: 1rem; }

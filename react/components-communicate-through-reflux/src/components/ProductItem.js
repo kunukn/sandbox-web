@@ -11,7 +11,9 @@ class ProductItem extends React.Component {
   render() {
     const { name, icon, onAdd, count } = this.props;
     
-    const cx = 'product-item ' + (this.state.hover ? 'hover ' : '');
+    let cx = 'product-item';
+    cx += this.state.hover ? ' hover' : '';
+    cx += count <= 0 ? ' disabled' : '';
     
     const onEnter = () => this.setState({hover: true});
     const onLeave = () => this.setState({hover: false});
@@ -27,6 +29,7 @@ class ProductItem extends React.Component {
           aria-label="add"
           onClick={onAdd}
           onMouseEnter={onEnter} onMouseLeave={onLeave}
+          disabled={count<=0 ? true : null}
         >
           <i className="material-icons" aria-hidden="true">
             add_circle_outline

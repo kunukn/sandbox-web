@@ -84,6 +84,7 @@ ul {
     height: 24px;
     overflow: hidden;
     font-style: normal;
+    //color: $color-theme;
 }
 
 .btn {
@@ -190,10 +191,13 @@ ul {
         border-radius: 4px;
         background: linear-gradient(90deg, rgba($color-theme, .1) 50%, transparent);
     }
-    &.hover {
+    &.hover:not(.disabled) {
         &:after {
             opacity: 1;
         }
+    }
+    &.disabled{
+        opacity: .3;
     }
     &__info {
         z-index: 1;
@@ -213,8 +217,11 @@ ul {
         padding: 0;
         border-radius: 50%;
         box-shadow: 0 0 4px $color-theme-light;
-        &:hover {
+        &:hover:not([disabled]) {
             box-shadow: 0 0 20px $color-theme-light;
+        }
+        &[disabled]{
+            cursor: auto;
         }
     }
 }
