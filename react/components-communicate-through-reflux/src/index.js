@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 
 import './index.css';
 import LoadShopData from './components/LoadShopData';
@@ -9,10 +9,10 @@ import Inventory from './components/Inventory';
 import ShopStore from './components/ShopStore';
 import ShopActions from './components/ShopActions';
 
-ReactDOM.render(<Basket store={ShopStore} storeActions={ShopActions}/>, byId('basket'));
-ReactDOM.render(<Products store={ShopStore} storeActions={ShopActions} />, byId('products'));
-ReactDOM.render(<Inventory store={ShopStore} storeActions={ShopActions} />, byId('inventory'));
-ReactDOM.render(<LoadShopData store={ShopStore} storeActions={ShopActions}/>, byId('load-shop-data'));
+render(<Basket store={ShopStore} storeActions={ShopActions}/>, byId('basket'));
+render(<Products store={ShopStore} storeActions={ShopActions} />, byId('products'));
+render(<Inventory store={ShopStore} storeActions={ShopActions} />, byId('inventory'));
+render(<LoadShopData store={ShopStore} storeActions={ShopActions}/>, byId('load-shop-data'));
 
 function byId(id) {
   return document.getElementById(id);

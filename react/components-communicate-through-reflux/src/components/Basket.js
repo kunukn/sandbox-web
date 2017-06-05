@@ -11,8 +11,14 @@ class Basket extends Component {
     this.storeActions = props.storeActions;
   }
 
-  render() {
+  componentDidUpdate(prevProps, prevState){
+      if(this.state.inventory.length !== prevState.inventory.length){
+          this.domBasketValue.classList.add('anim');
+          setTimeout(()=>{this.domBasketValue.classList.remove('anim')},300);
+      }
+  }
 
+  render() {
     const cx = 'box basket ';
 
     return (
@@ -20,10 +26,9 @@ class Basket extends Component {
         <h2 className="basket__info">
           <i className="material-icons">shopping_basket</i>
           <span>Basket</span>
-          <span>
+          <span className="basket__value" ref={(el) => { this.domBasketValue = el; }}>
             ({this.state.inventory.length})</span>
         </h2>
-        <div className='basket__notify'></div>
       </div>
     );
   }

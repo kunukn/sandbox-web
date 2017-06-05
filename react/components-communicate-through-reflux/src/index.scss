@@ -141,31 +141,19 @@ ul {
             margin-left: .25rem;
         }
     }
-    &__notify{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 1rem;
-        height: 1rem;
-        background: $color-theme;
-        border-radius: 50%;
-        opacity: 0;
-    }
-    &.anim{
-        .basket__notify{
-            animation: basket 1s forwards;
+    &__value{
+        &.anim{
+            animation: basket $easing-in-out 180ms forwards;
         }
     }
 }
 
 @keyframes basket {
-    0%{
-        opacity: .7;
-        transform: scale(0);
+    0%, 100% {
+        transform: scale(1);
     }
-    100%{
-        opacity: 0;
-        transform: scale(2);
+    50%{
+        transform: scale(1.2);
     }
 }
 
