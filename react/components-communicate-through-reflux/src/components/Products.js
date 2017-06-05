@@ -1,21 +1,18 @@
 import React from 'react';
 import Reflux from 'reflux';
 import _ from 'lodash';
-import ProductItem from './ProductItem';
 
+import ProductItem from './ProductItem';
 
 class Products extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      stock: [],
+      products: [],
     };
     this.store = props.store;
-    this.storeAction = props.storeAction;
-
-    this.onClick = this
-      .onClick
-      .bind(this);
+    this.storeAction = props.storeAction.bind(this);
   }
 
   render() {
@@ -25,8 +22,8 @@ class Products extends Reflux.Component {
       <div className="box products">
         <h2 className="products__title">Products</h2>
         {products && products.length > 0 && <ul className="products__list">
-          {products.map((p, index) => {
-            const onAdd = () => this.onClick(p);
+          {products.map((p) => {
+            const onAdd = () => this.storeAction({addToInventory: p})
             const stockItem = _.find(stock, {id: p.id});
             return (
               <li key={p.id}>
@@ -36,18 +33,13 @@ class Products extends Reflux.Component {
                   type={p.type}
                   icon={p.icon}
                   onAdd={onAdd}
-                  count={stockItem.count}
-                  />
+                  count={stockItem ? stockItem.count : 0}/>
               </li>
             );
           })}
         </ul>}
       </div>
     );
-  }
-
-  onClick(product) {
-    this.storeAction({addToInventory: product});
   }
 }
 

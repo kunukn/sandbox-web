@@ -11,9 +11,8 @@ class InventoryItem extends React.Component {
     render() {
         const {product, onRemove} = this.props;
 
-        const cx = 'inventory-item ' + (this.state.hover
-            ? 'hover '
-            : '');
+        let cx = 'inventory-item';
+        cx +=  this.state.hover ? ' hover' : '';
 
         const onEnter = () => this.setState({hover: true});
         const onLeave = () => this.setState({hover: false});
