@@ -12,13 +12,18 @@ class Basket extends Reflux.Component {
   }
 
   render() {
+
+    const cx = 'box basket ';
+
     return (
-      <div className="box basket">
+      <div className={cx}>
         <h2 className="basket__info">
           <i className="material-icons">shopping_basket</i>
           <span>Basket</span>
-          <span> ({this.state.inventory.length})</span>
+          <span>
+            ({this.state.inventory.length})</span>
         </h2>
+        <div className='basket__notify'></div>
       </div>
     );
   }

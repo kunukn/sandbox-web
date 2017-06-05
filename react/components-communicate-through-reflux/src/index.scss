@@ -95,7 +95,6 @@ ul {
 
 [data-js-react] {
     width: 100%;
-    flex: 1;
     display: flex;
 }
 
@@ -104,21 +103,26 @@ ul {
 }
 
 [id=basket] {
-    flex: 0;
 }
 
 [id=products] {
-    flex: 0;
 }
+
+[id=inventory]{
+    flex: 1 1 auto;
+}
+
 
 .box {
     width: 100%;
-    flex: 1;
+    flex: 1 1 auto;
     border-bottom: 1px solid gray;
     padding: 1rem;
 }
 
 .basket {
+    position: relative;
+
     &__info {
         display: flex;
         justify-content: flex-end;
@@ -127,6 +131,32 @@ ul {
         >* {
             margin-left: .25rem;
         }
+    }
+    &__notify{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1rem;
+        height: 1rem;
+        background: $color-theme;
+        border-radius: 50%;
+        opacity: 0;
+    }
+    &.anim{
+        .basket__notify{
+            animation: basket 1s forwards;
+        }
+    }
+}
+
+@keyframes basket {
+    0%{
+        opacity: .7;
+        transform: scale(0);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(2);
     }
 }
 
@@ -231,7 +261,7 @@ ul {
         height: 100%;
         opacity: 0;
         z-index: 0;
-        background: linear-gradient(135deg, transparent 5%, rgba(red, .3));
+        background: linear-gradient(135deg, transparent 5%, rgba(red, .4));
     }
     &.hover{
         &:after{
