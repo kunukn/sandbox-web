@@ -11,8 +11,9 @@ class Products extends Reflux.Component {
       stock: [],
       products: [],
     };
-    this.store = props.store;
-    this.storeAction = props.storeAction.bind(this);
+    this.stores = [props.store];
+    this.storeActions = props.storeActions;
+    this.storeActions.addToInventory = this.storeActions.addToInventory.bind(this);
   }
 
   render() {
@@ -23,7 +24,7 @@ class Products extends Reflux.Component {
         <h2 className="products__title">Products</h2>
         {products && products.length > 0 && <ul className="products__list">
           {products.map((p) => {
-            const onAdd = () => this.storeAction({addToInventory: p})
+            const onAdd = () => this.storeActions.addToInventory({addToInventory: p})
             const stockItem = _.find(stock, {id: p.id});
             return (
               <li key={p.id}>

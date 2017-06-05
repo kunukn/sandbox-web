@@ -1,21 +1,19 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
-import shopUpdateAction from './shopUpdateAction';
+import ShopActions from './ShopActions';
 
 class ShopStore extends Reflux.Store {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products:[],
-      inventory: [],
-      stock: [],
-    };
-    this.listenTo(shopUpdateAction, this.onShopUpdate);
+  constructor() {
+    super();
+
+    //this.listenTo(ShopActions.loadData, this.onLoadData); // explicit
+    //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
+    //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
+    this.listenables = ShopActions; // convention
   }
-
-  onShopUpdate(props) {
-
-    let { inventory, products, stock, addToInventory, removeFromInventory } = props;
+  
+  onLoadData(props){
+    let { inventory, products, stock } = props;
 
     if (products !== undefined) {
         this.setState(() => ({products: _.cloneDeep(products)}));
@@ -26,6 +24,12 @@ class ShopStore extends Reflux.Store {
     if (stock !== undefined) {
         this.setState(() => ({stock: _.cloneDeep(stock)}));
     }
+  }
+
+  onAddToInventory(props) {
+
+    let { addToInventory } = props;
+
     if(addToInventory !== undefined){
       this.setState((prevState) => {
         
@@ -42,6 +46,12 @@ class ShopStore extends Reflux.Store {
         };
       });
     }
+  }
+
+  onRemoveFromInventory(props) {
+
+    let { removeFromInventory } = props;
+
     if(removeFromInventory !== undefined){
       this.setState((prevState) => {
         

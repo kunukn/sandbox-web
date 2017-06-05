@@ -7,9 +7,13 @@ import InventoryItem from './InventoryItem';
 class Inventory extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.store = props.store;
-    this.storeAction = props.storeAction.bind(this);
+    this.state = {
+      inventory: [],
+      products: [],
+    };
+    this.stores = [props.store];
+    this.storeActions = props.storeActions;
+    this.storeActions.removeFromInventory = this.storeActions.removeFromInventory.bind(this);
   }
 
   render() {
@@ -22,7 +26,7 @@ class Inventory extends Reflux.Component {
         {inventory && inventory.length > 0 && <ul className='inventory__list'>
           {inventory.map((id, index) => {
             const product = _.find(products, {id});
-            const onRemove = () => this.storeAction({removeFromInventory: {index, product}})
+            const onRemove = () => this.storeActions.removeFromInventory({removeFromInventory: {index, product}})
             return (
               <li key={index}>
                 <InventoryItem product={product} onRemove={onRemove}/>

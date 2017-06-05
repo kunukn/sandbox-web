@@ -5,7 +5,7 @@ class LoadShopData extends Reflux.Component {
     super(props);
     this.state = {};
     this.store = props.store;
-    this.storeAction = props.storeAction;
+    this.storeActions = props.storeActions;
   }
 
   render() {
@@ -13,7 +13,7 @@ class LoadShopData extends Reflux.Component {
   }
 
   componentDidMount() {
-    this.storeAction(mockLoadShopData());
+    this.storeActions.loadData(mockLoadShopData());
   }
 }
 

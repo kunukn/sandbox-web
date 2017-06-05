@@ -7,8 +7,8 @@ class Basket extends Reflux.Component {
     this.state = {
       inventory: 0
     };
-    this.store = props.store;
-    this.storeAction = props.storeAction.bind(this);
+    this.stores = [props.store];
+    this.storeActions = props.storeActions;
   }
 
   render() {
