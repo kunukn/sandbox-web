@@ -1,8 +1,8 @@
-import Reflux from 'reflux';
+import {Store} from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
 
-class ShopStore extends Reflux.Store {
+class ShopStore extends Store {
   constructor() {
     super();
 

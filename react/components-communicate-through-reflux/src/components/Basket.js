@@ -1,11 +1,11 @@
 import React from 'react';
-import Reflux from 'reflux';
+import {Component} from 'reflux';
 
-class Basket extends Reflux.Component {
+class Basket extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inventory: 0
+      inventory: [],
     };
     this.stores = [props.store];
     this.storeActions = props.storeActions;

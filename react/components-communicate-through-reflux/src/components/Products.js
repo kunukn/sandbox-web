@@ -1,10 +1,10 @@
 import React from 'react';
-import Reflux from 'reflux';
+import {Component} from 'reflux';
 import _ from 'lodash';
 
 import ProductItem from './ProductItem';
 
-class Products extends Reflux.Component {
+class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {

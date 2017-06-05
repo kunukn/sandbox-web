@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class InventoryItem extends React.Component {
+class InventoryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,6 +1,5 @@
-import Reflux from 'reflux';
-//const shopActions = Reflux.createAction();
-const ShopActions = Reflux.createActions([
+import {createActions} from 'reflux';
+const ShopActions = createActions([
     'loadData',
     'addToInventory',
     'removeFromInventory',
