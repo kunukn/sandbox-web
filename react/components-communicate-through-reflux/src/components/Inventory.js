@@ -13,8 +13,8 @@ class Inventory extends Reflux.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(index){
-    this.storeAction({removeFromInventory: index});
+  onClick(item){
+    this.storeAction({removeFromInventory: item});
   }
 
   render() {
@@ -27,7 +27,7 @@ class Inventory extends Reflux.Component {
         {inventory && inventory.length > 0 && <ul className='inventory__list'>
           {inventory.map((id, index) => {
             const product = _.find(products, {id});
-            const onRemove = () => this.onClick(index);
+            const onRemove = () => this.onClick({index, product});
             return (<li key={index}>
               <InventoryItem product={product} onRemove={onRemove}/>
             </li>);

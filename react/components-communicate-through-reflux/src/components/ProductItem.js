@@ -9,7 +9,7 @@ class ProductItem extends React.Component {
   }
 
   render() {
-    const { name, icon, onAdd } = this.props;
+    const { name, icon, onAdd, count } = this.props;
     
     const cx = 'product-item ' + (this.state.hover ? 'hover ' : '');
     
@@ -20,7 +20,7 @@ class ProductItem extends React.Component {
       <div className={cx} >
         <div className="product-item__info">
           <i className="material-icons">{icon}</i>
-          <span>{name}</span>
+          <span>{name} ({count})</span>
         </div>
         <button
           className="btn product-item__action"

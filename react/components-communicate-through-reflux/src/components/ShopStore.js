@@ -11,7 +11,7 @@ class ShopStore extends Reflux.Store {
 
   onShopUpdate(props) {
 
-    let { inventory, products, addToInventory, removeFromInventory } = props;
+    let { inventory, products, stock, addToInventory, removeFromInventory } = props;
 
     if (products !== undefined) {
         this.setState((prevState) => ({products: _.cloneDeep(products)}));
@@ -19,17 +19,38 @@ class ShopStore extends Reflux.Store {
     if (inventory !== undefined) {
       this.setState((prevState) => ({inventory: _.cloneDeep(inventory)}));
     }
+    if (stock !== undefined) {
+        this.setState((prevState) => ({stock: _.cloneDeep(stock)}));
+    }
     if(addToInventory !== undefined){
-      //console.log({...addToInventory});
       this.setState((prevState) => {
-        return {inventory: [...prevState.inventory, addToInventory.id]};
+        
+        let stockItem = _.find(prevState.stock, {id: addToInventory.id});
+        if(stockItem.count<=0){
+          return {};
+        }
+
+        stockItem.count--;
+
+        return {
+          inventory: [...prevState.inventory, addToInventory.id],
+          stock: [...prevState.stock]
+        };
       });
     }
     if(removeFromInventory !== undefined){
       this.setState((prevState) => {
-        let inventory = [...prevState.inventory];
-        inventory.splice(removeFromInventory,1);
-        return {inventory: inventory};
+        
+        let {index, product} = removeFromInventory;
+        let stockItem = _.find(prevState.stock, {id: product.id});
+
+        stockItem.count++;
+        prevState.inventory.splice(index,1);
+
+        return {
+          inventory: [...prevState.inventory],
+          stock: [...prevState.stock]
+        };
       });
     }
   }
