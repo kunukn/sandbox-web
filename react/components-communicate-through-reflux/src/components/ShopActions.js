@@ -5,4 +5,5 @@ const ShopActions = Reflux.createActions([
     'addToInventory',
     'removeFromInventory',
 ]);
+
 export default ShopActions;

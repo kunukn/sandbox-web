@@ -26,10 +26,10 @@ class Basket extends Reflux.Component {
   render() {
     return (
       <div className='box basket'>
-        <h2 className="basket__info">
-          <i className="material-icons">shopping_basket</i>
+        <h2 className='basket__info'>
+          <i className='material-icons'>shopping_basket</i>
           <span>Basket</span>
-          <span className="basket__value" ref={ el => this.domBasketValue = el }>
+          <span className='basket__value' ref={ el => this.domBasketValue = el }>
             ({this.state.inventory.length})</span>
         </h2>
       </div>

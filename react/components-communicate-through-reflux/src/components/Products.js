@@ -24,9 +24,9 @@ class Products extends Reflux.Component {
     const products = this.state.products;
     const stock = this.state.stock;
     return (
-      <div className="box products">
-        <h2 className="products__title">Products</h2>
-        {products && products.length > 0 && <ul className="products__list">
+      <div className='box products'>
+        <h2 className='products__title'>Products</h2>
+        {products && products.length > 0 && <ul className='products__list'>
           {products.map((p) => {
             const onAdd = () => this.storeActions.addToInventory({addToInventory: p})
             const stockItem = _.find(stock, {id: p.id});

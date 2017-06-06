@@ -25,7 +25,7 @@ class Inventory extends Reflux.Component {
     const products = this.state.products;
 
     return (
-      <div className="box inventory">
+      <div className='box inventory'>
         <h2 className='inventory__title'>Inventory</h2>
         {inventory && inventory.length > 0 && <ul className='inventory__list'>
           {inventory.map((id, index) => {
