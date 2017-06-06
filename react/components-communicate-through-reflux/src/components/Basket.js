@@ -1,7 +1,7 @@
 import React from 'react';
-import {Component} from 'reflux';
+import Reflux from 'reflux';
 
-class Basket extends Component {
+class Basket extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +9,10 @@ class Basket extends Component {
     };
     this.stores = [props.store];
     this.storeActions = props.storeActions;
+  }
+
+  componentDidMount() {
+    this.storeActions.getData();
   }
 
   componentDidUpdate(prevProps, prevState){

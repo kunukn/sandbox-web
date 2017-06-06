@@ -1,10 +1,10 @@
 import React from 'react';
-import {Component} from 'reflux';
+import Reflux from 'reflux';
 import _ from 'lodash';
 
 import ProductItem from './ProductItem';
 
-class Products extends Component {
+class Products extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +14,10 @@ class Products extends Component {
     this.stores = [props.store];
     this.storeActions = props.storeActions;
     this.storeActions.addToInventory = this.storeActions.addToInventory.bind(this);
+  }
+
+  componentDidMount() {
+    this.storeActions.getData();
   }
 
   render() {

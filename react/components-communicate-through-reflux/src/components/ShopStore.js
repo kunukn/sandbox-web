@@ -1,29 +1,37 @@
-import {Store} from 'reflux';
+import Reflux from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
+import {mockLoadShopData} from './MockData';
 
-class ShopStore extends Store {
+class ShopStore extends Reflux.Store {
   constructor() {
     super();
 
-    //this.listenTo(ShopActions.loadData, this.onLoadData); // explicit
+    this.state = {
+      products: [],
+      inventory: [],
+      stock: [],
+    }
+    
+    //this.listenTo(ShopActions.getData, this.onGetData); // explicit
     //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
     //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
     this.listenables = ShopActions; // convention
   }
   
-  onLoadData(props){
-    let { inventory, products, stock } = props;
-
-    if (products !== undefined) {
-        this.setState(() => ({products: _.cloneDeep(products)}));
+  onGetData(){    
+    if(this.state.products === undefined || this.state.products.length === 0) {        
+        let mockData = mockLoadShopData();
+        this.setState(() => ({products: _.cloneDeep(mockData.products)}));
     }
-    if (inventory !== undefined) {
-      this.setState(() => ({inventory: _.cloneDeep(inventory)}));
+    if(this.state.inventory === undefined || this.state.inventory.length === 0) {        
+        let mockData = mockLoadShopData();
+        this.setState(() => ({inventory: _.cloneDeep(mockData.inventory)}));
     }
-    if (stock !== undefined) {
-        this.setState(() => ({stock: _.cloneDeep(stock)}));
-    }
+    if(this.state.stock === undefined || this.state.stock.length === 0) {        
+        let mockData = mockLoadShopData();
+        this.setState(() => ({stock: _.cloneDeep(mockData.stock)}));
+    }  
   }
 
   onAddToInventory(props) {

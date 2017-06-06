@@ -1,23 +1,4 @@
-import Reflux from 'reflux';
-
-class LoadShopData extends Reflux.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.store = props.store;
-    this.storeActions = props.storeActions;
-  }
-
-  render() {
-    return null;
-  }
-
-  componentDidMount() {
-    this.storeActions.loadData(mockLoadShopData());
-  }
-}
-
-function mockLoadShopData() {
+export function mockLoadShopData() {
 
   return {
     products: [
@@ -69,5 +50,3 @@ function mockLoadShopData() {
     ]
   };
 }
-
-export default LoadShopData;

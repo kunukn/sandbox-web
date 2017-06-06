@@ -1,10 +1,10 @@
 import React from 'react';
-import {Component} from 'reflux';
+import Reflux from 'reflux';
 import _ from 'lodash';
 
 import InventoryItem from './InventoryItem';
 
-class Inventory extends Component {
+class Inventory extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +14,10 @@ class Inventory extends Component {
     this.stores = [props.store];
     this.storeActions = props.storeActions;
     this.storeActions.removeFromInventory = this.storeActions.removeFromInventory.bind(this);
+  }
+
+  componentDidMount() {
+    this.storeActions.getData();
   }
 
   render() {
