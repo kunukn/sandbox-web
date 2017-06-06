@@ -111,16 +111,9 @@ ul {
     display: none;
 }
 
-[id=basket] {
-}
-
-[id=products] {
-}
-
 [id=inventory]{
     flex: 1 1 auto;
 }
-
 
 .box {
     width: 100%;
@@ -189,6 +182,7 @@ ul {
         opacity: .5;
     }
     &__info {
+        flex: 1;
         z-index: 1;
         line-height: 1;
         display: flex;

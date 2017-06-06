@@ -7,6 +7,7 @@ class Basket extends Reflux.Component {
     this.state = {
       inventory: [],
     };
+    
     this.stores = [props.store];
     this.storeActions = props.storeActions;
   }
@@ -18,19 +19,17 @@ class Basket extends Reflux.Component {
   componentDidUpdate(prevProps, prevState){
       if(this.state.inventory.length !== prevState.inventory.length){
           this.domBasketValue.classList.add('anim');
-          setTimeout(()=>{this.domBasketValue.classList.remove('anim')},300);
+          setTimeout( () => this.domBasketValue.classList.remove('anim'), 300);
       }
   }
 
   render() {
-    const cx = 'box basket ';
-
     return (
-      <div className={cx}>
+      <div className='box basket'>
         <h2 className="basket__info">
           <i className="material-icons">shopping_basket</i>
           <span>Basket</span>
-          <span className="basket__value" ref={(el) => { this.domBasketValue = el; }}>
+          <span className="basket__value" ref={ el => this.domBasketValue = el }>
             ({this.state.inventory.length})</span>
         </h2>
       </div>

@@ -7,12 +7,6 @@ class ShopStore extends Reflux.Store {
   constructor() {
     super();
 
-    this.state = {
-      products: [],
-      inventory: [],
-      stock: [],
-    }
-    
     //this.listenTo(ShopActions.getData, this.onGetData); // explicit
     //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
     //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
@@ -20,23 +14,18 @@ class ShopStore extends Reflux.Store {
   }
   
   onGetData(){    
-    if(this.state.products === undefined || this.state.products.length === 0) {        
-        let mockData = mockLoadShopData();
-        this.setState(() => ({products: _.cloneDeep(mockData.products)}));
+    if(this.state.products === undefined) {        
+        this.setState(() => ({products: _.cloneDeep(mockLoadShopData.products)}));
     }
-    if(this.state.inventory === undefined || this.state.inventory.length === 0) {        
-        let mockData = mockLoadShopData();
-        this.setState(() => ({inventory: _.cloneDeep(mockData.inventory)}));
+    if(this.state.inventory === undefined) {        
+        this.setState(() => ({inventory: _.cloneDeep(mockLoadShopData.inventory)}));
     }
-    if(this.state.stock === undefined || this.state.stock.length === 0) {        
-        let mockData = mockLoadShopData();
-        this.setState(() => ({stock: _.cloneDeep(mockData.stock)}));
+    if(this.state.stock === undefined) {        
+        this.setState(() => ({stock: _.cloneDeep(mockLoadShopData.stock)}));
     }  
   }
 
-  onAddToInventory(props) {
-
-    let { addToInventory } = props;
+  onAddToInventory({ addToInventory }) {
 
     if(addToInventory !== undefined){
       this.setState((prevState) => {
@@ -56,9 +45,7 @@ class ShopStore extends Reflux.Store {
     }
   }
 
-  onRemoveFromInventory(props) {
-
-    let { removeFromInventory } = props;
+  onRemoveFromInventory({ removeFromInventory }) {
 
     if(removeFromInventory !== undefined){
       this.setState((prevState) => {
