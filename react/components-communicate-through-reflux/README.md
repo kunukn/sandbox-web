@@ -3,6 +3,9 @@
 * npm start
 * go to localhost:3000 with a browser
 
+### Compiling scss
+* npm run watch-css
+
 
 -----------------------
 
