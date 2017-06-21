@@ -1,6 +1,9 @@
+// libs
 import Reflux from 'reflux';
 import _ from 'lodash';
+
 import ShopActions from './ShopActions';
+import {log} from '../../utils';
 
 let hasDataLoaded = false;
 
@@ -11,13 +14,13 @@ class ShopStore extends Reflux.Store {
     }
 
     onLoadCompleted(json) {
-        console.log('onLoadCompleted');
+        log('onLoadCompleted');
         updateState(this, json);
     }
 
     onLoadFailed(message) {
-        console.log('onLoadFailed');
-        console.log(message);
+        log('onLoadFailed');
+        log(message);
         // failed, with whatever message you sent
     }
 
@@ -28,13 +31,13 @@ class ShopStore extends Reflux.Store {
 
             hasDataLoaded = true;
 
-            console.log('loading data');
+            log('loading data');
 
             window.fetch('/shop.json')
                 .then(response => response.json())
                 .then(json => updateState(this, json))
                 .catch((ex) => {
-                    console.log(ex);
+                    log(ex);
                     hasDataLoaded = false;
                 });
         }

@@ -1,7 +1,11 @@
+// libs
 import React from 'react';
 import Reflux from 'reflux';
+
+// utils
 import _ from 'lodash';
 
+// components
 import InventoryItem from './InventoryItem';
 
 class Inventory extends Reflux.Component {
