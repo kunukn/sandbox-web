@@ -1,6 +1,7 @@
 import Reflux from 'reflux';
 
 const ShopActions = Reflux.createActions({
+    init: {},
     addToInventory: {},
     removeFromInventory: {},
     load: {asyncResult: true, children: ['completed', 'failed']},

@@ -16,8 +16,12 @@ class Inventory extends Reflux.Component {
         this.storeActions.removeFromInventory = this.storeActions.removeFromInventory.bind(this);
     }
 
+    /*componentWillMount() {
+     // not working
+     }*/
+
     componentDidMount() {
-            this.storeActions.load();
+        this.storeActions.init();
     }
 
     render() {

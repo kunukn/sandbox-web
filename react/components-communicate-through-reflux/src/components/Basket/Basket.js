@@ -13,10 +13,11 @@ class Basket extends Reflux.Component {
     }
 
     /*componentWillMount() {
+     // not working
      }*/
 
     componentDidMount() {
-        this.storeActions.load();
+        this.storeActions.init();
     }
 
     componentDidUpdate(prevProps, prevState) {

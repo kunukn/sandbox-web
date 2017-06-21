@@ -2,24 +2,40 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
 
+let hasDataLoaded = false;
+
 class ShopStore extends Reflux.Store {
     constructor() {
         super();
         this.listenables = ShopActions; // convention
     }
 
+    onInit() {
+        console.log('onInit');
+
+        if (!hasDataLoaded) {
+
+            hasDataLoaded = true;
+
+            console.log('loading data');
+
+            window.fetch('/shop.json')
+                .then(response => response.json())
+                .then(json => updateState(this, json))
+                .catch((ex) => {
+                    console.log(ex);
+                    hasDataLoaded = false;
+                });
+        }
+    }
+
     onLoadCompleted(json) {
-
         console.log('onLoadCompleted');
-
-        this.setState(() => ({
-            products: _.cloneDeep(json.products),
-            inventory: _.cloneDeep(json.inventory),
-            stock: _.cloneDeep(json.stock),
-        }));
+        updateState(this, json);
     }
 
     onLoadFailed(message) {
+        console.log('onLoadFailed');
         console.log(message);
         // failed, with whatever message you sent
     }
@@ -62,6 +78,14 @@ class ShopStore extends Reflux.Store {
             });
         }
     }
+}
+
+function updateState(store, data) {
+    store.setState(() => ({
+        products: _.cloneDeep(data.products),
+        inventory: _.cloneDeep(data.inventory),
+        stock: _.cloneDeep(data.stock),
+    }));
 }
 
 export default ShopStore;

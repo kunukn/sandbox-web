@@ -17,11 +17,11 @@ class Products extends Reflux.Component {
     }
 
     /*componentWillMount() {
-        this.storeActions.load();
+     // not working
      }*/
 
     componentDidMount() {
-        this.storeActions.load();
+        this.storeActions.init();
     }
 
     render() {
