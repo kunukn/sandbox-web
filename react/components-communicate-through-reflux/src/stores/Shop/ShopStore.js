@@ -2,40 +2,26 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
 
-let dataHasBeenLoaded = false;
-
 class ShopStore extends Reflux.Store {
     constructor() {
         super();
-
-        //this.listenTo(ShopActions.getData, this.onGetData); // explicit
-        //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
-        //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
-
         this.listenables = ShopActions; // convention
     }
 
-    onGetData() {
+    onLoadCompleted(json) {
 
-        if (!dataHasBeenLoaded) {
+        console.log('onLoadCompleted');
 
-            dataHasBeenLoaded = true;
-            console.log('loading data');
+        this.setState(() => ({
+            products: _.cloneDeep(json.products),
+            inventory: _.cloneDeep(json.inventory),
+            stock: _.cloneDeep(json.stock),
+        }));
+    }
 
-            window.fetch('/shop.json')
-                .then(response => response.json())
-                .then(json => {
-                    this.setState(() => ({
-                        products: json.products,
-                        inventory: json.inventory,
-                        stock: json.stock,
-                    }));
-                })
-                .catch(ex => {
-                    dataHasBeenLoaded = false;
-                    console.log('json parsing failed', ex);
-                });
-        }
+    onLoadFailed(message) {
+        console.log(message);
+        // failed, with whatever message you sent
     }
 
     onAddToInventory({addToInventory}) {
