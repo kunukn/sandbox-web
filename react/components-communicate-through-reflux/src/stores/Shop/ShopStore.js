@@ -1,68 +1,81 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
-import {mockLoadShopData} from '../../mock-data/mockLoadShopData';
+
+let dataHasBeenLoaded = false;
 
 class ShopStore extends Reflux.Store {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    //this.listenTo(ShopActions.getData, this.onGetData); // explicit
-    //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
-    //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
-    this.listenables = ShopActions; // convention
-  }
-  
-  onGetData(){    
-    if(this.state.products === undefined) {        
-        this.setState(() => ({products: _.cloneDeep(mockLoadShopData.products)}));
+        //this.listenTo(ShopActions.getData, this.onGetData); // explicit
+        //this.listenTo(ShopActions.addToInventory, this.onAddToInventory); // explicit
+        //this.listenTo(ShopActions.removeFromInventory, this.onRemoveFromInventory); // explicit
+
+        this.listenables = ShopActions; // convention
     }
-    if(this.state.inventory === undefined) {        
-        this.setState(() => ({inventory: _.cloneDeep(mockLoadShopData.inventory)}));
-    }
-    if(this.state.stock === undefined) {        
-        this.setState(() => ({stock: _.cloneDeep(mockLoadShopData.stock)}));
-    }  
-  }
 
-  onAddToInventory({ addToInventory }) {
+    onGetData() {
 
-    if(addToInventory !== undefined){
-      this.setState((prevState) => {
-        
-        let stockItem = _.find(prevState.stock, {id: addToInventory.id});
-        if(stockItem.count <=0 ){
-          return {};
+        if (!dataHasBeenLoaded) {
+
+            dataHasBeenLoaded = true;
+            console.log('loading data');
+
+            window.fetch('/shop.json')
+                .then(response => response.json())
+                .then(json => {
+                    this.setState(() => ({
+                        products: json.products,
+                        inventory: json.inventory,
+                        stock: json.stock,
+                    }));
+                })
+                .catch(ex => {
+                    dataHasBeenLoaded = false;
+                    console.log('json parsing failed', ex);
+                });
         }
-
-        stockItem.count--;
-
-        return {
-          inventory: [...prevState.inventory, addToInventory.id],
-          stock: [...prevState.stock]
-        };
-      });
     }
-  }
 
-  onRemoveFromInventory({ removeFromInventory }) {
+    onAddToInventory({addToInventory}) {
 
-    if(removeFromInventory !== undefined){
-      this.setState((prevState) => {
-        
-        let {index, product} = removeFromInventory;
-        let stockItem = _.find(prevState.stock, {id: product.id});
+        if (addToInventory !== undefined) {
+            this.setState((prevState) => {
 
-        stockItem.count++;
-        prevState.inventory.splice(index,1);
+                let stockItem = _.find(prevState.stock, {id: addToInventory.id});
+                if (stockItem.count <= 0) {
+                    return {};
+                }
 
-        return {
-          inventory: [...prevState.inventory],
-          stock: [...prevState.stock]
-        };
-      });
+                stockItem.count--;
+
+                return {
+                    inventory: [...prevState.inventory, addToInventory.id],
+                    stock: [...prevState.stock]
+                };
+            });
+        }
     }
-  }
+
+    onRemoveFromInventory({removeFromInventory}) {
+
+        if (removeFromInventory !== undefined) {
+            this.setState((prevState) => {
+
+                let {index, product} = removeFromInventory;
+                let stockItem = _.find(prevState.stock, {id: product.id});
+
+                stockItem.count++;
+                prevState.inventory.splice(index, 1);
+
+                return {
+                    inventory: [...prevState.inventory],
+                    stock: [...prevState.stock]
+                };
+            });
+        }
+    }
 }
 
 export default ShopStore;
