@@ -10,6 +10,17 @@ class ShopStore extends Reflux.Store {
         this.listenables = ShopActions; // convention
     }
 
+    onLoadCompleted(json) {
+        console.log('onLoadCompleted');
+        updateState(this, json);
+    }
+
+    onLoadFailed(message) {
+        console.log('onLoadFailed');
+        console.log(message);
+        // failed, with whatever message you sent
+    }
+
     onInit() {
         console.log('onInit');
 
@@ -27,17 +38,6 @@ class ShopStore extends Reflux.Store {
                     hasDataLoaded = false;
                 });
         }
-    }
-
-    onLoadCompleted(json) {
-        console.log('onLoadCompleted');
-        updateState(this, json);
-    }
-
-    onLoadFailed(message) {
-        console.log('onLoadFailed');
-        console.log(message);
-        // failed, with whatever message you sent
     }
 
     onAddToInventory({addToInventory}) {

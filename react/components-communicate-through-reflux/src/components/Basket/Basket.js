@@ -12,13 +12,13 @@ class Basket extends Reflux.Component {
         this.storeActions = props.storeActions;
     }
 
-    /*componentWillMount() {
-     // not working
-     // https://github.com/reflux/refluxjs/issues/499
-     }*/
+    componentWillMount() {
+        // https://github.com/reflux/refluxjs/issues/499
+        super.componentWillMount.call(this);
+        this.storeActions.init();
+    }
 
     componentDidMount() {
-        this.storeActions.init();
     }
 
     componentDidUpdate(prevProps, prevState) {

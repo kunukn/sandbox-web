@@ -16,13 +16,13 @@ class Products extends Reflux.Component {
         this.storeActions.addToInventory = this.storeActions.addToInventory.bind(this);
     }
 
-    /*componentWillMount() {
-     // not working
-     // https://github.com/reflux/refluxjs/issues/499
-     }*/
+    componentWillMount() {
+        // https://github.com/reflux/refluxjs/issues/499
+        super.componentWillMount.call(this);
+        this.storeActions.init();
+    }
 
     componentDidMount() {
-        this.storeActions.init();
     }
 
     render() {
