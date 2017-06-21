@@ -14,6 +14,7 @@ class Basket extends Reflux.Component {
 
     /*componentWillMount() {
      // not working
+     // https://github.com/reflux/refluxjs/issues/499
      }*/
 
     componentDidMount() {
