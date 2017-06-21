@@ -19,7 +19,7 @@ class Basket extends Reflux.Component {
   componentDidUpdate(prevProps, prevState){
       if(this.state.inventory.length !== prevState.inventory.length){
           this.domBasketValue.classList.add('anim');
-          setTimeout( () => this.domBasketValue.classList.remove('anim'), 300);
+          setTimeout( () => this.domBasketValue.classList.remove('anim'), 200);
       }
   }
 

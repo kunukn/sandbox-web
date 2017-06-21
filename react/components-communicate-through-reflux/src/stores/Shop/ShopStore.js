@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
 import ShopActions from './ShopActions';
-import {mockLoadShopData} from './MockData';
+import {mockLoadShopData} from '../../mock-data/mockLoadShopData';
 
 class ShopStore extends Reflux.Store {
   constructor() {
