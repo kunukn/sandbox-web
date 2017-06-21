@@ -5,6 +5,10 @@ import Reflux from 'reflux';
 // utils
 import _ from 'lodash';
 
+// store
+import ShopStore from '../../stores/Shop/ShopStore';
+import ShopActions from '../../stores/Shop/ShopActions';
+
 // components
 import ProductItem from './ProductItem';
 
@@ -15,15 +19,14 @@ class Products extends Reflux.Component {
             stock: [],
             products: [],
         };
-        this.stores = [props.store];
-        this.storeActions = props.storeActions;
+        this.stores = [ShopStore];
+        this.storeActions = ShopActions;
         this.storeActions.addToInventory = this.storeActions.addToInventory.bind(this);
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
         super.componentWillMount.call(this);
-        this.storeActions.init();
     }
 
     componentDidMount() {

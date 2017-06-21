@@ -5,42 +5,22 @@ import _ from 'lodash';
 import ShopActions from './ShopActions';
 import {log} from '../../utils';
 
-let hasDataLoaded = false;
-
 class ShopStore extends Reflux.Store {
     constructor() {
         super();
         this.listenables = ShopActions; // convention
     }
 
-    onLoadCompleted(json) {
-        log('onLoadCompleted');
-        updateState(this, json);
-    }
-
-    onLoadFailed(message) {
-        log('onLoadFailed');
-        log(message);
-        // failed, with whatever message you sent
-    }
-
     onInit() {
         console.log('onInit');
 
-        if (!hasDataLoaded) {
-
-            hasDataLoaded = true;
-
-            log('loading data');
-
-            window.fetch('/shop.json')
-                .then(response => response.json())
-                .then(json => updateState(this, json))
-                .catch((ex) => {
-                    log(ex);
-                    hasDataLoaded = false;
-                });
-        }
+        log('loading data');
+        window.fetch('/shop.json')
+            .then(response => response.json())
+            .then(json => updateState(this, json))
+            .catch((ex) => {
+                log(ex);
+            });
     }
 
     onAddToInventory({addToInventory}) {
@@ -80,6 +60,17 @@ class ShopStore extends Reflux.Store {
                 };
             });
         }
+    }
+
+    onLoadCompleted(json) {
+        log('onLoadCompleted');
+        updateState(this, json);
+    }
+
+    onLoadFailed(message) {
+        log('onLoadFailed');
+        log(message);
+        // failed, with whatever message you sent
     }
 }
 

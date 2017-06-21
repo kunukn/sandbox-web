@@ -11,11 +11,14 @@ import Products from './components/Products/Products';
 import Inventory from './components/Inventory/Inventory';
 
 // store
-import ShopStore from './stores/Shop/ShopStore';
 import ShopActions from './stores/Shop/ShopActions';
 
-render(<Basket store={ShopStore} storeActions={ShopActions}/>, byId('basket'));
+render(<Basket />, byId('basket'));
 
-render(<Products store={ShopStore} storeActions={ShopActions}/>, byId('products'));
+render(<Products />, byId('products'));
 
-render(<Inventory store={ShopStore} storeActions={ShopActions}/>, byId('inventory'));
+render(<Inventory />, byId('inventory'));
+
+// On route to this page call correct action
+ShopActions.init();
+
