@@ -82,4 +82,6 @@ function updateState(store, data) {
     }));
 }
 
+ShopStore.id = 'myUniqueShopStoreId';
+
 export default ShopStore;
