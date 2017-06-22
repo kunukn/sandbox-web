@@ -17,20 +17,24 @@ class Products extends Reflux.Component {
         super(props);
         this.state = {
             stock: [],
-            products: [],
+            products: []
         };
         this.stores = [ShopStore];
         this.storeActions = ShopActions;
-        this.storeActions.addToInventory = this.storeActions.addToInventory.bind(this);
+        this.storeActions.addToInventory = this
+            .storeActions
+            .addToInventory
+            .bind(this);
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super.componentWillMount.call(this);
+        super
+            .componentWillMount
+            .call(this);
     }
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     render() {
         const products = this.state.products;
@@ -39,18 +43,22 @@ class Products extends Reflux.Component {
             <div className='box products'>
                 <h2 className='products__title'>Products</h2>
                 {products && products.length > 0 && <ul className='products__list'>
-                    {products.map((p) => {
-                        const onAdd = () => this.storeActions.addToInventory({addToInventory: p})
-                        const stockItem = _.find(stock, {id: p.id});
+                    {products.map((product) => {
+                        const onAdd = () => this
+                            .storeActions
+                            .addToInventory(product)
+                        const stockItem = _.find(stock, {id: product.id});
                         return (
-                            <li key={p.id}>
+                            <li key={product.id}>
                                 <ProductItem
-                                    id={p.id}
-                                    name={p.name}
-                                    type={p.type}
-                                    icon={p.icon}
+                                    id={product.id}
+                                    name={product.name}
+                                    type={product.type}
+                                    icon={product.icon}
                                     onAdd={onAdd}
-                                    count={stockItem ? stockItem.count : 0}/>
+                                    count={stockItem
+                                    ? stockItem.count
+                                    : 0}/>
                             </li>
                         );
                     })}

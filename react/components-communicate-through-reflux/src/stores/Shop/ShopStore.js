@@ -24,48 +24,45 @@ class ShopStore extends Reflux.Store {
         });
     }
 
-    onAddToInventory({addToInventory}) {
+    onAddToInventory(addToInventory) {
 
-        if (addToInventory !== undefined) {
-            this.setState((prevState) => {
+        this.setState((prevState) => {
 
-                let stockItem = _.find(prevState.stock, {id: addToInventory.id});
-                if (stockItem.count <= 0) {
-                    return {};
-                }
+            let stockItem = _.find(prevState.stock, {id: addToInventory.id});
+            if (stockItem.count <= 0) {
+                return {};
+            }
 
-                stockItem.count--;
+            stockItem.count--;
 
-                return {
-                    inventory: [
-                        ...prevState.inventory,
-                        addToInventory.id
-                    ],
-                    stock: [...prevState.stock]
-                };
-            });
-        }
+            return {
+                inventory: [
+                    ...prevState.inventory,
+                    addToInventory.id
+                ],
+                stock: [...prevState.stock]
+            };
+        });
+
     }
 
-    onRemoveFromInventory({removeFromInventory}) {
+    onRemoveFromInventory(removeFromInventory) {
 
-        if (removeFromInventory !== undefined) {
-            this.setState((prevState) => {
+        this.setState((prevState) => {
 
-                let {index, product} = removeFromInventory;
-                let stockItem = _.find(prevState.stock, {id: product.id});
+            let {index, product} = removeFromInventory;
+            let stockItem = _.find(prevState.stock, {id: product.id});
 
-                stockItem.count++;
-                prevState
-                    .inventory
-                    .splice(index, 1);
+            stockItem.count++;
+            prevState
+                .inventory
+                .splice(index, 1);
 
-                return {
-                    inventory: [...prevState.inventory],
-                    stock: [...prevState.stock]
-                };
-            });
-        }
+            return {
+                inventory: [...prevState.inventory],
+                stock: [...prevState.stock]
+            };
+        });
     }
 
     onLoadCompleted(json) {

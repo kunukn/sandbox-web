@@ -17,20 +17,24 @@ class Inventory extends Reflux.Component {
         super(props);
         this.state = {
             inventory: [],
-            products: [],
+            products: []
         };
         this.stores = [ShopStore];
         this.storeActions = ShopActions;
-        this.storeActions.removeFromInventory = this.storeActions.removeFromInventory.bind(this);
+        this.storeActions.removeFromInventory = this
+            .storeActions
+            .removeFromInventory
+            .bind(this);
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super.componentWillMount.call(this);
+        super
+            .componentWillMount
+            .call(this);
     }
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     render() {
         const inventory = this.state.inventory;
@@ -42,12 +46,9 @@ class Inventory extends Reflux.Component {
                 {inventory && inventory.length > 0 && <ul className='inventory__list'>
                     {inventory.map((id, index) => {
                         const product = _.find(products, {id});
-                        const onRemove = () => this.storeActions.removeFromInventory({
-                            removeFromInventory: {
-                                index,
-                                product
-                            }
-                        })
+                        const onRemove = () => this
+                            .storeActions
+                            .removeFromInventory({index, product})
                         return (
                             <li key={index}>
                                 <InventoryItem product={product} onRemove={onRemove}/>
