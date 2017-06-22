@@ -6,7 +6,7 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 
 // store
-import ShopStore from '../../stores/Shop/ShopStore';
+import ShopStore from   '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
 
 // components
@@ -20,18 +20,11 @@ class Products extends Reflux.Component {
             products: []
         };
         this.stores = [ShopStore];
-        this.storeActions = ShopActions;
-        this.storeActions.addToInventory = this
-            .storeActions
-            .addToInventory
-            .bind(this);
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super
-            .componentWillMount
-            .call(this);
+        super.componentWillMount.call(this);
     }
 
     componentDidMount() {}
@@ -44,9 +37,7 @@ class Products extends Reflux.Component {
                 <h2 className='products__title'>Products</h2>
                 {products && products.length > 0 && <ul className='products__list'>
                     {products.map((product) => {
-                        const onAdd = () => this
-                            .storeActions
-                            .addToInventory(product)
+                        const onAdd = () => ShopActions.addToInventory(product)
                         const stockItem = _.find(stock, {id: product.id});
                         return (
                             <li key={product.id}>
@@ -56,9 +47,7 @@ class Products extends Reflux.Component {
                                     type={product.type}
                                     icon={product.icon}
                                     onAdd={onAdd}
-                                    count={stockItem
-                                    ? stockItem.count
-                                    : 0}/>
+                                    count={stockItem ? stockItem.count : 0}/>
                             </li>
                         );
                     })}

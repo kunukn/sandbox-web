@@ -3,7 +3,7 @@ import React from 'react';
 import Reflux from 'reflux';
 
 // store
-import ShopStore from '../../stores/Shop/ShopStore';
+import ShopStore from   '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
 
 // utils
@@ -20,11 +20,6 @@ class Inventory extends Reflux.Component {
             products: []
         };
         this.stores = [ShopStore];
-        this.storeActions = ShopActions;
-        this.storeActions.removeFromInventory = this
-            .storeActions
-            .removeFromInventory
-            .bind(this);
     }
 
     componentWillMount() {
@@ -46,8 +41,7 @@ class Inventory extends Reflux.Component {
                 {inventory && inventory.length > 0 && <ul className='inventory__list'>
                     {inventory.map((id, index) => {
                         const product = _.find(products, {id});
-                        const onRemove = () => this
-                            .storeActions
+                        const onRemove = () => ShopActions
                             .removeFromInventory({index, product})
                         return (
                             <li key={index}>
