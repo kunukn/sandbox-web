@@ -3,7 +3,7 @@ import React from 'react';
 import Reflux from 'reflux';
 
 // store
-import ShopStore from '../../stores/Shop/ShopStore';
+import ShopStore from   '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
 
 class Basket extends Reflux.Component {
@@ -14,7 +14,6 @@ class Basket extends Reflux.Component {
         };
 
         this.stores = [ShopStore];
-        this.storeActions = ShopActions;
     }
 
     componentWillMount() {
