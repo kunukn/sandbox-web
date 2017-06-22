@@ -5,23 +5,11 @@ import _ from 'lodash';
 //
 import ShopActions from './ShopActions';
 import {log} from '../../utils';
-import {fetchShopData} from '../../communication/shop';
 
 class ShopStore extends Reflux.Store {
     constructor() {
         super();
         this.listenables = ShopActions; // convention
-    }
-
-    onInit() {
-        log('onInit');
-
-        log('loading data');
-
-        fetchShopData({
-            completed: json => updateState(this, json),
-            failed: ex => log(ex)
-        });
     }
 
     onAddToInventory(addToInventory) {

@@ -2,7 +2,6 @@ import Reflux from 'reflux';
 import {fetchShopData} from '../../communication/shop';
 
 const ShopActions = Reflux.createActions({
-    init: {},
     addToInventory: {},
     removeFromInventory: {},
     load: {

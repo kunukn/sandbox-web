@@ -18,4 +18,4 @@ render(<Products />, byId('products'));
 render(<Inventory />, byId('inventory'));
 
 // On route to this page call at the right time action
-ShopActions.init();
+ShopActions.load();
