@@ -11,10 +11,11 @@ const ShopActions = Reflux.createActions({
     }
 });
 
-ShopActions
-    .load
-    .listen(function () {
-        fetchShopData({completed: this.completed, failed: this.failed});
+ShopActions.load.listen(function () {
+        fetchShopData({
+            completed: this.completed, 
+            failed: this.failed
+        });
     });
 
 export default ShopActions;
