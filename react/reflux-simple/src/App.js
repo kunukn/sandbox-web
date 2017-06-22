@@ -1,0 +1,15 @@
+import React, {Component} from 'react';
+import Reflux from 'reflux';
+import './Box';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      app
+      </div>
+    );
+  }
+}
+
+export default App;
