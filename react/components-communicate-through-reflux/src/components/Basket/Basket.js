@@ -4,6 +4,7 @@ import Reflux from 'reflux';
 
 // store
 import ShopStore from '../../stores/Shop/ShopStore';
+import ShopActions from '../../stores/Shop/ShopActions';
 
 class Basket extends Reflux.Component {
     constructor(props) {
@@ -13,11 +14,14 @@ class Basket extends Reflux.Component {
         };
 
         this.stores = [ShopStore];
+        this.storeActions = ShopActions;
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
         super.componentWillMount.call(this);
+
+        ShopActions.init();
     }
 
     componentDidMount() {

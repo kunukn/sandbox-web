@@ -7,6 +7,8 @@ import ShopActions from './ShopActions';
 import {log} from '../../utils';
 import {fetchShopData} from '../../communication/shop';
 
+let isShopDataLoaded = false;
+
 class ShopStore extends Reflux.Store {
     constructor() {
         super();
@@ -16,12 +18,20 @@ class ShopStore extends Reflux.Store {
     onInit() {
         log('onInit');
 
-        log('loading data');
+        if (!isShopDataLoaded) {
+            isShopDataLoaded = true;
 
-        fetchShopData({
-            completed: json => updateState(this, json),
-            failed: ex => log(ex)
-        });
+            log('loading data');
+
+            fetchShopData({
+                completed: json => updateState(this, json),
+                failed: ex => {
+                    isShopDataLoaded = false;
+                    log(ex);
+                }
+            });
+        }
+
     }
 
     onAddToInventory(addToInventory) {
