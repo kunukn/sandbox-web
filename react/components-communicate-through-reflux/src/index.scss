@@ -1,3 +1,4 @@
+$color-primary: #003d2b;
 $color-theme-dark: #222;
 $color-theme-light: #bbb;
 $color-theme: #e2e2e2;// #3cb84d;
@@ -24,7 +25,7 @@ body {
 main {
     color: $color-theme-light;
     background-color: #555;
-    background: linear-gradient(-135deg, rgba(purple,.5) 50%,rgba( rebeccapurple,.25));
+    background: linear-gradient(-135deg, rgba($color-primary,.5) 10%,rgba( $color-primary,.9));
     outline: 1px solid $color-theme-dark;
     width: 100%;
     max-width: 500px;

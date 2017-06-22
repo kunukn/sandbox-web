@@ -16,7 +16,7 @@ body {
 main {
   color: #bbb;
   background-color: #555;
-  background: linear-gradient(-135deg, rgba(128, 0, 128, 0.5) 50%, rgba(102, 51, 153, 0.25));
+  background: linear-gradient(-135deg, rgba(0, 61, 43, 0.5) 10%, rgba(0, 61, 43, 0.9));
   outline: 1px solid #222;
   width: 100%;
   max-width: 500px;
