@@ -19,14 +19,9 @@ class ShopStore extends Reflux.Store {
         log('loading data');
 
         fetchShopData({
-            completed: json => updateState(this, json), 
-            failed: ex => log(ex)});
-        /*window.fetch('/shop.json')
-            .then(response => response.json())
-            .then(json => updateState(this, json))
-            .catch((ex) => {
-                log(ex);
-            });*/
+            completed: json => updateState(this, json),
+            failed: ex => log(ex)
+        });
     }
 
     onAddToInventory({addToInventory}) {
@@ -42,7 +37,10 @@ class ShopStore extends Reflux.Store {
                 stockItem.count--;
 
                 return {
-                    inventory: [...prevState.inventory, addToInventory.id],
+                    inventory: [
+                        ...prevState.inventory,
+                        addToInventory.id
+                    ],
                     stock: [...prevState.stock]
                 };
             });
@@ -58,7 +56,9 @@ class ShopStore extends Reflux.Store {
                 let stockItem = _.find(prevState.stock, {id: product.id});
 
                 stockItem.count++;
-                prevState.inventory.splice(index, 1);
+                prevState
+                    .inventory
+                    .splice(index, 1);
 
                 return {
                     inventory: [...prevState.inventory],
@@ -80,11 +80,11 @@ class ShopStore extends Reflux.Store {
     }
 }
 
-function updateState(store, data) {
+function updateState(store, {products, inventory, stock}) {
     store.setState(() => ({
-        products: _.cloneDeep(data.products),
-        inventory: _.cloneDeep(data.inventory),
-        stock: _.cloneDeep(data.stock),
+        products: _.cloneDeep(products),
+        inventory: _.cloneDeep(inventory),
+        stock: _.cloneDeep(stock)
     }));
 }
 
