@@ -64,17 +64,6 @@ class ShopStore extends Reflux.Store {
             };
         });
     }
-
-    onLoadCompleted(json) {
-        log('onLoadCompleted');
-        updateState(this, json);
-    }
-
-    onLoadFailed(message) {
-        log('onLoadFailed');
-        log(message);
-        // failed, with whatever message you sent
-    }
 }
 
 function updateState(store, {products, inventory, stock}) {

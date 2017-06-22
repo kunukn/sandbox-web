@@ -1,20 +1,5 @@
 import Reflux from 'reflux';
-import {fetchShopData} from '../../communication/shop';
 
-const ShopActions = Reflux.createActions({
-    init: {},
-    addToInventory: {},
-    removeFromInventory: {},
-    load: {
-        asyncResult: true,
-        children: ['completed', 'failed']
-    }
-});
-
-ShopActions
-    .load
-    .listen(function () {
-        fetchShopData({completed: this.completed, failed: this.failed});
-    });
+const ShopActions = Reflux.createActions(['init', 'addToInventory', 'removeFromInventory']);
 
 export default ShopActions;
