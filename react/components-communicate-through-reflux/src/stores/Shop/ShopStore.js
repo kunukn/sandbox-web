@@ -2,8 +2,10 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
 
+//
 import ShopActions from './ShopActions';
 import {log} from '../../utils';
+import {fetchShopData} from '../../communication/shop';
 
 class ShopStore extends Reflux.Store {
     constructor() {
@@ -12,15 +14,19 @@ class ShopStore extends Reflux.Store {
     }
 
     onInit() {
-        console.log('onInit');
+        log('onInit');
 
         log('loading data');
-        window.fetch('/shop.json')
+
+        fetchShopData({
+            completed: json => updateState(this, json), 
+            failed: ex => log(ex)});
+        /*window.fetch('/shop.json')
             .then(response => response.json())
             .then(json => updateState(this, json))
             .catch((ex) => {
                 log(ex);
-            });
+            });*/
     }
 
     onAddToInventory({addToInventory}) {

@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import {fetchShopData} from '../../communication/shop';
 
 const ShopActions = Reflux.createActions({
     init: {},
@@ -8,10 +9,7 @@ const ShopActions = Reflux.createActions({
 });
 
 ShopActions.load.listen( function() {
-    window.fetch('/shop.json')
-        .then(response => response.json())
-        .then( this.completed )
-        .catch( this.failed );
+    fetchShopData({completed: this.completed, failed: this.failed});
 });
 
 export default ShopActions;
