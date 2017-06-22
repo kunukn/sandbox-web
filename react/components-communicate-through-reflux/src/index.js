@@ -1,8 +1,8 @@
-import './index.css';
-import 'whatwg-fetch';
-import Promise from 'promise-polyfill';
+import './index.css'; // apply styling
+import Promise from 'promise-polyfill'; //promise polyfill
+import 'whatwg-fetch'; //fetch polyfill
 
-import './app';
+import './app'; // run app
 
 if (!window.Promise) {
     window.Promise = Promise;
