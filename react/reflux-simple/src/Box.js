@@ -1,23 +1,23 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-import Store from './Store';
-import Actions from './Actions';
+import BoxStore from './BoxStore';
+import BoxActions from './BoxActions';
 
 class Box extends Reflux.Component {
 
     constructor(props)
     {
         super(props);
-        this.stores = [Store];
-        this.onClick = (() => Actions.update(this.props.index));
+        this.stores = [BoxStore];
+        this.onClick = (() => BoxActions.update(this.props.index));
     }
 
     render() {
         
         /*
             Performance uptimization, minimize object creation. 
-            e.g. onClick is created once in constructor.
+            E.g. onClick is created once in constructor.
         */ 
                 
         return (
@@ -43,8 +43,6 @@ class Box extends Reflux.Component {
 
 
 function getStylesFromState({index}) {
-
-    console.log('getStylesFromState');
 
     if(index === undefined){
         return null;
