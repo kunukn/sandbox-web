@@ -28,6 +28,17 @@ class Box extends Reflux.Component {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 function getStylesFromState({index}) {
     let styles = {};
     const size = '5px';

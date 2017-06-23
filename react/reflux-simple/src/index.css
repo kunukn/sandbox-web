@@ -42,6 +42,9 @@ body {
     transition: 300ms;
     position: relative;
 }
+.box:focus:after{
+    outline: 2px solid black;
+}
 .box:after{
   content: '';
   display: block;
