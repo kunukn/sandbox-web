@@ -10,18 +10,21 @@ class Box extends Reflux.Component {
     {
         super(props);
         this.stores = [Store];
+        this.onClick = (() => Actions.update(this.props.index));
     }
 
     render() {
-
-        let onClick = () => Actions.update(this.props.index);
-        let styles = getStylesFromState(this.state);
         
+        /*
+            Performance uptimization, minimize object creation. 
+            e.g. onClick is created once in constructor.
+        */ 
+                
         return (
             <button
-                style={styles}
+                style={getStylesFromState(this.state)}
                 className={'box box--' + this.props.index}
-                onClick={onClick}>
+                onClick={this.onClick}>
                 box {this.props.index + 1}
             </button>
         );
@@ -40,25 +43,16 @@ class Box extends Reflux.Component {
 
 
 function getStylesFromState({index}) {
-    let styles = {};
-    const size = '5px';
-    switch (index) {
-        case 0:
-            styles.boxShadow = `inset 0 0 0 ${size} #00a1f1`;
-            break;
-        case 1:
-            styles.boxShadow = `inset 0 0 0 ${size} #7cbb00`;
-            break;
-        case 2:
-            styles.boxShadow = `inset 0 0 0 ${size} #ffbb00`;
-            break;
-        case 3:
-            styles.boxShadow = `inset 0 0 0 ${size} #f65314`;
-            break;
-        default:
-            styles.boxShadow = `none`;
-            break;
+
+    console.log('getStylesFromState');
+
+    if(index === undefined){
+        return null;
     }
+
+    let styles = {};    
+    let colors = ['#00a1f1','#7cbb00','#ffbb00','#f65314','','','','','','','','','',''];    
+    styles.boxShadow = `inset 0 0 0 5px ${colors[index]}`;
     return styles;
 }
 
