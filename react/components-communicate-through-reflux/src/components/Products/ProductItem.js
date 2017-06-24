@@ -2,13 +2,14 @@ import React from 'react';
 import Reflux from 'reflux';
 
 import {track} from '../../stores/Tracker/TrackerActions';
+import ProductItemStore from   '../../stores/ProductItem/ProductItemStore';
+import {hover} from '../../stores/ProductItem/ProductItemActions';
 
 class ProductItem extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hover: false
-    }
+    this.state = {};
+    this.stores = [ProductItemStore];
   }
 
   render() {
@@ -19,10 +20,12 @@ class ProductItem extends Reflux.Component {
     cx += count <= 0 ? ' disabled' : '';
     
     const onEnter = () => {
-      this.setState({hover: true});
+      hover(true); //this.setState({hover: true});
       track({action: 'mouseOverAddProduct', productId: id});
     }
-    const onLeave = () => this.setState({hover: false});
+    const onLeave = () => {
+      hover(false); //this.setState({hover: false});
+    };
     
     return (
       <div className={cx} >
