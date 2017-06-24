@@ -1,19 +1,21 @@
 import React from 'react';
-import Reflux from 'reflux';
+import {Component} from 'reflux';
 
 import BoxStore from './BoxStore';
 import BoxActions from './BoxActions';
 
-class Box extends Reflux.Component {
-
+class Box extends Component {
+    
     constructor(props)
     {
         super(props);
+        this.state = {};
         this.stores = [BoxStore];
+        //this.storeKeys = ['value']; // <-- will only be mixed in from the store
         this.onClick = () => BoxActions.update(this.props.index);
 
         if (this.props.local) {
-            this.onClick = () => this.setState({index: this.props.index});
+            this.onClick = () => this.setState({value: this.props.index});
         }
     }
 
@@ -30,15 +32,15 @@ class Box extends Reflux.Component {
                 className={'box box--' + this.props.index}
                 onClick={this.onClick}>
                 <span>box {this.props.index}</span>
-                <footer>state {this.state.index}</footer>
+                <footer>state {this.state.value}</footer>
             </button>
         );
     }
 }
 
-function getStylesFromState({index}) {
+function getStylesFromState({value}) {
 
-    if (!index) {
+    if (!value) {
         return null;
     }
 
@@ -57,7 +59,7 @@ function getStylesFromState({index}) {
         '',
         '',
     ];
-    styles.boxShadow = `inset 0 0 0 5px ${colors[+index]}`;
+    styles.boxShadow = `inset 0 0 0 5px ${colors[+value]}`;
     return styles;
 }
 

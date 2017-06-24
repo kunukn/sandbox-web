@@ -9,17 +9,17 @@ export default class BoxStore extends Reflux.Store
         this.listenables = BoxActions;
     }
 
-    onUpdate(index)
+    onUpdate(value)
     {
-        console.log(`box ${index + 1}`);
-        
+        console.log(`onUpdate(${value})`)
+
         this.setState((prevState, props) => {
             
-            if (prevState.index === index) {
-                return {index: undefined}
+            if (prevState.value === value) {
+                return {value: undefined}
             }
 
-            return {index: index}
+            return {value}
         });
     }
 }
