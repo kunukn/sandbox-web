@@ -1,7 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-import TrackerStore from   '../../stores/Tracker/TrackerStore';
 import {track} from '../../stores/Tracker/TrackerActions';
 
 class ProductItem extends Reflux.Component {
@@ -10,7 +9,6 @@ class ProductItem extends Reflux.Component {
     this.state = {
       hover: false
     }
-    this.stores = [TrackerStore];
   }
 
   render() {
