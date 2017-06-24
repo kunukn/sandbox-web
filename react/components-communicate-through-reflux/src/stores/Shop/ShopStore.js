@@ -1,5 +1,5 @@
 // libs
-import Reflux from 'reflux';
+import {Store} from 'reflux';
 import _ from 'lodash';
 
 //
@@ -7,7 +7,7 @@ import ShopActions from './ShopActions';
 import {log} from '../../utils';
 import {fetchShopData} from '../../communication/shop';
 
-class ShopStore extends Reflux.Store {
+class ShopStore extends Store {
     constructor() {
         super();
         this.listenables = ShopActions; // convention
@@ -34,13 +34,11 @@ class ShopStore extends Reflux.Store {
             }
 
             stockItem.count--;
+            prevState.inventory.push(addToInventory.id);
 
             return {
-                inventory: [
-                    ...prevState.inventory,
-                    addToInventory.id
-                ],
-                stock: [...prevState.stock]
+                inventory: _.cloneDeep(prevState.inventory),
+                stock: _.cloneDeep(prevState.stock)
             };
         });
 
@@ -54,13 +52,11 @@ class ShopStore extends Reflux.Store {
             let stockItem = _.find(prevState.stock, {id: product.id});
 
             stockItem.count++;
-            prevState
-                .inventory
-                .splice(index, 1);
+            prevState.inventory.splice(index, 1);
 
             return {
-                inventory: [...prevState.inventory],
-                stock: [...prevState.stock]
+                inventory: _.cloneDeep(prevState.inventory),
+                stock: _.cloneDeep(prevState.stock)
             };
         });
     }
@@ -74,6 +70,6 @@ function updateState(store, {products, inventory, stock}) {
     }));
 }
 
-ShopStore.id = 'myUniqueShopStoreId';
+ShopStore.id = 'myUniqueGlobalShopStoreId';
 
 export default ShopStore;

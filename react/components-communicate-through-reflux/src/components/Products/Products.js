@@ -8,6 +8,8 @@ import _ from 'lodash';
 // store
 import ShopStore from   '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
+import TrackerStore from   '../../stores/Tracker/TrackerStore';
+import {track} from '../../stores/Tracker/TrackerActions';
 
 // components
 import ProductItem from './ProductItem';
@@ -19,7 +21,7 @@ class Products extends Reflux.Component {
             stock: [],
             products: []
         };
-        this.stores = [ShopStore];
+        this.stores = [ShopStore,TrackerStore];
     }
 
     componentWillMount() {
@@ -37,7 +39,10 @@ class Products extends Reflux.Component {
                 <h2 className='products__title'>Products</h2>
                 {products && products.length > 0 && <ul className='products__list'>
                     {products.map((product) => {
-                        const onAdd = () => ShopActions.addToInventory(product)
+                        const onAdd = () => {
+                            ShopActions.addToInventory(product);
+                            track({action: 'add', productId: product.id});
+                        }
                         const stockItem = _.find(stock, {id: product.id});
                         return (
                             <li key={product.id}>

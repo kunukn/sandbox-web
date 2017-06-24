@@ -1,5 +1,5 @@
-import Reflux from 'reflux';
+import {createActions} from 'reflux';
 
-const ShopActions = Reflux.createActions(['init', 'addToInventory', 'removeFromInventory']);
+const ShopActions = createActions(['init', 'addToInventory', 'removeFromInventory']);
 
 export default ShopActions;

@@ -1,11 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Reflux from 'reflux';
 
-class InventoryItem extends Component {
+import TrackerStore from   '../../stores/Tracker/TrackerStore';
+import {track} from '../../stores/Tracker/TrackerActions';
+
+class InventoryItem extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {
             hover: false
         }
+        this.stores = [TrackerStore];
     }
 
     render() {
@@ -14,7 +19,10 @@ class InventoryItem extends Component {
         let cx = 'inventory-item';
         cx +=  this.state.hover ? ' hover' : '';
 
-        const onEnter = () => this.setState({hover: true});
+        const onEnter = () => {
+            this.setState({hover: true});
+            track({action: 'mouseOverRemoveInventory', productId: product.id});
+        };
         const onLeave = () => this.setState({hover: false});
 
         return (

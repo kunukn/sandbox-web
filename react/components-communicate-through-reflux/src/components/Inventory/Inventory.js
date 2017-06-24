@@ -5,6 +5,8 @@ import Reflux from 'reflux';
 // store
 import ShopStore from   '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
+import TrackerStore from   '../../stores/Tracker/TrackerStore';
+import {track} from '../../stores/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';
@@ -19,14 +21,12 @@ class Inventory extends Reflux.Component {
             inventory: [],
             products: []
         };
-        this.stores = [ShopStore];
+        this.stores = [ShopStore,TrackerStore];
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super
-            .componentWillMount
-            .call(this);
+        super.componentWillMount.call(this);
     }
 
     componentDidMount() {}
@@ -41,11 +41,16 @@ class Inventory extends Reflux.Component {
                 {inventory && inventory.length > 0 && <ul className='inventory__list'>
                     {inventory.map((id, index) => {
                         const product = _.find(products, {id});
-                        const onRemove = () => ShopActions
-                            .removeFromInventory({index, product})
+                        const onRemove = () => {
+                            ShopActions.removeFromInventory({index, product});
+                            track({action: 'remove', productId: product.id});
+                        }
                         return (
                             <li key={index}>
-                                <InventoryItem product={product} onRemove={onRemove}/>
+                                <InventoryItem 
+                                product={product} 
+                                onRemove={onRemove} 
+                                />
                             </li>
                         );
                     })}
