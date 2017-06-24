@@ -1,27 +1,24 @@
-import React from 'react'
-import {render} from 'react-dom'
-import './index.css'
-import Box from './Box'
+import React from 'react';
+import {render} from 'react-dom';
+import './index.css';
+import Box from './Box';
 
 
-const count = 4
+const count = 4;
 
 
-const app = createDiv({className: 'app'})
+const app = createDiv({className: 'app'});
+for (let i = 1; i <= count; i++) 
+    app.appendChild( createDiv({id: `js-react-box${i}`}) );
 
 
-
-for (let i = 0; i < count; i++) 
-    app.appendChild( createDiv({id: `box${i}`}) )
+document.body.appendChild(app);
 
 
-
-document.body.appendChild(app)
-
-
-
-for (let i = 0; i < count; i++)
-    render(<Box index={i}/>, document.getElementById(`box${i}`))
+render(<Box index={1}/>, document.getElementById(`js-react-box${1}`));
+render(<Box index={2}/>, document.getElementById(`js-react-box${2}`));
+render(<Box index={3}/>, document.getElementById(`js-react-box${3}`));
+render(<Box index={4}/>, document.getElementById(`js-react-box${4}`));
 
 
 
