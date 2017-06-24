@@ -1,5 +1,5 @@
-import Reflux from 'reflux';
+import {createActions} from 'reflux';
 
-const BoxActions = Reflux.createActions(['update']);
+const BoxActions = createActions(['update']);
 
 export default BoxActions;

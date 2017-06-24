@@ -11,11 +11,11 @@ class Box extends Component {
         super(props);
         this.state = {};
         this.stores = [BoxStore];
-        //this.storeKeys = ['value']; // <-- will only be mixed in from the store
+        //this.storeKeys = ['count']; // <-- will only be mixed in from the store
         this.onClick = () => BoxActions.update(this.props.index);
 
         if (this.props.local) {
-            this.onClick = () => this.setState({value: this.props.index});
+            this.onClick = () => this.setState({count: this.props.index});
         }
     }
 
@@ -32,15 +32,15 @@ class Box extends Component {
                 className={'box box--' + this.props.index}
                 onClick={this.onClick}>
                 <span>box {this.props.index}</span>
-                <footer>state {this.state.value}</footer>
+                <footer>state {this.state.count}</footer>
             </button>
         );
     }
 }
 
-function getStylesFromState({value}) {
+function getStylesFromState({count}) {
 
-    if (!value) {
+    if (!count) {
         return null;
     }
 
@@ -59,7 +59,7 @@ function getStylesFromState({value}) {
         '',
         '',
     ];
-    styles.boxShadow = `inset 0 0 0 5px ${colors[+value]}`;
+    styles.boxShadow = `inset 0 0 0 5px ${colors[+count]}`;
     return styles;
 }
 
