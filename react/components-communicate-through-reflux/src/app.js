@@ -17,7 +17,7 @@ render(<Products />, byId('placeholder-2'));
 
 render(<Inventory />, byId('placeholder-3'));
 
-
+console.log(React.hello);
 
 // On route to this page call at the right time action
 ShopActions.init();

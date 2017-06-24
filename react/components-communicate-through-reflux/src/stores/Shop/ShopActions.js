@@ -1,13 +1,6 @@
 import {createActions} from 'reflux';
+import {fetchShopData} from '../../communication/shop';
 
-const ShopActions = createActions(['init', 'addToInventory', 'removeFromInventory']);
-
-export default ShopActions;
-
-
-
-
-/*
 const ShopActions = createActions({
     init: {},
     addToInventory: {},
@@ -17,10 +10,12 @@ const ShopActions = createActions({
         children: ['completed', 'failed']
     }
 });
+
 ShopActions.load.listen(function () {
         fetchShopData({
             completed: this.completed, 
             failed: this.failed
         });
     });
-*/
+
+export default ShopActions;

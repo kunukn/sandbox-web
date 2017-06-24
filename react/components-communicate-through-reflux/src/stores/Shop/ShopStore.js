@@ -1,27 +1,33 @@
 // libs
-import {Store} from 'reflux';
+import { Store } from 'reflux';
 import _ from 'lodash';
 
 //
 import ShopActions from './ShopActions';
-import {log} from '../../utils';
-import {fetchShopData} from '../../communication/shop';
+import { log } from '../../utils';
+//import { fetchShopData } from '../../communication/shop';
+
+let initCount = 0;
 
 class ShopStore extends Store {
     constructor() {
         super();
         this.listenables = ShopActions; // convention
+        // or this.listenToMany(ShopActions); // convention
     }
 
     onInit() {
         log('onInit');
 
-        log('loading data');
+        if( !initCount++ ){
+            log('loading data');
+            ShopActions.load();
 
-        fetchShopData({
-            completed: json => updateState(this, json),
-            failed: ex => log(ex)
-        });
+            /*fetchShopData({
+                completed: json => updateState(this, json),
+                failed: ex => log(ex)
+            });*/
+        }
     }
 
     onAddToInventory(addToInventory) {
@@ -59,6 +65,17 @@ class ShopStore extends Store {
                 stock: _.cloneDeep(prevState.stock)
             };
         });
+    }
+
+    onLoadCompleted(json) {
+        log('onLoadCompleted');
+        updateState(this, json);
+    }
+
+    onLoadFailed(message) {
+        log('onLoadFailed');
+        log(message);
+        // failed, with whatever message you sent
     }
 }
 
