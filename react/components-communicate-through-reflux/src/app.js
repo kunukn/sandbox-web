@@ -11,11 +11,13 @@ import Products from './components/Products/Products';
 import Inventory from './components/Inventory/Inventory';
 
 
-render(<Basket />, byId('basket'));
+render(<Basket />, byId('placeholder-1'));
 
-render(<Products />, byId('products'));
+render(<Products />, byId('placeholder-2'));
 
-render(<Inventory />, byId('inventory'));
+render(<Inventory />, byId('placeholder-3'));
+
+
 
 // On route to this page call at the right time action
 ShopActions.init();

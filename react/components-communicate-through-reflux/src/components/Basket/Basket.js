@@ -24,17 +24,22 @@ class Basket extends Reflux.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.inventory.length !== prevState.inventory.length) {
+        if (this.state.inventory.length === prevState.inventory.length) {
             this.domBasketValue.classList.add('anim');
             setTimeout(() => this.domBasketValue.classList.remove('anim'), 200);
         }
     }
 
     render() {
+
+        const styles = {
+            transform: `scale(${1+this.state.inventory.length/10})`
+        };
+
         return (
             <div className='box basket'>
                 <h2 className='basket__info'>
-                    <i className='material-icons'>shopping_basket</i>
+                    <i style={styles} className='basket__icon material-icons'>shopping_basket</i>
                     <span>Basket</span>
                     <span className='basket__value' ref={ el => this.domBasketValue = el }>
             ({this.state.inventory.length})</span>
