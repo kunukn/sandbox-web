@@ -7,8 +7,8 @@ class ProductItem extends Store {
         this.listenables = ProductItemActions;
     }
 
-    onHover(isHovering) {
-        this.setState({hover: isHovering})
+    onHover({hover, hoverIndex}) {
+        this.setState({hover, hoverIndex});
     }
 }
 

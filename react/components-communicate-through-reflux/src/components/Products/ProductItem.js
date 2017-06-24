@@ -13,18 +13,20 @@ class ProductItem extends Reflux.Component {
   }
 
   render() {
-    const { id, name, icon, onAdd, count } = this.props;
+    const { index, id, name, icon, onAdd, count } = this.props;
     
     let cx = 'product-item';
-    cx += this.state.hover ? ' hover' : '';
+    cx += this.state.hover && this.state.hoverIndex === index ? ' hover' : '';
     cx += count <= 0 ? ' disabled' : '';
     
     const onEnter = () => {
-      hover(true); //this.setState({hover: true});
+      hover({hover: true, hoverIndex: index}); // store state
+      //this.setState({hover: true}); // local state
       track({action: 'mouseOverAddProduct', productId: id});
     }
     const onLeave = () => {
-      hover(false); //this.setState({hover: false});
+      hover({hover: false, hoverIndex: index}); // store state
+      //this.setState({hover: false}); // local state
     };
     
     return (

@@ -38,7 +38,7 @@ class Products extends Reflux.Component {
             <div className='box products'>
                 <h2 className='products__title'>Products</h2>
                 {products && products.length > 0 && <ul className='products__list'>
-                    {products.map((product) => {
+                    {products.map((product, index) => {
                         const onAdd = () => {
                             ShopActions.addToInventory(product);
                             track({action: 'add', productId: product.id});
@@ -47,6 +47,7 @@ class Products extends Reflux.Component {
                         return (
                             <li key={product.id}>
                                 <ProductItem
+                                    index={index}
                                     id={product.id}
                                     name={product.name}
                                     type={product.type}
