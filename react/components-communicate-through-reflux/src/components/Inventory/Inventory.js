@@ -10,7 +10,7 @@ import {track} from '../../stores/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';
-import {log} from '../../utils';
+//import {log} from '../../utils';
 
 // components
 import InventoryItem from './InventoryItem';
