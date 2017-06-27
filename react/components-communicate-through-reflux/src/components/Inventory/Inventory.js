@@ -3,14 +3,14 @@ import React from 'react';
 import Reflux from 'reflux';
 
 // store
-import ShopStore from   '../../stores/Shop/ShopStore';
+import ShopStore from '../../stores/Shop/ShopStore';
 import ShopActions from '../../stores/Shop/ShopActions';
-import TrackerStore from   '../../stores/Tracker/TrackerStore';
+import TrackerStore from '../../stores/Tracker/TrackerStore';
 import {track} from '../../stores/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';
-//import {log} from '../../utils';
+import {log} from '../../utils';
 
 // components
 import InventoryItem from './InventoryItem';
@@ -22,16 +22,18 @@ class Inventory extends Reflux.Component {
             inventory: [],
             products: []
         };
-        this.stores = [ShopStore,TrackerStore];
+        this.stores = [ShopStore, TrackerStore];
     }
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super.componentWillMount.call(this);
+        super
+            .componentWillMount
+            .call(this);
     }
 
     componentDidMount() {
-        ShopActions.init();        
+        ShopActions.init();
     }
 
     render() {
@@ -44,17 +46,14 @@ class Inventory extends Reflux.Component {
                 {inventory && inventory.length > 0 && <ul className='inventory__list'>
                     {inventory.map((id, index) => {
                         const product = _.find(products, {id});
-                        const onRemove = (el) => {
-                            animateInventoryItem.bind(this)(el);
+                        const onRemove = (domInventoryItem) => {
+                            animateInventoryItem.bind(this)(domInventoryItem);
                             ShopActions.removeFromInventory({index, product});
                             track({action: 'remove', productId: product.id});
                         }
                         return (
                             <li key={index}>
-                                <InventoryItem 
-                                product={product} 
-                                onRemove={onRemove} 
-                                />
+                                <InventoryItem product={product} onRemove={onRemove}/>
                             </li>
                         );
                     })}
@@ -64,22 +63,30 @@ class Inventory extends Reflux.Component {
     }
 }
 
-
 function animateInventoryItem(domInventoryItem) {
-    let parent = domInventoryItem.parentElement;
-    let div = document.createElement('div');
-    div.className = 'invetory-item__title--animate';
-    parent.appendChild(div);
+    const rect = domInventoryItem.getBoundingClientRect();
+    const animator = document.createElement('div');
+    animator.className = 'inventory-item__animate';
+    animator.style.left = `${rect.left + rect.width/2}px`;
+    animator.style.top = `${rect.top - rect.height/2}px`;
 
-    ((div) => {
+    document.body.appendChild(animator);
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            animator.style.transform = `scale(3)`;
+            animator.style.opacity = '.0';
+        });
+    });
+
+    ((animator) => {
         // DOM cleanup
         setTimeout(() => {
-            if(div){
-                parent.removeChild(div);
+            if (animator) {
+                document.body.removeChild(animator);
             }
         }, 2000);
-    })(div)
+    })(animator)
 }
-
 
 export default Inventory;

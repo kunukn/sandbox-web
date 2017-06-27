@@ -281,19 +281,20 @@ ul {
     }
     &__title {
         z-index: 1;
-        &--animate {
-            transition: 500ms $easing-in-out;
-            position: absolute;
-            top: 0;
-            left: 0;
+    }
+    &__animate {
+            transition: 300ms $easing-in-out;
+            pointer-events: none;
+            position: fixed;
             opacity: 1;
             display: block;
             width: 2rem;
             height: 2rem;
             border-radius: 50%;
-            background: red;
+            background: rgba(white,.1);
+            z-index: 2;
+            transform-origin: 50% 50%;
         }
-    }
     &__action {
         z-index: 1;
         transition: 200ms;

@@ -6,7 +6,7 @@ import {track} from '../../stores/Tracker/TrackerActions';
 class InventoryItem extends Reflux.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
 
     render() {
