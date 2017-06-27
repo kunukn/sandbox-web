@@ -1,6 +1,7 @@
+// libs
 import React from 'react';
 import Reflux from 'reflux';
-
+// store
 import {track} from '../../stores/Tracker/TrackerActions';
 import ProductItemStore from   '../../stores/ProductItem/ProductItemStore';
 import {hover} from '../../stores/ProductItem/ProductItemActions';
@@ -28,19 +29,20 @@ class ProductItem extends Reflux.Component {
       hover({hover: false, hoverIndex: index}); // store state
       //this.setState({hover: false}); // local state
     };
+    const onAddProductItem = () => onAdd(this.domItem);
     
     return (
       <div className={cx} >
         <div className="product-item__info">
-          <i className="material-icons">{icon}</i>
+          <i ref={ el => this.domItem = el } className="product-item__icon material-icons">{icon}</i>
           <span>{name} ({count})</span>
         </div>
         <button
           className="btn product-item__action"
           aria-label="add"
-          onClick={onAdd}
+          onClick={onAddProductItem}
           onMouseEnter={onEnter} onMouseLeave={onLeave}
-          disabled={count<=0 ? true : null}
+          disabled={count <= 0 ? true : null}
         >
           <i className="material-icons" aria-hidden="true">
             add_circle_outline

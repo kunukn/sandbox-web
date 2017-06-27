@@ -20,14 +20,15 @@ class InventoryItem extends Reflux.Component {
             track({action: 'mouseOverRemoveInventory', productId: product.id});
         };
         const onLeave = () => this.setState({hover: false});
+        const onRemoveInventoryItem = () => onRemove(this.domItem);
 
         return (
             <div className={cx}>
-                <div className='inventory-item__title'>
+                <div className='inventory-item__title' ref={ el => this.domItem = el }>
                     {product.name}
                 </div>
                 <button
-                    onClick={onRemove}
+                    onClick={onRemoveInventoryItem}
                     className='btn inventory-item__action'
                     aria-label='delete'
                     onMouseEnter={onEnter}

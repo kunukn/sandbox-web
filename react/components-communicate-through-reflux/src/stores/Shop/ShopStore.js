@@ -30,6 +30,12 @@ class ShopStore extends Store {
         }
     }
 
+    onBasketInit(basketLocation){
+        this.setState({
+            basketLocation
+        });
+    }
+
     onAddToInventory(addToInventory) {
 
         this.setState((prevState) => {

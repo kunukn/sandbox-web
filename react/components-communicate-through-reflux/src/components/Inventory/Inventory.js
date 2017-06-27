@@ -10,6 +10,7 @@ import {track} from '../../stores/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';
+//import {log} from '../../utils';
 
 // components
 import InventoryItem from './InventoryItem';
@@ -27,11 +28,11 @@ class Inventory extends Reflux.Component {
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
         super.componentWillMount.call(this);
-
-        ShopActions.init();
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        ShopActions.init();        
+    }
 
     render() {
         const inventory = this.state.inventory;
@@ -43,7 +44,8 @@ class Inventory extends Reflux.Component {
                 {inventory && inventory.length > 0 && <ul className='inventory__list'>
                     {inventory.map((id, index) => {
                         const product = _.find(products, {id});
-                        const onRemove = () => {
+                        const onRemove = (el) => {
+                            animateInventoryItem.bind(this)(el);
                             ShopActions.removeFromInventory({index, product});
                             track({action: 'remove', productId: product.id});
                         }
@@ -61,5 +63,23 @@ class Inventory extends Reflux.Component {
         );
     }
 }
+
+
+function animateInventoryItem(domInventoryItem) {
+    let parent = domInventoryItem.parentElement;
+    let div = document.createElement('div');
+    div.className = 'invetory-item__title--animate';
+    parent.appendChild(div);
+
+    ((div) => {
+        // DOM cleanup
+        setTimeout(() => {
+            if(div){
+                parent.removeChild(div);
+            }
+        }, 2000);
+    })(div)
+}
+
 
 export default Inventory;

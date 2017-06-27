@@ -19,18 +19,21 @@ class Basket extends Reflux.Component {
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
         super.componentWillMount.call(this);
-
-        ShopActions.init();
     }
 
     componentDidMount() {
+        ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
+        let basketLocation = this.domBasketIcon.getBoundingClientRect();
+        ShopActions.basketInit(basketLocation); // on window resize the position will be wrong
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        if (this.state.inventory.length === nextState.inventory.length) {
+            animateBasket.bind(this)();
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.inventory.length === prevState.inventory.length) {
-            this.domBasketValue.classList.add('anim');
-            setTimeout(() => this.domBasketValue.classList.remove('anim'), 200);
-        }
     }
 
     render() {
@@ -42,14 +45,21 @@ class Basket extends Reflux.Component {
         return (
             <div className='box basket'>
                 <h2 className='basket__info'>
-                    <i style={styles} className='basket__icon material-icons'>shopping_basket</i>
-                    <span>Basket</span>
-                    <span className='basket__value' ref={ el => this.domBasketValue = el }>
+                    <i style={styles} ref={ el => this.domBasketIcon = el } className='basket__icon material-icons'>shopping_basket</i>
+                    <div className="basket__status">
+                        <span>Basket</span>
+                        <span className='basket__value' ref={ el => this.domBasketValue = el }>
             ({this.state.inventory.length})</span>
+                    </div>
                 </h2>
             </div>
         );
     }
+}
+
+function animateBasket(){
+    this.domBasketValue.classList.add('anim');
+    setTimeout(() => this.domBasketValue.classList.remove('anim'), 200);
 }
 
 export default Basket;
