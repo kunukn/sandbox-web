@@ -203,13 +203,30 @@ ul {
         }
     }
     &__icon {
-        &--animate {
-            transition: 500ms $easing-in-out;
+        &--animate-wrap {
+            transition: 1000ms $easing-in-out;
             position: absolute;
             top: 0;
             left: 0;
             opacity: 1;
             display: block;
+            margin: 0;
+            $icon-size: 24px;
+            width: $icon-size;
+            height: $icon-size;
+            //outline: 1px solid red; // debug
+        }
+        &--animate {
+            animation: 250ms 4;
+            animation-name: animation-shake-x;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            //outline: 1px solid blue; // debug
         }
     }
     &__action {
@@ -316,4 +333,16 @@ ul {
             box-shadow: 0 0 10px $color-theme-light;
         }
     }
+}
+
+@keyframes animation-shake-x {
+  0%, 50%, 100%{
+      transform: translateX(0);
+  }
+  25%{ 
+    transform: translateX(20px);
+  }
+  75%{
+    transform: translateX(-20px);
+  }
 }
