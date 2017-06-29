@@ -1,6 +1,7 @@
 // libs
 import React from 'react';
 import Reflux from 'reflux';
+import classNames from 'classnames';
 // store
 import {track} from '../../stores/Tracker/TrackerActions';
 import ProductItemStore from   '../../stores/ProductItem/ProductItemStore';
@@ -16,9 +17,10 @@ class ProductItem extends Reflux.Component {
   render() {
     const { index, id, name, icon, onAdd, count } = this.props;
     
-    let cx = 'product-item';
-    cx += this.state.hover && this.state.hoverIndex === index ? ' hover' : '';
-    cx += count <= 0 ? ' disabled' : '';
+    let productItemClassName = classNames(
+      'product-item', 
+    {'hover': this.state.hover && this.state.hoverIndex === index}, 
+    {'disabled': count <= 0});
     
     const onEnter = () => {
       hover({hover: true, hoverIndex: index}); // store state
@@ -32,7 +34,7 @@ class ProductItem extends Reflux.Component {
     const onAddProductItem = () => onAdd(this.domItem);
     
     return (
-      <div className={cx} >
+      <div className={productItemClassName} >
         <div className="product-item__info">
           <i ref={ el => this.domItem = el } className="product-item__icon material-icons">{icon}</i>
           <span>{name} ({count})</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import classNames from 'classnames';
 
 import {track} from '../../stores/Tracker/TrackerActions';
 
@@ -12,8 +13,9 @@ class InventoryItem extends Reflux.Component {
     render() {
         const {product, onRemove} = this.props;
 
-        let cx = 'inventory-item';
-        cx +=  this.state.hover ? ' hover' : '';
+        let inventoryItemClassName = classNames(
+            'inventory-item', 
+            {hover: this.state.hover});
 
         const onEnter = () => {
             this.setState({hover: true});
@@ -23,7 +25,7 @@ class InventoryItem extends Reflux.Component {
         const onRemoveInventoryItem = () => onRemove(this.domItem);
 
         return (
-            <div className={cx}>
+            <div className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>
                     {product.name}
                 </div>
