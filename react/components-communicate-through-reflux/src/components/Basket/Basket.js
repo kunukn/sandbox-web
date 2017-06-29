@@ -32,7 +32,7 @@ class Basket extends Reflux.Component {
         setTimeout(()=>{
             // Wait until DOM has settled, quick prototype mode            
             updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
-        },500);
+        },1000);
         
     }
 
