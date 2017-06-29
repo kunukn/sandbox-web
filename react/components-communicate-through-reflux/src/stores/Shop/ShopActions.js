@@ -19,4 +19,5 @@ ShopActions.load.listen(function () {
         });
     });
 
+export const {init, addToInventory, removeFromInventory, updateBasketLocation, load} = ShopActions;
 export default ShopActions;

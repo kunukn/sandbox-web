@@ -1,7 +1,6 @@
 import {createActions} from 'reflux';
 
 const ProductItemActions = createActions(['hover']);
-const hover = ProductItemActions.hover;
 
-export {hover};
+export const {hover} = ProductItemActions;
 export default ProductItemActions;
