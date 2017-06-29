@@ -27,13 +27,11 @@ class Inventory extends Reflux.Component {
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super
-            .componentWillMount
-            .call(this);
+        super.componentWillMount.call(this);
     }
 
     componentDidMount() {
-        ShopActions.init();
+        //ShopActions.init();
     }
 
     render() {

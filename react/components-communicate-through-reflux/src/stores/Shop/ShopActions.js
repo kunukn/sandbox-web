@@ -5,7 +5,7 @@ const ShopActions = createActions({
     init: {},
     addToInventory: {},
     removeFromInventory: {},
-    basketInit: {},
+    updateBasketLocation: {},
     load: {
         asyncResult: true,
         children: ['completed', 'failed']

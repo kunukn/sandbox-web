@@ -17,3 +17,11 @@ export function qsa(expr, context) {
 export function toDOM(component){
     return createElement(component, null, null);
 }
+
+export function createAndAppenById(id){
+    let child = document.createElement('div');
+    child.className = 'react-component';
+    byId(id).appendChild(child);    
+    return child;
+}
+

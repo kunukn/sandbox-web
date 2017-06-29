@@ -24,13 +24,11 @@ class Products extends Reflux.Component {
 
     componentWillMount() {
         // https://github.com/reflux/refluxjs/issues/499
-        super
-            .componentWillMount
-            .call(this);
+        super.componentWillMount.call(this);
     }
 
     componentDidMount() {
-        ShopActions.init();
+        //ShopActions.init();
     }
 
     render() {
@@ -56,9 +54,7 @@ class Products extends Reflux.Component {
                                     type={product.type}
                                     icon={product.icon}
                                     onAdd={onAdd}
-                                    count={stockItem
-                                    ? stockItem.count
-                                    : 0}/>
+                                    count={stockItem ? stockItem.count : 0}/>
                             </li>
                         );
                     })}

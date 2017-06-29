@@ -22,12 +22,11 @@ class Basket extends Reflux.Component {
     }
 
     componentDidMount() {
-        ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
+        //ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
         
         setTimeout(()=>{
-            // Wait until DOM has settled, quick prototype mode
-            let basketLocation = this.domBasketIcon.getBoundingClientRect();
-            ShopActions.basketInit(basketLocation); // on window resize the position will be wrong
+            // Wait until DOM has settled, quick prototype mode            
+            ShopActions.updateBasketLocation(this.domBasketIcon.getBoundingClientRect()); // on window resize the position will be wrong
         },500);
         
     }

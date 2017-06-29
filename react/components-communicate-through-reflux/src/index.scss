@@ -102,13 +102,19 @@ ul {
     margin: 0;
 }
 
-[data-js-react] {
+.placeholder {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    &--3 {
+        flex: 1 1 auto;
+    }
 }
 
-[id=placeholder-3] {
-    flex: 1 1 auto;
+.react-component{
+    width: 100%;
+    position: relative;
 }
 
 .box {

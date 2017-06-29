@@ -14,6 +14,8 @@ class ShopStore extends Store {
         super();
         this.listenables = ShopActions; // convention
         // or this.listenToMany(ShopActions); // convention
+
+        this.onInit();
     }
 
     onInit() {
@@ -30,7 +32,7 @@ class ShopStore extends Store {
         }
     }
 
-    onBasketInit(basketLocation){
+    onUpdateBasketLocation(basketLocation){
         this.setState({
             basketLocation
         });
