@@ -169,6 +169,7 @@ ul {
     padding: .5rem 0;
     padding-left: .5rem;
     position: relative;
+    margin-bottom: 2px;
     &:after {
         pointer-events: none;
         transition: 300ms $easing-in-out;

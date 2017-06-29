@@ -19,7 +19,7 @@ class ProductItem extends Reflux.Component {
     
     let productItemClassName = classNames(
       'product-item', 
-    {'hover': this.state.hover && this.state.hoverIndex === index}, 
+    {'hover': this.state.hover && (this.state.hoverIndex === index)}, 
     {'disabled': count <= 0});
     
     const onEnter = () => {

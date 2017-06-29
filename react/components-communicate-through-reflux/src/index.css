@@ -136,7 +136,8 @@ ul {
   align-items: center;
   padding: .5rem 0;
   padding-left: .5rem;
-  position: relative; }
+  position: relative;
+  margin-bottom: 2px; }
   .product-item:after {
     pointer-events: none;
     transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
