@@ -138,13 +138,17 @@ ul {
     }
     &__status{
         min-width: 6rem;
+        > span{
+            display: inline-block;
+            position: relative;
+        }
     }
     &__icon {
         transition: 200ms $easing-in-out;
         position: relative;
         margin-right: .5rem;
     }
-    &__value {
+    &__value {        
         &.anim {
             animation: basket $easing-in-out 180ms forwards;
         }

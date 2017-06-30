@@ -36,6 +36,8 @@ class Basket extends Reflux.Component {
         
     }
 
+    // Not sure if nextState is properly working with Reflux store state sharing
+    // Seems to work
     componentWillUpdate(nextProps, nextState){
         if (this.state.inventory.length === nextState.inventory.length) {
             this.animateBasket();
