@@ -3,6 +3,7 @@ import React from 'react';
 import Reflux from 'reflux';
 // utils
 import _ from 'lodash';
+import {log} from '../../utils';
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 import {updateBasketLocation} from '../../flux/actions/Shop/ShopActions';
@@ -10,14 +11,18 @@ import {updateBasketLocation} from '../../flux/actions/Shop/ShopActions';
 import LoadingTracker from '../LoadingTracker/LoadingTracker';
 
 class Basket extends Reflux.Component {
+
+
     constructor(props) {
         super(props);
+
         this.state = {
             inventory: [],
             loadingTracker: {},
         };
 
         this.stores = [ShopStore];
+        //this.domBasketIcon = document.createElement('div');
         this.onResize = _.debounce(onResize, 200, { 'maxWait': 1000 }).bind(this);
     }
 
@@ -57,10 +62,9 @@ class Basket extends Reflux.Component {
         const styles = {
             transform: `scale(${1+this.state.inventory.length/10})`
         };
-        const {isLoading, isLoadingFailed} = this.state.loadingTracker;
 
         return (
-            <LoadingTracker name={'basket'} {...{isLoading,isLoadingFailed}}>
+            <LoadingTracker name={'basket'} {...this.state.loadingTracker}>
                 <div className='box basket'>
                     <h2 className='basket__info'>
                         <i style={styles} ref={ el => this.domBasketIcon = el } className='basket__icon material-icons'>shopping_basket</i>
@@ -76,13 +80,19 @@ class Basket extends Reflux.Component {
     }
 
     animateBasket(){
-        this.domBasketValue.classList.add('anim');
-        setTimeout(() => this.domBasketValue.classList.remove('anim'), 200);
+        if(this.domBasketValue){
+            this.domBasketValue.classList.add('anim');
+            setTimeout(() => this.domBasketValue.classList.remove('anim'), 200);
+        }
     }
 }
 
 function onResize(){
-    updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+    log('onResize');
+    if(this.domBasketIcon){
+        updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+    }
+    
 }
 
 export default Basket;

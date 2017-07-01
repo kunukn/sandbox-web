@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 // utils
 import {toDOM, createAndAppenById} from './utils';
 // store
-//import ShopActions from './stores/Shop/ShopActions';
+//import ShopActions from './flux/actions/Shop/ShopActions';
 // components
 import Basket from './components/Basket/Basket';
 import Products from './components/Products/Products';

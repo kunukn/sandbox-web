@@ -115,14 +115,12 @@ ul {
       margin-left: .25rem; }
   .basket__status {
     min-width: 6rem; }
-    .basket__status > span {
-      display: inline-block;
-      position: relative; }
   .basket__label {
     display: inline-block;
     margin-right: 2px; }
   .basket__icon {
     transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
     position: relative;
     margin-right: .5rem; }
   .basket__value.anim {

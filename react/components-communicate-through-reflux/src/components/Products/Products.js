@@ -34,12 +34,10 @@ class Products extends Reflux.Component {
     }
 
     render() {
-        const products = this.state.products;
-        const stock = this.state.stock;
-        const {isLoading, isLoadingFailed} = this.state.loadingTracker;
+        const {products, stock} = this.state;
 
         return (
-            <LoadingTracker name={'products'} {...{isLoading,isLoadingFailed}}>
+            <LoadingTracker name={'products'} {...this.state.loadingTracker}>
                 <div className='box products'>
                     <h2 className='products__title'>Products</h2>
                     {products && products.length > 0 && <ul className='products__list'>

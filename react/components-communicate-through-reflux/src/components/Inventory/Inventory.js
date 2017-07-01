@@ -34,11 +34,10 @@ class Inventory extends Reflux.Component {
     }
 
     render() {
-        const inventory = this.state.inventory;
-        const {isLoading, isLoadingFailed} = this.state.loadingTracker;
+        const {inventory} = this.state;
 
         return (
-            <LoadingTracker name={'inventory'} {...{isLoading,isLoadingFailed}}>
+            <LoadingTracker name={'inventory'} {...this.state.loadingTracker}>
                 <div className='box inventory'>
                     <h2 className='inventory__title'>Inventory</h2>
                     {inventory && inventory.length > 0 && <ul className='inventory__list'>

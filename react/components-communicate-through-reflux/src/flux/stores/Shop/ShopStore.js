@@ -5,7 +5,7 @@ import _ from 'lodash';
 import ShopActions from '../../actions/Shop/ShopActions';
 // utils
 import { log } from '../../../utils';
-//import { fetchShopData } from '../../../communication/shop';
+import { fetchShopData } from '../../../communication/shop';
 
 class ShopStore extends Store {
 
@@ -26,12 +26,17 @@ class ShopStore extends Store {
         log('onInit');
 
         log('loading data');
-        ShopActions.loadData();
+        //ShopActions.loadData();
 
-        // fetchShopData({
-        //     completed: ({products, inventory, stock}) => this.updateState({products, inventory, stock, isLoading: false}),
-        //     failed: ex => log(ex)
-        // });
+        let timer = setTimeout( () => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
+            return Object.assign({},prevState,{loadingTracker});
+        }), 2000);
+        
+        fetchShopData({
+            completed: ({products, inventory, stock}) => {this.updateState({products, inventory, stock, isLoading: false})},
+            failed: ex => log(ex)
+        });
     }
 
     onUpdateBasketLocation(basketLocation){
@@ -97,7 +102,7 @@ class ShopStore extends Store {
     
     updateState({products, inventory, stock, isLoading}) {
         // simulate latency            
-        setTimeout(()=>{    
+        setTimeout(()=>{ 
             this.setState(() => ({
                 loadingTracker: {
                     isLoading,
@@ -107,7 +112,7 @@ class ShopStore extends Store {
                 stock: _.cloneDeep(stock),
                 
             }));
-        }, 2000);
+        }, 5000);
     }
 }
 

@@ -138,10 +138,6 @@ ul {
     }
     &__status{
         min-width: 6rem;
-        > span{
-            display: inline-block;
-            position: relative;
-        }
     }
     &__label{
         display: inline-block;
@@ -149,6 +145,7 @@ ul {
     }
     &__icon {
         transition: 200ms $easing-in-out;
+        display: inline-block;
         position: relative;
         margin-right: .5rem;
     }
