@@ -17,7 +17,7 @@ body {
 main {
   color: #bbb;
   background-color: #555;
-  background: linear-gradient(-135deg, rgba(0, 61, 43, 0.5) 10%, rgba(0, 61, 43, 0.9));
+  background: linear-gradient(-135deg, rgba(0, 61, 43, 0.8) 10%, rgba(0, 61, 43, 0.9));
   outline: 1px solid #222;
   width: 100%;
   max-width: 500px;
@@ -178,8 +178,7 @@ ul {
     width: 24px;
     height: 24px; }
   .product-item__icon--animate {
-    animation: 250ms 4;
-    animation-name: animation-shake-x;
+    animation: animation-shake-x 500ms 2;
     position: absolute;
     top: 0;
     left: 0;

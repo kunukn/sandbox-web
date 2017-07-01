@@ -3,9 +3,9 @@ import React from 'react';
 import Reflux from 'reflux';
 import classNames from 'classnames';
 // store
-import {track} from '../../stores/Tracker/TrackerActions';
-import ProductItemStore from   '../../stores/ProductItem/ProductItemStore';
-import {hover} from '../../stores/ProductItem/ProductItemActions';
+import {track} from '../../flux/stores/Tracker/TrackerActions';
+import ProductItemStore from   '../../flux/stores/ProductItem/ProductItemStore';
+import {hover} from '../../flux/stores/ProductItem/ProductItemActions';
 
 class ProductItem extends Reflux.Component {
   constructor(props) {

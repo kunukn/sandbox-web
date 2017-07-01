@@ -3,10 +3,10 @@ import React from 'react';
 import Reflux from 'reflux';
 
 // store
-import ShopStore from '../../stores/Shop/ShopStore';
-import ShopActions from '../../stores/Shop/ShopActions';
-import TrackerStore from '../../stores/Tracker/TrackerStore';
-import {track} from '../../stores/Tracker/TrackerActions';
+import ShopStore from '../../flux/stores/Shop/ShopStore';
+import ShopActions from '../../flux/stores/Shop/ShopActions';
+import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
+import {track} from '../../flux/stores/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';

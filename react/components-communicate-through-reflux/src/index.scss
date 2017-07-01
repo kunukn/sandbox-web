@@ -26,7 +26,7 @@ body {
 main {
     color: $color-theme-light;
     background-color: #555;
-    background: linear-gradient(-135deg, rgba($color-primary, .5) 10%, rgba( $color-primary, .9));
+    background: linear-gradient(-135deg, rgba($color-primary, .8) 10%, rgba( $color-primary, .9));
     outline: 1px solid $color-theme-dark;
     width: 100%;
     max-width: 500px;
@@ -221,8 +221,7 @@ ul {
             height: $icon-size;
         }
         &--animate {
-            animation: 250ms 4;
-            animation-name: animation-shake-x;
+            animation: animation-shake-x 500ms 2;
             position: absolute;
             top: 0;
             left: 0;

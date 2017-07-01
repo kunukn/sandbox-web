@@ -1,5 +1,6 @@
 import {createActions} from 'reflux';
-import {fetchShopData} from '../../communication/shop';
+import {fetchShopData} from '../../../communication/shop';
+//import {fetchShopData} from '~src/communication/shop';
 
 const ShopActions = createActions({
     init: {},

@@ -3,7 +3,7 @@ import {Store} from 'reflux';
 
 //
 import TrackerActions from './TrackerActions';
-import {log} from '../../utils';
+import {log} from '../../../utils';
 
 class TrackerStore extends Store {
     constructor() {

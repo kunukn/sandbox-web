@@ -5,10 +5,10 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 //import {log} from '../../utils';
 // store
-import ShopStore from '../../stores/Shop/ShopStore';
-import {addToInventory} from '../../stores/Shop/ShopActions';
-import TrackerStore from '../../stores/Tracker/TrackerStore';
-import {track} from '../../stores/Tracker/TrackerActions';
+import ShopStore from '../../flux/stores/Shop/ShopStore';
+import {addToInventory} from '../../flux/stores/Shop/ShopActions';
+import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
+import {track} from '../../flux/stores/Tracker/TrackerActions';
 // components
 import ProductItem from './ProductItem';
 
