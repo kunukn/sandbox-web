@@ -21,7 +21,6 @@ class Basket extends Reflux.Component {
         };
 
         this.stores = [ShopStore];
-        //this.domBasketIcon = document.createElement('div');
         this.onResize = _.debounce(onResize, 200, { 'maxWait': 1000 }).bind(this);
     }
 

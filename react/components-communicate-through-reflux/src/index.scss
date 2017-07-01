@@ -113,7 +113,7 @@ ul {
     }
 }
 
-.react-component{
+.react-component {
     width: 100%;
     position: relative;
 }
@@ -136,10 +136,10 @@ ul {
             margin-left: .25rem;
         }
     }
-    &__status{
+    &__status {
         min-width: 6rem;
     }
-    &__label{
+    &__label {
         display: inline-block;
         margin-right: 2px;
     }
@@ -149,7 +149,7 @@ ul {
         position: relative;
         margin-right: .5rem;
     }
-    &__value {        
+    &__value {
         &.anim {
             animation: basket $easing-in-out 180ms forwards;
         }
@@ -165,7 +165,6 @@ ul {
         transform: scale(1.2);
     }
 }
-
 
 .products {
     padding-top: 1rem;
@@ -315,18 +314,18 @@ ul {
         z-index: 1;
     }
     &__animate {
-            transition: 300ms $easing-in-out;
-            pointer-events: none;
-            position: fixed;
-            opacity: 1;
-            display: block;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            background: rgba(white,.1);
-            z-index: 2;
-            transform-origin: 50% 50%;
-        }
+        transition: 300ms $easing-in-out;
+        pointer-events: none;
+        position: fixed;
+        opacity: 1;
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: rgba(white, .1);
+        z-index: 2;
+        transform-origin: 50% 50%;
+    }
     &__action {
         z-index: 1;
         transition: 200ms;
@@ -343,24 +342,24 @@ ul {
     }
 }
 
-.loading-tracker{
+.loading-tracker {
     position: relative;
-    &__overlay{
+    &__overlay {
         z-index: 10;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(black,.5);
+        background: rgba(black, .5);
         display: flex;
         justify-content: center;
         align-items: center;
-        + *{
+        +* {
             pointer-events: none;
         }
     }
-    &__box{
+    &__box {
         position: relative;
         border-radius: 4px;
         width: 80%;
@@ -371,28 +370,78 @@ ul {
         display: flex;
         justify-content: center;
         align-items: center;
+        $percentage: 90%;
+        overflow: hidden;
     }
-    &__name{
+    &__name {
         display: inline-block;
         position: relative;
         margin-right: 1rem;
         font-size: 120%;
         text-transform: capitalize;
     }
-    &__messgae{
+    &__message {
         display: inline-block;
         position: relative;
     }
 }
 
 @keyframes animation-shake-x {
-  0%, 50%, 100%{
-      transform: translateX(0);
-  }
-  25%{ 
-    transform: translateX(20px);
-  }
-  75%{
-    transform: translateX(-20px);
-  }
+    0%,
+    50%,
+    100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(20px);
+    }
+    75% {
+        transform: translateX(-20px);
+    }
+}
+
+.load-bar {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    &__item {
+        display: inline-block;
+        position: absolute;
+        width: 0;
+        height: 100%;
+        left: 50%;
+        text-align: center;
+        &:nth-child(1) {
+            background-color: #eee;
+            animation: loading 3s linear infinite;
+        }
+        &:nth-child(2) {
+            background-color: #e2e2e2;
+            animation: loading 3s linear 1s infinite;
+        }
+        &:nth-child(3) {
+            background-color: #ddd;
+            animation: loading 3s linear 2s infinite;
+        }
+    }
+}
+
+@keyframes loading {
+    from {
+        left: 50%;
+        width: 0;
+        z-index: 100;
+    }
+    33.3333% {
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+    to {
+        left: 0;
+        width: 100%;
+    }
 }

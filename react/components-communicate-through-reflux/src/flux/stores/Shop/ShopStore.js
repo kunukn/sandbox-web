@@ -28,14 +28,7 @@ class ShopStore extends Store {
         log('loading data');
         //ShopActions.loadData();
 
-        this.loadingSpinnerTimer = setTimeout( () => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner:true});
-            return Object.assign({},prevState,{loadingTracker});
-        }), 500);
-        this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
-            return Object.assign({},prevState,{loadingTracker});
-        }), 3000);
+        this.setupLoadingTracker();
         
         fetchShopData({
             completed: ({products, inventory, stock}) => {this.updateState({products, inventory, stock, isLoading: false})},
@@ -121,6 +114,17 @@ class ShopStore extends Store {
         clearTimeout(this.longLoadingTimer);
             
         }, 5000);
+    }
+
+    setupLoadingTracker(){
+        this.loadingSpinnerTimer = setTimeout( () => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner:true});
+            return Object.assign({},prevState,{loadingTracker});
+        }), 500);
+        this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
+            return Object.assign({},prevState,{loadingTracker});
+        }), 3000);
     }
 }
 
