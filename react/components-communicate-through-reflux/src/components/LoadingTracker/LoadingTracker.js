@@ -10,16 +10,20 @@ class LoadingTracker extends React.Component {
         if (isLoadingFailed) {
             return (
                 <div className="loading-tracker loading-tracker--error">
-                    {name}
-                    - Error loading data, please try later.
+                    <div className="loading-tracker__content">
+                        <span className="loading-tracker__name">{name}</span>
+                        <span className="loading-tracker__message"> - Error loading data, please try later.</span>
+                    </div>
                 </div>
             );
         }
         if (isLoading) {
             return (
                 <div className="loading-tracker loading-tracker--loading">
-                    {name}
-                    - Loading, please wait...
+                    <div className="loading-tracker__content">
+                        <span className="loading-tracker__name">{name}</span>
+                        <span className="loading-tracker__message"> - Loading, please wait...</span>
+                    </div>
                 </div>
             );
         }

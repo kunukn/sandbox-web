@@ -49,6 +49,7 @@ class Basket extends Reflux.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        
     }
 
     componentWillUnmount(){

@@ -35,7 +35,6 @@ class Inventory extends Reflux.Component {
 
     render() {
         const inventory = this.state.inventory;
-        const products = this.state.products;
         const {isLoading, isLoadingFailed} = this.state.loadingTracker;
 
         return (
@@ -44,7 +43,7 @@ class Inventory extends Reflux.Component {
                     <h2 className='inventory__title'>Inventory</h2>
                     {inventory && inventory.length > 0 && <ul className='inventory__list'>
                         {inventory.map((id, index) => {
-                            const product = _.find(products, {id});
+                            const product = _.find(this.state.products, {id});
                             const onRemove = (domInventoryItem) => {
                                 animateInventoryItem.bind(this)(domInventoryItem);
                                 ShopActions.removeFromInventory({index, product});

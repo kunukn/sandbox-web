@@ -84,7 +84,7 @@ class ShopStore extends Store {
             // simulate latency
             log('onLoadCompleted');
             updateState(this, json);
-        },2000);
+        }, 2000);
     }
 
     onLoadDataFailed(message) {

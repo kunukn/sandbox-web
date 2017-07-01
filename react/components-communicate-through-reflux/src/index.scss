@@ -337,6 +337,37 @@ ul {
     }
 }
 
+.loading-tracker{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 6rem;
+    outline: 1px solid gray;
+
+    &--loading{
+        color: skyblue;
+    }
+    &--error{
+        color: red;
+    }
+    &__content{
+        max-width: 20rem;
+        flex: 1 1 auto;
+        display: flex;
+        //justify-content: space-between;
+        align-items: center;
+    }
+    &__name{
+        display: inline-block;
+        min-width: 6rem;
+    }
+    
+    &__message{
+
+    }
+}
+
 @keyframes animation-shake-x {
   0%, 50%, 100%{
       transform: translateX(0);

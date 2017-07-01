@@ -272,6 +272,25 @@ ul {
     .inventory-item__action:hover {
       box-shadow: 0 0 10px #bbb; }
 
+.loading-tracker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 6rem;
+  outline: 1px solid gray; }
+  .loading-tracker--loading {
+    color: skyblue; }
+  .loading-tracker--error {
+    color: red; }
+  .loading-tracker__content {
+    max-width: 20rem;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center; }
+  .loading-tracker__name {
+    display: inline-block;
+    min-width: 6rem; }
+
 @keyframes animation-shake-x {
   0%, 50%, 100% {
     transform: translateX(0); }
