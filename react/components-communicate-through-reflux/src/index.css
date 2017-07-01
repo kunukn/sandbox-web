@@ -278,26 +278,40 @@ ul {
       box-shadow: 0 0 10px #bbb; }
 
 .loading-tracker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 6rem;
-  outline: 1px solid gray; }
-  .loading-tracker--error {
-    color: red; }
-  .loading-tracker__content {
-    max-width: 20rem;
-    flex: 1 1 auto;
+  position: relative; }
+  .loading-tracker__overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
-    position: relative; }
+    justify-content: center;
+    align-items: center; }
+    .loading-tracker__overlay + * {
+      pointer-events: none; }
+  .loading-tracker__box {
+    position: relative;
+    border-radius: 4px;
+    width: 80%;
+    height: 80%;
+    max-height: 6rem;
+    background: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   .loading-tracker__name {
     display: inline-block;
-    min-width: 6rem;
-    margin-right: .5rem;
-    font-size: 150%; }
-  .loading-tracker__message {
-    display: inline-block; }
+    position: relative;
+    margin-right: 1rem;
+    font-size: 120%;
+    text-transform: capitalize; }
+  .loading-tracker__messgae {
+    display: inline-block;
+    position: relative; }
 
 @keyframes animation-shake-x {
   0%, 50%, 100% {

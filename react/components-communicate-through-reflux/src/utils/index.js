@@ -14,8 +14,8 @@ export function qsa(expr, context) {
     return [].slice.call((context || document).querySelectorAll(expr), 0)
 }
 
-export function toDOM(component){
-    return createElement(component, null, null);
+export function toDOM(component, props, ...children){
+    return createElement(component, props, children);
 }
 
 export function createAndAppendById(id){
@@ -24,4 +24,3 @@ export function createAndAppendById(id){
     byId(id).appendChild(child);    
     return child;
 }
-

@@ -2,29 +2,35 @@ import React from 'react';
 
 class LoadingTracker extends React.Component {
     render() {
-        let {name,isLoading,isLoadingLong,isLoadingFailed,ignoreLoadingTracker} = this.props;
+        let {name,isLoading, isLoadingLong, isLoadingFailed,isLoadingSpinner,ignoreLoadingTracker} = this.props;
         
-        if(ignoreLoadingTracker){
+        if(ignoreLoadingTracker || !isLoadingSpinner){
             return React.Children.only(this.props.children);
         }
+
         if (isLoadingFailed) {
             return (
                 <div className="loading-tracker loading-tracker--error">
-                    <div className="loading-tracker__content">
-                        <span className="loading-tracker__name">{name}</span>
-                        <span className="loading-tracker__message">Error loading data, please try later.</span>
+                    {this.props.children}
+                    <div className="loading-tracker__overlay">
+                    <div className="loading-tracker__box">
+                        <span className="loading-tracker__name">{name} </span>
+                        <span className="loading-tracker__message">Error, please try again later.</span>
+                    </div>
                     </div>
                 </div>
             );
         }
+
         if (isLoading) {
             return (
                 <div className="loading-tracker loading-tracker--loading">
-                    <div className="loading-tracker__content">
-                        <span className="loading-tracker__name">{name}</span>
-                        <span className="loading-tracker__message">Loading, please wait...
-                        {isLoadingLong && ' sorry about the long waiting'}
-                        </span>
+                    {this.props.children}
+                    <div className="loading-tracker__overlay">
+                    <div className="loading-tracker__box">
+                        <span className="loading-tracker__name">{name} </span>
+                        <span className="loading-tracker__message">please wait... {isLoadingLong && ' some more...'}</span>
+                    </div>
                     </div>
                 </div>
             );

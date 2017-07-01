@@ -12,7 +12,6 @@ import LoadingTracker from '../LoadingTracker/LoadingTracker';
 
 class Basket extends Reflux.Component {
 
-
     constructor(props) {
         super(props);
 
@@ -34,6 +33,9 @@ class Basket extends Reflux.Component {
     componentDidMount() {
         //ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
         window.addEventListener('resize', this.onResize);        
+        if(this.domBasketIcon){
+            updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+        }
     }
 
     // Not sure if nextState is properly working with Reflux store state sharing
@@ -46,11 +48,6 @@ class Basket extends Reflux.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.loadingTracker.isLoading){
-            if(this.domBasketIcon){
-                updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
-            }
-        }
     }
 
     componentWillUnmount(){

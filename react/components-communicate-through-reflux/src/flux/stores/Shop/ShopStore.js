@@ -28,10 +28,14 @@ class ShopStore extends Store {
         log('loading data');
         //ShopActions.loadData();
 
+        this.loadingSpinnerTimer = setTimeout( () => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner:true});
+            return Object.assign({},prevState,{loadingTracker});
+        }), 500);
         this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
             const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
             return Object.assign({},prevState,{loadingTracker});
-        }), 2000);
+        }), 3000);
         
         fetchShopData({
             completed: ({products, inventory, stock}) => {this.updateState({products, inventory, stock, isLoading: false})},

@@ -5,10 +5,9 @@ import {toDOM, createAndAppendById} from './utils';
 // store
 //import ShopActions from './flux/actions/Shop/ShopActions';
 // components
-import Basket from './components/Basket/Basket';
-import Products from './components/Products/Products';
-import Inventory from './components/Inventory/Inventory';
-
+import Basket from './components/Basket';
+import Products from './components/Products';
+import Inventory from './components/Inventory';
 
 render(toDOM(Products), createAndAppendById('placeholder-2'));
 render(toDOM(Inventory), createAndAppendById('placeholder-3'));
