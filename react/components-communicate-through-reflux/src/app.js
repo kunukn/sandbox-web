@@ -9,9 +9,10 @@ import Basket from './components/Basket/Basket';
 import Products from './components/Products/Products';
 import Inventory from './components/Inventory/Inventory';
 
-render(toDOM(Basket), createAndAppenById('placeholder-1'));
+
 render(toDOM(Products), createAndAppenById('placeholder-2'));
 render(toDOM(Inventory), createAndAppenById('placeholder-3'));
+render(toDOM(Basket), createAndAppenById('placeholder-1'));
 //render(toDOM(Products), createAndAppenById('placeholder-2'));
 //render(toDOM(Inventory), createAndAppenById('placeholder-3'));
 

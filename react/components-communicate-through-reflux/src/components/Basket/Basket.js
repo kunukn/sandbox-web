@@ -31,7 +31,9 @@ class Basket extends Reflux.Component {
 
         setTimeout(()=>{
             // Wait until DOM has settled, quick prototype mode            
-            updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+            if(this.domBasketIcon){
+                updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+            }
         },1000);
         
     }
@@ -53,6 +55,20 @@ class Basket extends Reflux.Component {
     }
 
     render() {
+        if(this.state.loadingTracker.isLoading) {
+            return (
+                   <div className='box basket'>
+                    Basket - loading data...
+                   </div>
+            );
+        }
+        if(this.state.loadingTracker.isLoadingFailed) {
+            return (
+                   <div className='box basket'>
+                    Basket - Error loading data, try again later.
+                   </div>
+            );
+        }
 
         const styles = {
             transform: `scale(${1+this.state.inventory.length/10})`

@@ -9,11 +9,15 @@ import ShopActions from '../../actions/Shop/ShopActions';
 import { log } from '../../../utils';
 //import { fetchShopData } from '../../../communication/shop';
 
-let initCount = 0;
-
 class ShopStore extends Store {
+
     constructor() {
         super();
+        this.state = {
+            loadingTracker: {
+                isLoading: true,
+            }
+        };
         this.listenables = ShopActions; // convention
         // or this.listenToMany(ShopActions); // convention
 
@@ -23,15 +27,13 @@ class ShopStore extends Store {
     onInit() {
         log('onInit');
 
-        if( !initCount++ ){
-            log('loading data');
-            ShopActions.load();
+        log('loading data');
+        ShopActions.loadData();
 
-            /*fetchShopData({
-                completed: json => updateState(this, json),
-                failed: ex => log(ex)
-            });*/
-        }
+            // fetchShopData({
+            //     completed: json => updateState(this, json),
+            //     failed: ex => log(ex)
+            // });
     }
 
     onUpdateBasketLocation(basketLocation){
@@ -77,23 +79,35 @@ class ShopStore extends Store {
         });
     }
 
-    onLoadCompleted(json) {
-        log('onLoadCompleted');
-        updateState(this, json);
+    onLoadDataCompleted(json) {
+        setTimeout(()=>{
+            // simulate latency
+            log('onLoadCompleted');
+            updateState(this, json);
+        },2000);
     }
 
-    onLoadFailed(message) {
+    onLoadDataFailed(message) {
         log('onLoadFailed');
         log(message);
-        // failed, with whatever message you sent
+        this.setState({
+            loadingTracker: {
+                isLoading: false,
+                isLoadingFailed: true,
+            }    
+        });
     }
 }
 
 function updateState(store, {products, inventory, stock}) {
     store.setState(() => ({
+        loadingTracker: {
+            isLoading: false,
+        },
         products: _.cloneDeep(products),
         inventory: _.cloneDeep(inventory),
-        stock: _.cloneDeep(stock)
+        stock: _.cloneDeep(stock),
+        
     }));
 }
 

@@ -66,6 +66,11 @@ class Products extends Reflux.Component {
 
 function animateProductItem(domProductItem) {
 
+    if(!this.state.basketLocation){
+        // If there is not basket, then don't animate
+        return;
+    }
+
     /*
         imperative code which could be cleaned up 
         into function calls
