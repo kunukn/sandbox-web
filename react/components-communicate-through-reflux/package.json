@@ -6,6 +6,7 @@
     "classnames": "^2.2.5",
     "promise-polyfill": "^6.0.2",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.5.4",
     "whatwg-fetch": "^2.0.3"
   },

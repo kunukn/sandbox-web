@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class LoadingTracker extends React.Component {
+
     render() {
         
         let {name,isLoading, isLoadingLong, isLoadingFailed,isLoadingSpinner,ignoreLoadingTracker} = this.props;
@@ -8,29 +10,11 @@ class LoadingTracker extends React.Component {
         if(ignoreLoadingTracker){
             return React.Children.only(this.props.children);
         }
-        
-        if (isLoadingFailed) {
-            return (
-                <div className="loading-tracker loading-tracker--error">
-                    <div className="loading-tracker__overlay">
-                    <div className="loading-tracker__box">
-                        <span className="loading-tracker__name">{name} </span>
-                        <span className="loading-tracker__message">Error, please try again later.</span>
-                    </div>
-                    </div>
-                    {this.props.children}
-                </div>
-            );
-        }
 
-        if(!isLoadingSpinner){
-            return React.Children.only(this.props.children);
-        }
-
-        if (isLoading) {
-            return (
-                <div className="loading-tracker loading-tracker--loading">
-                    <div className="loading-tracker__overlay">
+         return (
+                <div className="loading-tracker">
+                    {isLoading && isLoadingSpinner &&
+                    <div key={'isLoading'} className="loading-tracker__overlay">
                         <div className="loading-tracker__box">
                         <div className="load-bar">
                             <div className="load-bar__item"></div>
@@ -39,13 +23,23 @@ class LoadingTracker extends React.Component {
                             <span className="loading-tracker__name">{name} </span>
                             <span className="loading-tracker__message">please wait... {isLoadingLong && ' some more...'}</span>
                         </div>
-                    </div>
+                    </div>}
+                    
+                    {isLoadingFailed && 
+                    <div key={'isLoadingFailed'} className="loading-tracker__overlay">
+                        <div className="loading-tracker__box">
+                        <div className="load-bar">
+                            <div className="load-bar__item"></div>
+                            <div className="load-bar__item"></div>
+                        </div>
+                            <span className="loading-tracker__name">{name} </span>
+                            <span className="loading-tracker__message">Error, please try again later.</span>
+                        </div>
+                    </div>}
+                    
                     {this.props.children}
                 </div>
             );
-        }
-
-        return React.Children.only(this.props.children);
     }
 }
 
