@@ -35,7 +35,7 @@ class Basket extends Reflux.Component {
             if(this.domBasketIcon){
                 updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
             }
-        },1000);
+        }, 1000);
         
     }
 
@@ -49,7 +49,12 @@ class Basket extends Reflux.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        
+        if(prevState.loadingTracker.isLoading){
+            if(this.domBasketIcon){
+                console.log('basket update');
+                updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
+            }
+        }
     }
 
     componentWillUnmount(){

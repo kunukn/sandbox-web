@@ -37,6 +37,8 @@ class ShopStore extends Store {
     }
 
     onUpdateBasketLocation(basketLocation){
+        log('onUpdateBasketLocation');
+        log(basketLocation);
         this.setState({
             basketLocation
         });

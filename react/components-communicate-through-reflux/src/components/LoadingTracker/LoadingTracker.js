@@ -12,7 +12,7 @@ class LoadingTracker extends React.Component {
                 <div className="loading-tracker loading-tracker--error">
                     <div className="loading-tracker__content">
                         <span className="loading-tracker__name">{name}</span>
-                        <span className="loading-tracker__message"> - Error loading data, please try later.</span>
+                        <span className="loading-tracker__message">Error loading data, please try later.</span>
                     </div>
                 </div>
             );
@@ -22,7 +22,7 @@ class LoadingTracker extends React.Component {
                 <div className="loading-tracker loading-tracker--loading">
                     <div className="loading-tracker__content">
                         <span className="loading-tracker__name">{name}</span>
-                        <span className="loading-tracker__message"> - Loading, please wait...</span>
+                        <span className="loading-tracker__message">Loading, please wait...</span>
                     </div>
                 </div>
             );
