@@ -4,11 +4,11 @@ import Reflux from 'reflux';
 // utils
 import _ from 'lodash';
 //import {log} from '../../utils';
-// store
+// flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
-import {addToInventory} from '../../flux/stores/Shop/ShopActions';
+import {addToInventory} from '../../flux/actions/Shop/ShopActions';
 import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
-import {track} from '../../flux/stores/Tracker/TrackerActions';
+import {track} from '../../flux/actions/Tracker/TrackerActions';
 // components
 import ProductItem from './ProductItem';
 

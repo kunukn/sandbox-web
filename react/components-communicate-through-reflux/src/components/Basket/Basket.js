@@ -5,9 +5,9 @@ import Reflux from 'reflux';
 // utils
 import _ from 'lodash';
 
-// store
+// flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
-import {updateBasketLocation} from '../../flux/stores/Shop/ShopActions';
+import {updateBasketLocation} from '../../flux/actions/Shop/ShopActions';
 
 class Basket extends Reflux.Component {
     constructor(props) {

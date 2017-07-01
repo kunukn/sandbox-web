@@ -1,8 +1,10 @@
 // libs
 import {Store} from 'reflux';
 
-//
-import TrackerActions from './TrackerActions';
+// flux
+import TrackerActions from '../../actions/Tracker/TrackerActions';
+
+// utils
 import {log} from '../../../utils';
 
 class TrackerStore extends Store {
@@ -12,7 +14,6 @@ class TrackerStore extends Store {
     }
 
     onTrack(event) {
-        //log('onTrack');
         log(event);
     }
 }

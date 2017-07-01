@@ -1,8 +1,10 @@
+// libs
 import React from 'react';
 import Reflux from 'reflux';
 import classNames from 'classnames';
 
-import {track} from '../../flux/stores/Tracker/TrackerActions';
+// flux
+import {track} from '../../flux/actions/Tracker/TrackerActions';
 
 class InventoryItem extends Reflux.Component {
     constructor(props) {

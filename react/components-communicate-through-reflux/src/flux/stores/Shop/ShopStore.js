@@ -2,10 +2,12 @@
 import { Store } from 'reflux';
 import _ from 'lodash';
 
-//
-import ShopActions from './ShopActions';
+// flux 
+import ShopActions from '../../actions/Shop/ShopActions';
+
+// utils
 import { log } from '../../../utils';
-//import { fetchShopData } from '../../communication/shop';
+//import { fetchShopData } from '../../../communication/shop';
 
 let initCount = 0;
 

@@ -1,5 +1,5 @@
 import {Store} from 'reflux';
-import ProductItemActions from './ProductItemActions';
+import ProductItemActions from '../../actions/ProductItem/ProductItemActions';
 
 class ProductItem extends Store {
     constructor() {

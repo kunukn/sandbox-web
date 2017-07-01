@@ -2,10 +2,10 @@
 import React from 'react';
 import Reflux from 'reflux';
 import classNames from 'classnames';
-// store
-import {track} from '../../flux/stores/Tracker/TrackerActions';
+// flux
+import {track} from '../../flux/actions/Tracker/TrackerActions';
 import ProductItemStore from   '../../flux/stores/ProductItem/ProductItemStore';
-import {hover} from '../../flux/stores/ProductItem/ProductItemActions';
+import {hover} from '../../flux/actions/ProductItem/ProductItemActions';
 
 class ProductItem extends Reflux.Component {
   constructor(props) {

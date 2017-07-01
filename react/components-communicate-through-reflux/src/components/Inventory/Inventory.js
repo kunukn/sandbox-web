@@ -2,11 +2,11 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-// store
+// flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
-import ShopActions from '../../flux/stores/Shop/ShopActions';
+import ShopActions from '../../flux/actions/Shop/ShopActions';
 import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
-import {track} from '../../flux/stores/Tracker/TrackerActions';
+import {track} from '../../flux/actions/Tracker/TrackerActions';
 
 // utils
 import _ from 'lodash';
