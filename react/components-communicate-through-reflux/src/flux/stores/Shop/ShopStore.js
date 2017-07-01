@@ -28,7 +28,7 @@ class ShopStore extends Store {
         log('loading data');
         //ShopActions.loadData();
 
-        let timer = setTimeout( () => this.setState(prevState => {
+        this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
             const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
             return Object.assign({},prevState,{loadingTracker});
         }), 2000);
@@ -102,6 +102,7 @@ class ShopStore extends Store {
     
     updateState({products, inventory, stock, isLoading}) {
         // simulate latency            
+        
         setTimeout(()=>{ 
             this.setState(() => ({
                 loadingTracker: {
@@ -112,6 +113,9 @@ class ShopStore extends Store {
                 stock: _.cloneDeep(stock),
                 
             }));
+        
+        clearTimeout(this.longLoadingTimer);
+            
         }, 5000);
     }
 }

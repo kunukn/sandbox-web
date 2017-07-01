@@ -1,7 +1,7 @@
 // libs
 import {render} from 'react-dom';
 // utils
-import {toDOM, createAndAppenById} from './utils';
+import {toDOM, createAndAppendById} from './utils';
 // store
 //import ShopActions from './flux/actions/Shop/ShopActions';
 // components
@@ -10,9 +10,9 @@ import Products from './components/Products/Products';
 import Inventory from './components/Inventory/Inventory';
 
 
-render(toDOM(Products), createAndAppenById('placeholder-2'));
-render(toDOM(Inventory), createAndAppenById('placeholder-3'));
-render(toDOM(Basket), createAndAppenById('placeholder-1'));
+render(toDOM(Products), createAndAppendById('placeholder-2'));
+render(toDOM(Inventory), createAndAppendById('placeholder-3'));
+render(toDOM(Basket), createAndAppendById('placeholder-1'));
 //render(toDOM(Products), createAndAppenById('placeholder-2'));
 //render(toDOM(Inventory), createAndAppenById('placeholder-3'));
 
