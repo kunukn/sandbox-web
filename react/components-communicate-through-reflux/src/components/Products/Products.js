@@ -11,13 +11,15 @@ import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
 import {track} from '../../flux/actions/Tracker/TrackerActions';
 // components
 import ProductItem from './ProductItem';
+import LoadingTracker from '../LoadingTracker/LoadingTracker';
 
 class Products extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loadingTracker: {},
             stock: [],
-            products: []
+            products: [],
         };
         this.stores = [ShopStore, TrackerStore];
     }
@@ -34,32 +36,36 @@ class Products extends Reflux.Component {
     render() {
         const products = this.state.products;
         const stock = this.state.stock;
+        const {isLoading, isLoadingFailed} = this.state.loadingTracker;
+
         return (
-            <div className='box products'>
-                <h2 className='products__title'>Products</h2>
-                {products && products.length > 0 && <ul className='products__list'>
-                    {products.map((product, index) => {
-                        const onAdd = (domProductItemIcon) => {
-                            animateProductItem.call(this,domProductItemIcon);
-                            addToInventory(product);
-                            track({action: 'add', productId: product.id});
-                        }
-                        const stockItem = _.find(stock, {id: product.id});
-                        return (
-                            <li key={product.id}>
-                                <ProductItem
-                                    index={index}
-                                    id={product.id}
-                                    name={product.name}
-                                    type={product.type}
-                                    icon={product.icon}
-                                    onAdd={onAdd}
-                                    count={stockItem ? stockItem.count : 0}/>
-                            </li>
-                        );
-                    })}
-                </ul>}
-            </div>
+            <LoadingTracker name={'products'} {...{isLoading,isLoadingFailed}}>
+                <div className='box products'>
+                    <h2 className='products__title'>Products</h2>
+                    {products && products.length > 0 && <ul className='products__list'>
+                        {products.map((product, index) => {
+                            const onAdd = (domProductItemIcon) => {
+                                animateProductItem.call(this,domProductItemIcon);
+                                addToInventory(product);
+                                track({action: 'add', productId: product.id});
+                            }
+                            const stockItem = _.find(stock, {id: product.id});
+                            return (
+                                <li key={product.id}>
+                                    <ProductItem
+                                        index={index}
+                                        id={product.id}
+                                        name={product.name}
+                                        type={product.type}
+                                        icon={product.icon}
+                                        onAdd={onAdd}
+                                        count={stockItem ? stockItem.count : 0}/>
+                                </li>
+                            );
+                        })}
+                    </ul>}
+                </div>
+            </LoadingTracker>
         );
     }
 }

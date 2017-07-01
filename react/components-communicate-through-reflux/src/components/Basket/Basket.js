@@ -1,19 +1,20 @@
 // libs
 import React from 'react';
 import Reflux from 'reflux';
-
 // utils
 import _ from 'lodash';
-
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 import {updateBasketLocation} from '../../flux/actions/Shop/ShopActions';
+// components
+import LoadingTracker from '../LoadingTracker/LoadingTracker';
 
 class Basket extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {
             inventory: [],
+            loadingTracker: {},
         };
 
         this.stores = [ShopStore];
@@ -55,36 +56,25 @@ class Basket extends Reflux.Component {
     }
 
     render() {
-        if(this.state.loadingTracker.isLoading) {
-            return (
-                   <div className='box basket'>
-                    Basket - loading data...
-                   </div>
-            );
-        }
-        if(this.state.loadingTracker.isLoadingFailed) {
-            return (
-                   <div className='box basket'>
-                    Basket - Error loading data, try again later.
-                   </div>
-            );
-        }
-
+        
         const styles = {
             transform: `scale(${1+this.state.inventory.length/10})`
         };
+        const {isLoading, isLoadingFailed} = this.state.loadingTracker;
 
         return (
-            <div className='box basket'>
-                <h2 className='basket__info'>
-                    <i style={styles} ref={ el => this.domBasketIcon = el } className='basket__icon material-icons'>shopping_basket</i>
-                    <div className="basket__status">
-                        <span>Basket</span>
-                        <span className='basket__value' ref={ el => this.domBasketValue = el }>
-            ({this.state.inventory.length})</span>
-                    </div>
-                </h2>
-            </div>
+            <LoadingTracker name={'basket'} {...{isLoading,isLoadingFailed}}>
+                <div className='box basket'>
+                    <h2 className='basket__info'>
+                        <i style={styles} ref={ el => this.domBasketIcon = el } className='basket__icon material-icons'>shopping_basket</i>
+                        <div className="basket__status">
+                            <span>Basket</span>
+                            <span className='basket__value' ref={ el => this.domBasketValue = el }>
+                ({this.state.inventory.length})</span>
+                        </div>
+                    </h2>
+                </div>
+            </LoadingTracker>
         );
     }
 
