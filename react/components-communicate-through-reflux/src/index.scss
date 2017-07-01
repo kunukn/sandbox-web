@@ -143,6 +143,10 @@ ul {
             position: relative;
         }
     }
+    &__label{
+        display: inline-block;
+        margin-right: 2px;
+    }
     &__icon {
         transition: 200ms $easing-in-out;
         position: relative;
@@ -162,6 +166,21 @@ ul {
     }
     50% {
         transform: scale(1.2);
+    }
+}
+
+
+.products {
+    padding-top: 1rem;
+    min-height: 10rem;
+    position: relative;
+    &__title {
+        margin-bottom: .5rem;
+    }
+    &__list {
+        //outline: 1px solid;
+        margin-left: auto;
+        max-width: 300px;
     }
 }
 
@@ -249,24 +268,14 @@ ul {
     }
 }
 
-.products {
-    padding-top: 1rem;
-    &__title {
-        margin-bottom: .5rem;
-    }
-    &__list {
-        //outline: 1px solid;
-        margin-left: auto;
-        max-width: 300px;
-    }
-}
-
 .inventory {
+    position: relative;
+    min-height: 10rem;
     &__title {
         margin-bottom: .5rem;
     }
     &__list {
-        display: flex; //justify-content: center;
+        display: flex;
         align-items: center;
         align-content: center;
         flex-wrap: wrap;
@@ -345,8 +354,7 @@ ul {
     min-height: 6rem;
     outline: 1px solid gray;
 
-    &--loading{
-        //color: skyblue;
+    &--loading {
     }
     &--error{
         color: red;
@@ -363,6 +371,7 @@ ul {
         display: inline-block;
         min-width: 6rem;
         margin-right: .5rem;
+        font-size: 150%;
     }
     
     &__message{

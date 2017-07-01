@@ -118,6 +118,9 @@ ul {
     .basket__status > span {
       display: inline-block;
       position: relative; }
+  .basket__label {
+    display: inline-block;
+    margin-right: 2px; }
   .basket__icon {
     transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -131,6 +134,16 @@ ul {
     transform: scale(1); }
   50% {
     transform: scale(1.2); } }
+
+.products {
+  padding-top: 1rem;
+  min-height: 10rem;
+  position: relative; }
+  .products__title {
+    margin-bottom: .5rem; }
+  .products__list {
+    margin-left: auto;
+    max-width: 300px; }
 
 .product-item {
   transition: 200ms;
@@ -200,22 +213,16 @@ ul {
     .product-item__action[disabled] {
       cursor: not-allowed; }
 
-.products {
-  padding-top: 1rem; }
-  .products__title {
+.inventory {
+  position: relative;
+  min-height: 10rem; }
+  .inventory__title {
     margin-bottom: .5rem; }
-  .products__list {
-    margin-left: auto;
-    max-width: 300px; }
-
-.inventory__title {
-  margin-bottom: .5rem; }
-
-.inventory__list {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap; }
+  .inventory__list {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap; }
 
 .inventory-item {
   display: flex;
@@ -289,7 +296,8 @@ ul {
   .loading-tracker__name {
     display: inline-block;
     min-width: 6rem;
-    margin-right: .5rem; }
+    margin-right: .5rem;
+    font-size: 150%; }
   .loading-tracker__message {
     display: inline-block; }
 

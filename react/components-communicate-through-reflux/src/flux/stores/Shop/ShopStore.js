@@ -1,10 +1,8 @@
 // libs
 import { Store } from 'reflux';
 import _ from 'lodash';
-
 // flux 
 import ShopActions from '../../actions/Shop/ShopActions';
-
 // utils
 import { log } from '../../../utils';
 //import { fetchShopData } from '../../../communication/shop';
@@ -30,15 +28,15 @@ class ShopStore extends Store {
         log('loading data');
         ShopActions.loadData();
 
-            // fetchShopData({
-            //     completed: json => updateState(this, json),
-            //     failed: ex => log(ex)
-            // });
+        // fetchShopData({
+        //     completed: ({products, inventory, stock}) => this.updateState({products, inventory, stock, isLoading: false}),
+        //     failed: ex => log(ex)
+        // });
     }
 
     onUpdateBasketLocation(basketLocation){
         log('onUpdateBasketLocation');
-        log(basketLocation);
+        //log(basketLocation);
         this.setState({
             basketLocation
         });
@@ -81,12 +79,9 @@ class ShopStore extends Store {
         });
     }
 
-    onLoadDataCompleted(json) {
-        setTimeout(()=>{
-            // simulate latency
+    onLoadDataCompleted({products, inventory, stock}) {
             log('onLoadCompleted');
-            updateState(this, json);
-        }, 2000);
+            this.updateState({products, inventory, stock, isLoading: false});
     }
 
     onLoadDataFailed(message) {
@@ -99,18 +94,21 @@ class ShopStore extends Store {
             }    
         });
     }
-}
-
-function updateState(store, {products, inventory, stock}) {
-    store.setState(() => ({
-        loadingTracker: {
-            isLoading: false,
-        },
-        products: _.cloneDeep(products),
-        inventory: _.cloneDeep(inventory),
-        stock: _.cloneDeep(stock),
-        
-    }));
+    
+    updateState({products, inventory, stock, isLoading}) {
+        // simulate latency            
+        setTimeout(()=>{    
+            this.setState(() => ({
+                loadingTracker: {
+                    isLoading,
+                },
+                products: _.cloneDeep(products),
+                inventory: _.cloneDeep(inventory),
+                stock: _.cloneDeep(stock),
+                
+            }));
+        }, 2000);
+    }
 }
 
 ShopStore.id = 'myUniqueGlobalShopStoreId';
