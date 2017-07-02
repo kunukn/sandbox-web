@@ -29,7 +29,11 @@ class InventoryItem extends Reflux.Component {
         return (
             <div className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>
-                    {product.name}
+                    <div className='inventory-item__name'> {product.name}
+                   </div>
+                    <i className="inventory-item__icon material-icons" aria-hidden="true">
+                        {product.icon}
+                        </i>
                 </div>
                 <button
                     onClick={onRemoveInventoryItem}

@@ -127,11 +127,20 @@ ul {
 
 .basket {
     position: relative;
+    &--theme-default{}
+    &--theme-dark{
+        background-color: rgba( black,.5);
+    }
+    &--theme-light{
+        background-color: rgba( white,.5);
+        color: black;
+    }
     &__info {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         text-align: right;
+        color: inherit;
         >* {
             margin-left: .25rem;
         }
@@ -170,8 +179,17 @@ ul {
     padding-top: 1rem;
     min-height: 10rem;
     position: relative;
+    &--theme-default{}
+    &--theme-dark{
+        background-color: rgba( black,.5);
+    }
+    &--theme-light{
+        background-color: rgba( white,.5);
+        color: black;
+    }
     &__title {
         margin-bottom: .5rem;
+        color: inherit;
     }
     &__list {
         //outline: 1px solid;
@@ -287,7 +305,8 @@ ul {
 .inventory-summary-item {
     display: flex;
     display: inline-flex;
-    margin-right: auto;
+    flex-flow: row wrap;
+    margin-right: auto; // flex trick, minimize space
     align-items: center;
     border-radius: 2px;
     padding: .25rem .25rem;
@@ -314,8 +333,17 @@ ul {
 .inventory {
     position: relative;
     min-height: 6rem;
+    &--theme-default{}
+    &--theme-dark{
+        background-color: rgba( black,.5);
+    }
+    &--theme-light{
+        background-color: rgba( white,.5);
+        color: black;
+    }
     &__title {
         margin-bottom: .5rem;
+        color: inherit;
     }
     &__list {
         display: flex;
@@ -329,6 +357,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 1;
     border: 1px solid #444;
     border-radius: 4px;
     margin-right: .5rem;
@@ -358,7 +387,25 @@ ul {
         }
     }
     &__title {
+        cursor: pointer;
         z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        &:hover{
+            .inventory-item__name{
+                opacity: 1;
+            }
+        }
+    }
+    &__name{
+        position: absolute;
+        transition: 200ms;
+        opacity: 0;
+        top: -.6rem;
+        left: -.5rem;
+        height: 1rem;
+        width: 8rem;
     }
     &__animate {
         transition: 300ms $easing-in-out;

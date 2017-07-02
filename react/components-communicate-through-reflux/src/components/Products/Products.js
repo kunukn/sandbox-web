@@ -34,10 +34,11 @@ class Products extends Reflux.Component {
 
     render() {
         const {products, stock} = this.state;
+        const {theme = 'default'} = this.props;
 
         return (
             <LoadingTracker name={'products'} {...this.state.loadingTracker}>
-                <div className='box products'>
+                <div className={'box products products--theme-'+theme}>
                     <h2 className='products__title'>Products</h2>
                     {products && products.length > 0 && <ul className='products__list'>
                         {products.map((product, index) => {

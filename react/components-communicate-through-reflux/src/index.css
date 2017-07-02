@@ -106,11 +106,17 @@ ul {
 
 .basket {
   position: relative; }
+  .basket--theme-dark {
+    background-color: rgba(0, 0, 0, 0.5); }
+  .basket--theme-light {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black; }
   .basket__info {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    text-align: right; }
+    text-align: right;
+    color: inherit; }
     .basket__info > * {
       margin-left: .25rem; }
   .basket__status {
@@ -137,8 +143,14 @@ ul {
   padding-top: 1rem;
   min-height: 10rem;
   position: relative; }
+  .products--theme-dark {
+    background-color: rgba(0, 0, 0, 0.5); }
+  .products--theme-light {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black; }
   .products__title {
-    margin-bottom: .5rem; }
+    margin-bottom: .5rem;
+    color: inherit; }
   .products__list {
     margin-left: auto;
     max-width: 300px; }
@@ -229,6 +241,7 @@ ul {
 .inventory-summary-item {
   display: flex;
   display: inline-flex;
+  flex-flow: row wrap;
   margin-right: auto;
   align-items: center;
   border-radius: 2px;
@@ -251,8 +264,14 @@ ul {
 .inventory {
   position: relative;
   min-height: 6rem; }
+  .inventory--theme-dark {
+    background-color: rgba(0, 0, 0, 0.5); }
+  .inventory--theme-light {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black; }
   .inventory__title {
-    margin-bottom: .5rem; }
+    margin-bottom: .5rem;
+    color: inherit; }
   .inventory__list {
     display: flex;
     align-items: center;
@@ -263,6 +282,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  line-height: 1;
   border: 1px solid #444;
   border-radius: 4px;
   margin-right: .5rem;
@@ -288,7 +308,21 @@ ul {
   .inventory-item.hover:after {
     opacity: 1; }
   .inventory-item__title {
-    z-index: 1; }
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-content: center; }
+    .inventory-item__title:hover .inventory-item__name {
+      opacity: 1; }
+  .inventory-item__name {
+    position: absolute;
+    transition: 200ms;
+    opacity: 0;
+    top: -.6rem;
+    left: -.5rem;
+    height: 1rem;
+    width: 8rem; }
   .inventory-item__animate {
     transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;

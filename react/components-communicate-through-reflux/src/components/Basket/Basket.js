@@ -57,10 +57,11 @@ class Basket extends Reflux.Component {
         const styles = {
             transform: `scale(${1+this.state.inventory.length/10})`
         };
+        const {theme = 'default'} = this.props;
 
         return (
             <LoadingTracker name={'basket'} {...this.state.loadingTracker}>
-                <div className='box basket'>
+                <div className={'box basket basket--theme-'+theme}>
                     <h2 className='basket__info'>
                         <i style={styles} ref={ el => this.domBasketIcon = el } className='basket__icon material-icons'>shopping_basket</i>
                         <div className="basket__status">
