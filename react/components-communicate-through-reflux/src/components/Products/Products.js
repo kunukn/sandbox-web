@@ -17,7 +17,6 @@ class Products extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loadingTracker: {},
             stock: [],
             products: [],
         };

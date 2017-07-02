@@ -5,7 +5,7 @@ class LoadingTracker extends React.Component {
 
     render() {
         
-        let {name,isLoading, isLoadingLong, isLoadingFailed,isLoadingSpinner,ignoreLoadingTracker} = this.props;
+        let {name,isLoading, isLoadingLong, isLoadingFailed, isLoadingSpinner,ignoreLoadingTracker} = this.props;
         
         if(ignoreLoadingTracker){
             return React.Children.only(this.props.children);

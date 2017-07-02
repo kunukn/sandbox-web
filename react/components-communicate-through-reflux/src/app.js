@@ -8,10 +8,12 @@ import {toDOM, createAndAppendById} from './utils';
 import Basket from './components/Basket';
 import Products from './components/Products';
 import Inventory from './components/Inventory';
+import InventorySummary from './components/InventorySummary';
 
 render(toDOM(Products), createAndAppendById('placeholder-2'));
 render(toDOM(Inventory), createAndAppendById('placeholder-3'));
 render(toDOM(Basket), createAndAppendById('placeholder-1'));
+render(toDOM(InventorySummary), createAndAppendById('placeholder-3'));
 //render(toDOM(Products), createAndAppenById('placeholder-2'));
 //render(toDOM(Inventory), createAndAppenById('placeholder-3'));
 

@@ -1,6 +1,7 @@
 // libs
 import React from 'react';
 import Reflux from 'reflux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 import ShopActions from '../../flux/actions/Shop/ShopActions';
@@ -17,9 +18,7 @@ class Inventory extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loadingTracker: {},
             inventory: [],
-            products: [],
         };
         this.stores = [ShopStore, TrackerStore];
     }
@@ -44,7 +43,7 @@ class Inventory extends Reflux.Component {
                         {inventory.map((id, index) => {
                             const product = _.find(this.state.products, {id});
                             const onRemove = (domInventoryItem) => {
-                                animateInventoryItem.bind(this)(domInventoryItem);
+                                animateInventoryItem.call(this,domInventoryItem);
                                 ShopActions.removeFromInventory({index, product});
                                 track({action: 'remove', productId: product.id});
                             }

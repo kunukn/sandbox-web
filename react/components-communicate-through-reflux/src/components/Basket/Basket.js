@@ -17,7 +17,6 @@ class Basket extends Reflux.Component {
 
         this.state = {
             inventory: [],
-            loadingTracker: {},
         };
 
         this.stores = [ShopStore];

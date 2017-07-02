@@ -264,9 +264,49 @@ ul {
     }
 }
 
+.inventory-summary {
+    position: relative;
+    min-height: 6rem;
+    &__title {
+        margin-bottom: .5rem;
+    }
+    &__items{
+        display: flex;
+        flex-direction: column;
+
+        //background: red;
+    }
+}
+.inventory-summary-item {
+    display: flex;
+    display: inline-flex;
+    margin-right: auto;
+    align-items: center;
+    border-radius: 2px;
+    padding: .25rem .25rem;
+    background: rgba(white, .1);
+    + *{margin-top: .5rem;}
+
+    &__name, &__count, &__icon {
+        display: inline-block;
+        position: relative;
+    }
+    &__icon{
+        margin-right: .25rem;
+    }
+    &__name{
+        margin-right: .25rem;
+        font-size: 120%;
+        min-width: 6rem;
+    }
+    &__count{
+        min-width: 2rem;
+    }
+}
+
 .inventory {
     position: relative;
-    min-height: 10rem;
+    min-height: 6rem;
     &__title {
         margin-bottom: .5rem;
     }
