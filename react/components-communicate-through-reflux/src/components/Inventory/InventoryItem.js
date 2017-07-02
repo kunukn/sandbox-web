@@ -25,7 +25,7 @@ class InventoryItem extends Reflux.Component {
         };
         const onLeave = () => this.setState({hover: false});
         const onRemoveInventoryItem = () => onRemove(this.domItem);
-
+        
         return (
             <li className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>

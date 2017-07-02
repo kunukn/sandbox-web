@@ -346,6 +346,16 @@ ul {
         align-items: center;
         align-content: center;
         flex-wrap: wrap;
+        //display: block;
+        > * {
+            //float: left;
+            //transition: 200ms;
+        }
+        &:after{
+            display: table;
+            content: '';
+            clear: both;
+        }
     }
 }
 
@@ -533,25 +543,29 @@ ul {
 }
 
 .inventory-item {
+    $in: scale3d(1,1,1);
+    $out: scale3d(0,0,0);
+    $transition: transform;
+    
     &-enter {
         transform: scale3d(0,0,0);
         &.inventory-item-enter-active {
-            transform: scale3d(1,1,1);
-            transition: transform 200ms ease-in;
+            transform: $in;
+            transition: $transition 200ms ease-in;
         }
     }
     &-leave {
-        transform: scale3d(1,1,1);
+        transform: $in;
         &.inventory-item-leave-active {
-            transform: scale3d(0,0,0);
-            transition: transform 200ms ease-in;
+            transform: $out;
+            transition: $transition 200ms ease-in;
         }
     }
     &-appear {
-        transform: scale3d(0,0,0);
+        transform: $out;
         &.inventory-item-appear-active {
-            transform: scale3d(1,1,1);
-            transition: transform 200ms ease-in;
+            transform: $in;
+            transition: $transition 200ms ease-in;
         }
     }
 }

@@ -272,6 +272,10 @@ ul {
     align-items: center;
     align-content: center;
     flex-wrap: wrap; }
+    .inventory__list:after {
+      display: table;
+      content: '';
+      clear: both; }
 
 .inventory-item {
   display: flex;

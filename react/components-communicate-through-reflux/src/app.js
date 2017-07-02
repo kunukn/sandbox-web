@@ -14,7 +14,7 @@ render(toDOM(Basket, {theme: 'light'}), createAndAppendById('placeholder-1'));
 render(toDOM(Products, {theme: 'dark'}), createAndAppendById('placeholder-2'));
 render(toDOM(Inventory, {theme: 'dark'}), createAndAppendById('placeholder-3'));
 //render(toDOM(InventorySummary, {theme: 'dark'}), createAndAppendById('placeholder-3'));
-//render(toDOM(InventorySummary, {theme: 'light'}), createAndAppendById('placeholder-3'));
+render(toDOM(InventorySummary, {theme: 'light'}), createAndAppendById('placeholder-3'));
 //render(toDOM(Products, {theme: 'default'}), createAndAppendById('placeholder-2'));
 //render(toDOM(Inventory, {theme: 'light'}), createAndAppendById('placeholder-3'));
 
