@@ -53,13 +53,13 @@ class InventorySummary extends Reflux.Component {
             else summary[productId] = 1;
         } );
         
-        return Object.keys(summary).map(id =>{
-                let {name,icon} = _.find(products, {id: +id}) || {};
+        return Object.keys(summary).map(productId =>{
+                let {name,icon} = _.find(products, {productId: +productId}) || {};
                 return (
                 <InventorySummaryItem 
-                    key={id} 
+                    key={productId} 
                     name={name} 
-                    count={summary[id]} 
+                    count={summary[productId]} 
                     icon={icon}
                 />
                 );

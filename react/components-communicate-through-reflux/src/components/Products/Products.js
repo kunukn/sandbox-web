@@ -45,14 +45,14 @@ class Products extends Reflux.Component {
                             const onAdd = (domProductItemIcon) => {
                                 animateProductItem.call(this,domProductItemIcon);
                                 addToInventory(product);
-                                track({action: 'add', productId: product.id});
+                                track({action: 'add', productId: product.productId});
                             }
-                            const stockItem = _.find(stock, {id: product.id});
+                            const stockItem = _.find(stock, {productId: product.productId});
                             return (
-                                <li key={product.id}>
+                                <li key={product.productId}>
                                     <ProductItem
                                         index={index}
-                                        id={product.id}
+                                        id={product.productId}
                                         name={product.name}
                                         type={product.type}
                                         icon={product.icon}

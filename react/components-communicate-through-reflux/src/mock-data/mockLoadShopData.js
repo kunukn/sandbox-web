@@ -1,3 +1,5 @@
+// Invalid content, please update before usage
+
 export const mockLoadShopData = {
   products: [
     {

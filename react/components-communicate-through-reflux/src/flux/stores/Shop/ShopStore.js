@@ -48,13 +48,13 @@ class ShopStore extends Store {
 
         this.setState((prevState) => {
 
-            let stockItem = _.find(prevState.stock, {id: product.id});
+            let stockItem = _.find(prevState.stock, {productId: product.productId});
             if (stockItem.count <= 0) {
                 return {};
             }
 
             stockItem.count--;
-            prevState.inventory.push({productId: product.id, stamp: +new Date()});
+            prevState.inventory.push({productId: product.productId, stamp: +new Date()});
 
             return {
                 inventory: _.cloneDeep(prevState.inventory),
@@ -69,7 +69,7 @@ class ShopStore extends Store {
         this.setState((prevState) => {
 
             let {index, product} = removeFromInventory;
-            let stockItem = _.find(prevState.stock, {id: product.id});
+            let stockItem = _.find(prevState.stock, {productId: product.productId});
 
             stockItem.count++;
             prevState.inventory.splice(index, 1);

@@ -15,7 +15,7 @@ class ProductItem extends Reflux.Component {
   }
 
   render() {
-    const { index, id, name, icon, onAdd, count } = this.props;
+    const { index, productId, name, icon, onAdd, count } = this.props;
     
     let productItemClassName = classNames(
       'product-item', 
@@ -25,7 +25,7 @@ class ProductItem extends Reflux.Component {
     const onEnter = () => {
       hover({hover: true, hoverIndex: index}); // store state
       //this.setState({hover: true}); // local state
-      track({action: 'mouseOverAddProduct', productId: id});
+      track({action: 'mouseOverAddProduct', productId: productId});
     }
     const onLeave = () => {
       hover({hover: false, hoverIndex: index}); // store state

@@ -1,25 +1,25 @@
 {
     "products": [
         {
-            "id": 1,
+            "productId": 1,
             "name": "TV",
             "type": 1,
             "icon": "tv"
         },
         {
-            "id": 2,
+            "productId": 2,
             "name": "Phone",
             "type": 2,
             "icon": "phone_android"
         },
         {
-            "id": 3,
+            "productId": 3,
             "name": "Headset",
             "type": 3,
             "icon": "headset"
         },
         {
-            "id": 4,
+            "productId": 4,
             "name": "Motorcycle",
             "type": 4,
             "icon": "motorcycle"
@@ -31,23 +31,23 @@
     ],
     "stock": [
         {
-            "id": 1,
+            "productId": 1,
             "count": 4
         },
         {
-            "id": 2,
+            "productId": 2,
             "count": 3
         },
         {
-            "id": 3,
+            "productId": 3,
             "count": 2
         },
         {
-            "id": 4,
+            "productId": 4,
             "count": 1
         },
         {
-            "id": 5,
+            "productId": 5,
             "count": 1
         }
     ]
