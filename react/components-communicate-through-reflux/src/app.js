@@ -15,8 +15,8 @@ render(toDOM(Products, {theme: 'dark'}), createAndAppendById('placeholder-2'));
 render(toDOM(Inventory, {theme: 'dark'}), createAndAppendById('placeholder-3'));
 render(toDOM(InventorySummary, {theme: 'dark'}), createAndAppendById('placeholder-3'));
 render(toDOM(InventorySummary, {theme: 'light'}), createAndAppendById('placeholder-3'));
-//render(toDOM(Products), createAndAppenById('placeholder-2'));
-//render(toDOM(Inventory), createAndAppenById('placeholder-3'));
+render(toDOM(Products, {theme: 'default'}), createAndAppendById('placeholder-2'));
+//render(toDOM(Inventory, {theme: 'light'}), createAndAppendById('placeholder-3'));
 
 // On route to this page call at the right time action
 //ShopActions.init();
