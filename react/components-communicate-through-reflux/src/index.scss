@@ -61,7 +61,6 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
- //   flex-flow: column wrap;
     justify-content: center;
     align-items: center;
 }
@@ -105,7 +104,6 @@ ul {
     width: 100%;
     display: flex;
     flex-direction: column;
-   // flex-wrap: wrap;
     &--3 {
         flex: 1 1 auto;
     }
@@ -534,28 +532,26 @@ ul {
     }
 }
 
-.example-enter {
-  opacity: 0.01 !important;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1 !important;
-  transition: opacity 2000ms ease-in !important;
-}
-
-.example-leave {
-  opacity: 1 !important;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01 !important;
-  transition: opacity 2000ms ease-in !important;
-}
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+.inventory-item {
+    &-enter {
+        transform: scale3d(0,0,0);
+        &.inventory-item-enter-active {
+            transform: scale3d(1,1,1);
+            transition: transform 200ms ease-in;
+        }
+    }
+    &-leave {
+        transform: scale3d(1,1,1);
+        &.inventory-item-leave-active {
+            transform: scale3d(0,0,0);
+            transition: transform 200ms ease-in;
+        }
+    }
+    &-appear {
+        transform: scale3d(0,0,0);
+        &.inventory-item-appear-active {
+            transform: scale3d(1,1,1);
+            transition: transform 200ms ease-in;
+        }
+    }
 }

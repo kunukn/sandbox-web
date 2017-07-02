@@ -27,7 +27,7 @@ class InventoryItem extends Reflux.Component {
         const onRemoveInventoryItem = () => onRemove(this.domItem);
 
         return (
-            <div className={inventoryItemClassName}>
+            <li className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>
                     <div className='inventory-item__name'> {product.name}
                    </div>
@@ -43,7 +43,7 @@ class InventoryItem extends Reflux.Component {
                     onMouseLeave={onLeave}>
                     <i className="material-icons" aria-hidden="true">remove_circle_outline</i>
                 </button>
-            </div>
+            </li>
         );
     }
 }

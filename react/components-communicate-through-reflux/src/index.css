@@ -424,23 +424,20 @@ ul {
     left: 0;
     width: 100%; } }
 
-.example-enter {
-  opacity: 0.01 !important; }
+.inventory-item-enter {
+  transform: scale3d(0, 0, 0); }
+  .inventory-item-enter.inventory-item-enter-active {
+    transform: scale3d(1, 1, 1);
+    transition: transform 200ms ease-in; }
 
-.example-enter.example-enter-active {
-  opacity: 1 !important;
-  transition: opacity 2000ms ease-in !important; }
+.inventory-item-leave {
+  transform: scale3d(1, 1, 1); }
+  .inventory-item-leave.inventory-item-leave-active {
+    transform: scale3d(0, 0, 0);
+    transition: transform 200ms ease-in; }
 
-.example-leave {
-  opacity: 1 !important; }
-
-.example-leave.example-leave-active {
-  opacity: 0.01 !important;
-  transition: opacity 2000ms ease-in !important; }
-
-.example-appear {
-  opacity: 0.01; }
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in; }
+.inventory-item-appear {
+  transform: scale3d(0, 0, 0); }
+  .inventory-item-appear.inventory-item-appear-active {
+    transform: scale3d(1, 1, 1);
+    transition: transform 200ms ease-in; }

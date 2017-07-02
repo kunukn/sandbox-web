@@ -40,7 +40,15 @@ class Inventory extends Reflux.Component {
             <LoadingTracker name={'inventory'} {...this.state.loadingTracker}>
                 <div className={'box inventory inventory--theme-'+theme}>
                     <h2 className='inventory__title'>Inventory</h2>
-                    {inventory && inventory.length > 0 && <ul className='inventory__list'>
+                    {inventory && inventory.length > 0 
+                        && <ReactCSSTransitionGroup
+                            component="ul"
+                            className="inventory__list"
+                            transitionName="inventory-item"
+                            transitionAppear={true}
+                            transitionAppearTimeout={200}
+                            transitionEnterTimeout={200}
+                            transitionLeaveTimeout={200}>
                         {inventory.map((id, index) => {
                             const product = _.find(this.state.products, {id});
                             const onRemove = (domInventoryItem) => {
@@ -48,13 +56,13 @@ class Inventory extends Reflux.Component {
                                 ShopActions.removeFromInventory({index, product});
                                 track({action: 'remove', productId: product.id});
                             }
-                            return (
-                                <li key={index}>
-                                    <InventoryItem product={product} onRemove={onRemove}/>
-                                </li>
+                            return (                                
+                                <InventoryItem key={index} product={product} onRemove={onRemove}/>
                             );
+                        
                         })}
-                    </ul>}
+                            </ReactCSSTransitionGroup>
+                }
                 </div>
             </LoadingTracker>
         );
