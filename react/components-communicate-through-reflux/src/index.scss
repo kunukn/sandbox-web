@@ -409,7 +409,7 @@ ul {
         transition: 200ms;
         opacity: 0;
         top: -.6rem;
-        left: -.5rem;
+        left: -.25rem;
         height: 1rem;
         width: 8rem;
     }
@@ -542,13 +542,14 @@ ul {
     }
 }
 
+// css-transition-animation
 .inventory-item {
     $in: scale3d(1,1,1);
     $out: scale3d(0,0,0);
     $transition: transform;
-    
+
     &-enter {
-        transform: scale3d(0,0,0);
+        transform: $out;
         &.inventory-item-enter-active {
             transform: $in;
             transition: $transition 200ms ease-in;

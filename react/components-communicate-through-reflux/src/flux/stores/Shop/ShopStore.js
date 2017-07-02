@@ -61,7 +61,6 @@ class ShopStore extends Store {
                 stock: _.cloneDeep(prevState.stock)
             };
         });
-
     }
 
     onRemoveFromInventory(removeFromInventory) {

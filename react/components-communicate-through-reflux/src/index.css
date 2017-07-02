@@ -319,7 +319,7 @@ ul {
     transition: 200ms;
     opacity: 0;
     top: -.6rem;
-    left: -.5rem;
+    left: -.25rem;
     height: 1rem;
     width: 8rem; }
   .inventory-item__animate {
