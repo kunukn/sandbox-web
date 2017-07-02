@@ -214,8 +214,14 @@ ul {
 .inventory-summary {
   position: relative;
   min-height: 6rem; }
+  .inventory-summary--theme-dark {
+    background-color: rgba(0, 0, 0, 0.5); }
+  .inventory-summary--theme-light {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black; }
   .inventory-summary__title {
-    margin-bottom: .5rem; }
+    margin-bottom: .5rem;
+    color: inherit; }
   .inventory-summary__items {
     display: flex;
     flex-direction: column; }

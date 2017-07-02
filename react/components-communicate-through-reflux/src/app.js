@@ -13,7 +13,8 @@ import InventorySummary from './components/InventorySummary';
 render(toDOM(Products), createAndAppendById('placeholder-2'));
 render(toDOM(Inventory), createAndAppendById('placeholder-3'));
 render(toDOM(Basket), createAndAppendById('placeholder-1'));
-render(toDOM(InventorySummary), createAndAppendById('placeholder-3'));
+render(toDOM(InventorySummary, {theme: 'dark'}), createAndAppendById('placeholder-3'));
+render(toDOM(InventorySummary, {theme: 'light'}), createAndAppendById('placeholder-3'));
 //render(toDOM(Products), createAndAppenById('placeholder-2'));
 //render(toDOM(Inventory), createAndAppenById('placeholder-3'));
 

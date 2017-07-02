@@ -267,14 +267,21 @@ ul {
 .inventory-summary {
     position: relative;
     min-height: 6rem;
+    &--theme-default{}
+    &--theme-dark{
+        background-color: rgba( black,.5);
+    }
+    &--theme-light{
+        background-color: rgba( white,.5);
+        color: black;
+    }
     &__title {
         margin-bottom: .5rem;
+        color: inherit;
     }
     &__items{
         display: flex;
         flex-direction: column;
-
-        //background: red;
     }
 }
 .inventory-summary-item {
