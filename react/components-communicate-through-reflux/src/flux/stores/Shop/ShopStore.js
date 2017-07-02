@@ -113,7 +113,7 @@ class ShopStore extends Store {
         
         clearTimeout(this.longLoadingTimer);
             
-        }, 400000);
+        }, 0);
     }
 
     setupLoadingTracker(){

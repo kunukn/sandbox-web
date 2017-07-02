@@ -32,10 +32,7 @@ main {
     max-width: 500px;
     margin: 0 auto;
     min-height: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 
 .main-header {
@@ -63,7 +60,7 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex-flow: column wrap;
+ //   flex-flow: column wrap;
     justify-content: center;
     align-items: center;
 }
@@ -107,7 +104,7 @@ ul {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+   // flex-wrap: wrap;
     &--3 {
         flex: 1 1 auto;
     }
@@ -305,7 +302,7 @@ ul {
 .inventory-summary-item {
     display: flex;
     display: inline-flex;
-    flex-flow: row wrap;
+    //flex-flow: row wrap;
     margin-right: auto; // flex trick, minimize space
     align-items: center;
     border-radius: 2px;
@@ -496,10 +493,10 @@ ul {
 
 .load-bar {
     position: absolute;
-    bottom: 2px;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 6px;
     background-color: $color-primary;
     &__item {
         display: block;
