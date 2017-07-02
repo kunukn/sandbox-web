@@ -502,12 +502,11 @@ ul {
     height: 4px;
     background-color: $color-primary;
     &__item {
-        display: inline-block;
+        display: block;
         position: absolute;
         width: 0;
         height: 100%;
         left: 50%;
-        text-align: center;
         &:nth-child(1) {
             background-color: mix(white,$color-primary,30%);
             animation: loading 2s linear 1s infinite;
@@ -521,17 +520,17 @@ ul {
 }
 
 @keyframes loading {
-    from {
+    0% {
         left: 50%;
         width: 0;
-        z-index: 100;
+        z-index: 2;
     }
     50% {
         left: 0;
         width: 100%;
-        z-index: 10;
+        z-index: 1;
     }
-    to {
+    100% {
         left: 0;
         width: 100%;
     }

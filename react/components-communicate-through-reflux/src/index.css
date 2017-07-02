@@ -404,12 +404,11 @@ ul {
   height: 4px;
   background-color: #003d2b; }
   .load-bar__item {
-    display: inline-block;
+    display: block;
     position: absolute;
     width: 0;
     height: 100%;
-    left: 50%;
-    text-align: center; }
+    left: 50%; }
     .load-bar__item:nth-child(1) {
       background-color: #4d776b;
       animation: loading 2s linear 1s infinite; }
@@ -418,15 +417,15 @@ ul {
       animation: loading 2s linear infinite; }
 
 @keyframes loading {
-  from {
+  0% {
     left: 50%;
     width: 0;
-    z-index: 100; }
+    z-index: 2; }
   50% {
     left: 0;
     width: 100%;
-    z-index: 10; }
-  to {
+    z-index: 1; }
+  100% {
     left: 0;
     width: 100%; } }
 
