@@ -44,17 +44,17 @@ class ShopStore extends Store {
         });
     }
 
-    onAddToInventory(addToInventory) {
+    onAddToInventory(product) {
 
         this.setState((prevState) => {
 
-            let stockItem = _.find(prevState.stock, {id: addToInventory.id});
+            let stockItem = _.find(prevState.stock, {id: product.id});
             if (stockItem.count <= 0) {
                 return {};
             }
 
             stockItem.count--;
-            prevState.inventory.push(addToInventory.id);
+            prevState.inventory.push({productId: product.id, stamp: +new Date()});
 
             return {
                 inventory: _.cloneDeep(prevState.inventory),

@@ -35,7 +35,6 @@ class Inventory extends Reflux.Component {
     render() {
         const {inventory} = this.state;
         const {theme = 'default'} = this.props;
-        console.log(inventory);
 
         return (
             <LoadingTracker name={'inventory'} {...this.state.loadingTracker}>
@@ -50,15 +49,15 @@ class Inventory extends Reflux.Component {
                             transitionAppearTimeout={200}
                             transitionEnterTimeout={200}
                             transitionLeaveTimeout={200}>
-                        {inventory.map((id, index) => {
-                            const product = _.find(this.state.products, {id});
+                        {inventory.map(({productId,stamp}, index) => {
+                            const product = _.find(this.state.products, {id: productId});
                             const onRemove = (domInventoryItem) => {
                                 animateInventoryItem.call(this,domInventoryItem);
                                 ShopActions.removeFromInventory({index, product});
                                 track({action: 'remove', productId: product.id});
-                            }
+                            }   
                             return (                                
-                                <InventoryItem key={index} product={product} onRemove={onRemove}/>
+                                <InventoryItem key={stamp} product={product} onRemove={onRemove}/>
                             );
                         
                         })}

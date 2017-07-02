@@ -5,7 +5,7 @@ import Reflux from 'reflux';
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 // utils
 import _ from 'lodash';
-import {log} from '../../utils';
+//import {log} from '../../utils';
 // components
 import LoadingTracker from '../LoadingTracker/LoadingTracker';
 import InventorySummaryItem from './InventorySummaryItem';
@@ -46,10 +46,11 @@ class InventorySummary extends Reflux.Component {
 
     getInventoryItems(){
         const {inventory, products} = this.state;
+
         let summary = {};
-        inventory.forEach((id) =>{
-            if(summary[id]) summary[id]++;
-            else summary[id] = 1;
+        inventory.forEach(({productId}) =>{
+            if(summary[productId]) summary[productId]++;
+            else summary[productId] = 1;
         } );
         
         return Object.keys(summary).map(id =>{

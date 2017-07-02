@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class LoadingTracker extends React.Component {
 
