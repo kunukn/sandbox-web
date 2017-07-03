@@ -10,6 +10,9 @@ class Box extends Component {
     constructor(props)
     {
         super(props);
+
+        //this.state = {number: 1};
+        
         this.stores = [BoxStore];
         //this.storeKeys = ['number']; // <-- will only be mixed in from the store
 

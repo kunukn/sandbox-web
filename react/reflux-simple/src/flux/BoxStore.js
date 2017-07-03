@@ -7,6 +7,7 @@ export default class BoxStore extends Store
     {
         super();
         this.state = {};
+        //this.state = {number: 2};
         this.listenables = BoxActions;
     }
 
