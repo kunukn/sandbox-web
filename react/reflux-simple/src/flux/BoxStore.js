@@ -6,20 +6,21 @@ export default class BoxStore extends Store
     constructor()
     {
         super();
+        this.state = {};
         this.listenables = BoxActions;
     }
 
-    onUpdate(count)
+    onUpdate(number)
     {
-        console.log(`onUpdate(${count})`)
+        console.log(`onUpdate BoxStore (${number})`)
 
-        this.setState((prevState, props) => {
+        this.setState((prevState) => {
             
-            if (prevState.count === count) {
-                return {count: undefined}
+            if (prevState.number === number) {
+                return {number: undefined}
             }
 
-            return {count}
+            return {number}
         });
     }
 }

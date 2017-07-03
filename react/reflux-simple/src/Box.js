@@ -1,46 +1,49 @@
 import React from 'react';
 import {Component} from 'reflux';
 
-import BoxStore from './BoxStore';
-import BoxActions from './BoxActions';
+import BoxStore from './flux/BoxStore';
+import BoxStore2 from './flux/BoxStore2';
+import BoxActions from './flux/BoxActions';
 
 class Box extends Component {
     
     constructor(props)
     {
         super(props);
-        this.state = {};
         this.stores = [BoxStore];
-        //this.storeKeys = ['count']; // <-- will only be mixed in from the store
+        //this.storeKeys = ['number']; // <-- will only be mixed in from the store
+
+        /*
+            Performance uptimization, minimize object creation.
+            E.g. onClick is created once in constructor.
+        */
         this.onClick = () => BoxActions.update(this.props.index);
+
+
+
 
         if (this.props.local) {
             this.onClick = () => this.setState({count: this.props.index});
         }
     }
 
-    render() {
-
-        /*
-            Performance uptimization, minimize object creation.
-            E.g. onClick is created once in constructor.
-        */
-
+    render() {        
         return (
             <button
-                style={getStylesFromState(this.state)}
+                style={getStylesFromState(this.state.number)}
                 className={'box box--' + this.props.index}
                 onClick={this.onClick}>
-                <span>box {this.props.index}</span>
-                <footer>state {this.state.count}</footer>
+
+                <span className="box__text">box {this.props.index}</span>
+                <footer className="box__state">state {this.state.number}</footer>
             </button>
         );
     }
 }
 
-function getStylesFromState({count}) {
+function getStylesFromState(number) {
 
-    if (!count) {
+    if (!number) {
         return null;
     }
 
@@ -59,7 +62,7 @@ function getStylesFromState({count}) {
         '',
         '',
     ];
-    styles.boxShadow = `inset 0 0 0 5px ${colors[+count]}`;
+    styles.boxShadow = `inset 0 0 0 5px ${colors[+number]}`;
     return styles;
 }
 
