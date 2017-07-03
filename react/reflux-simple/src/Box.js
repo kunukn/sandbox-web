@@ -2,7 +2,7 @@ import React from 'react';
 import {Component} from 'reflux';
 
 import BoxStore from './flux/BoxStore';
-import BoxStore2 from './flux/BoxStore2';
+//import BoxStore2 from './flux/BoxStore2';
 import BoxActions from './flux/BoxActions';
 
 class Box extends Component {
@@ -35,7 +35,7 @@ class Box extends Component {
                 onClick={this.onClick}>
 
                 <span className="box__text">box {this.props.index}</span>
-                <footer className="box__state">state {this.state.number}</footer>
+                <footer className="box__state">state {this.state.number+''}</footer>
             </button>
         );
     }

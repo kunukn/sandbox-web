@@ -16,11 +16,13 @@ export default class BoxStore2 extends Store
 
         this.setState((prevState) => {
             
-            if (prevState.number === number) {
-                return {number: undefined}
-            }
+            console.log(`prevState BoxStore2 ${prevState.number}`);
+            return {number: 1};
 
-            return {number}
+            // if (prevState.number === number) {
+            //      return {number: undefined}
+            // }
+            // return {number}
         });
     }
 }
