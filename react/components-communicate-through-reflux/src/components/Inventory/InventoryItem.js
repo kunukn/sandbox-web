@@ -1,7 +1,7 @@
 // libs
 import React from 'react';
 import Reflux from 'reflux';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 // flux
 import {track} from '../../flux/actions/Tracker/TrackerActions';
@@ -15,7 +15,7 @@ class InventoryItem extends Reflux.Component {
     render() {
         const {product, onRemove} = this.props;
 
-        let inventoryItemClassName = classNames(
+        let inventoryItemClassName = cx(
             'inventory-item', 
             {hover: this.state.hover});
 

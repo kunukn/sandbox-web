@@ -8,7 +8,7 @@ import {log} from '../../utils';
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 import {updateBasketLocation} from '../../flux/actions/Shop/ShopActions';
 // components
-import LoadingTracker from '../LoadingTracker/LoadingTracker';
+import LoadingTracker from '../LoadingTracker';
 
 class Basket extends Reflux.Component {
 

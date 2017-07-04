@@ -3,6 +3,9 @@ import {createElement} from 'react';
 /* eslint-disable no-console */
 export const log = console.log.bind(console); 
 
+/* eslint-disable no-console */
+export const error = console.error.bind(console); 
+
 export function byId(id) {
     return document.getElementById(id);
 }

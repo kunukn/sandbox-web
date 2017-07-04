@@ -7,7 +7,7 @@ import ShopStore from '../../flux/stores/Shop/ShopStore';
 import _ from 'lodash';
 //import {log} from '../../utils';
 // components
-import LoadingTracker from '../LoadingTracker/LoadingTracker';
+import LoadingTracker from '../LoadingTracker';
 import InventorySummaryItem from './InventorySummaryItem';
 
 class InventorySummary extends Reflux.Component {

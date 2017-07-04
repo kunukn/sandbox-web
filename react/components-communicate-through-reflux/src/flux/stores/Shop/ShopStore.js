@@ -1,11 +1,11 @@
 // libs
-import { Store } from 'reflux';
+import {Store} from 'reflux';
 import _ from 'lodash';
-// flux 
+// flux
 import ShopActions from '../../actions/Shop/ShopActions';
 // utils
-import { log } from '../../../utils';
-import { fetchShopData } from '../../../communication/shop';
+import {log, error} from '../../../utils';
+import {fetchShopData} from '../../../communication/shop';
 
 class ShopStore extends Store {
 
@@ -13,7 +13,7 @@ class ShopStore extends Store {
         super();
         this.state = {
             loadingTracker: {
-                isLoading: true,
+                isLoading: true
             }
         };
         this.listenables = ShopActions; // convention
@@ -25,23 +25,27 @@ class ShopStore extends Store {
     onInit() {
         log('onInit');
 
-        log('loading data');
-        //ShopActions.loadData();
-
         this.setupLoadingTracker();
-        
+
+        log('loading data');
+
+        //ShopActions.loadData();
+  //      return;
+  
         fetchShopData({
-            completed: ({products, inventory, stock}) => {this.updateState({products, inventory, stock, isLoading: false})},
-            failed: ex => log(ex)
+            completed: ({products, inventory, stock}) => {
+                this.updateCompletedState({products, inventory, stock, isLoading: false})
+            },
+            failed: exception => {
+                this.updateErrorState({isLoadingFailed: true, isLoading: false, exception})
+            }
         });
     }
 
-    onUpdateBasketLocation(basketLocation){
+    onUpdateBasketLocation(basketLocation) {
         log('onUpdateBasketLocation');
         //log(basketLocation);
-        this.setState({
-            basketLocation
-        });
+        this.setState({basketLocation});
     }
 
     onAddToInventory(product) {
@@ -54,7 +58,12 @@ class ShopStore extends Store {
             }
 
             stockItem.count--;
-            prevState.inventory.push({productId: product.productId, timestamp: +new Date()});
+            prevState
+                .inventory
+                .push({
+                    productId: product.productId,
+                    timestamp: + new Date()
+                });
 
             return {
                 inventory: _.cloneDeep(prevState.inventory),
@@ -71,7 +80,9 @@ class ShopStore extends Store {
             let stockItem = _.find(prevState.stock, {productId: product.productId});
 
             stockItem.count++;
-            prevState.inventory.splice(index, 1);
+            prevState
+                .inventory
+                .splice(index, 1);
 
             return {
                 inventory: _.cloneDeep(prevState.inventory),
@@ -81,49 +92,55 @@ class ShopStore extends Store {
     }
 
     onLoadDataCompleted({products, inventory, stock}) {
-            log('onLoadCompleted');
-            this.updateState({products, inventory, stock, isLoading: false});
+        log('onLoadCompleted');
+        this.updateCompletedState({products, inventory, stock, isLoading: false})
     }
 
-    onLoadDataFailed(message) {
+    onLoadDataFailed(exception) {
         log('onLoadFailed');
-        log(message);
-        this.setState({
-            loadingTracker: {
-                isLoading: false,
-                isLoadingFailed: true,
-            }    
-        });
+        this.updateErrorState({isLoadingFailed: true, isLoading: false, exception});
     }
-    
-    updateState({products, inventory, stock, isLoading}) {
-        // simulate latency            
-        
-        setTimeout(()=>{ 
+
+    updateCompletedState({products, inventory, stock, isLoading}) {
+        // simulate latency
+        setTimeout(() => {
+
             this.setState(() => ({
                 loadingTracker: {
-                    isLoading,
+                    isLoading
                 },
                 products: _.cloneDeep(products),
                 inventory: _.cloneDeep(inventory),
-                stock: _.cloneDeep(stock),
-                
+                stock: _.cloneDeep(stock)
             }));
-        
-        clearTimeout(this.longLoadingTimer);
-            
-        }, 0);
+
+            clearTimeout(this.longLoadingTimer);
+        }, 1000);
     }
 
-    setupLoadingTracker(){
-        this.loadingSpinnerTimer = setTimeout( () => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner:true});
-            return Object.assign({},prevState,{loadingTracker});
+    updateErrorState({isLoading, isLoadingFailed, exception}) {
+        // simulate latency
+        setTimeout(() => {
+            error(exception);
+            this.setState(() => ({
+                loadingTracker: {
+                    isLoading,
+                    isLoadingFailed
+                }
+            }));
+            clearTimeout(this.longLoadingTimer);
+        }, 1000);
+    }
+
+    setupLoadingTracker() {
+        this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner: true});
+            return Object.assign({}, prevState, {loadingTracker});
         }), 500);
-        this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
-            return Object.assign({},prevState,{loadingTracker});
-        }), 4000);
+        this.longLoadingTimer = setTimeout(() => this.setState(prevState => {
+            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong: true});
+            return Object.assign({}, prevState, {loadingTracker});
+        }), 2000);
     }
 }
 

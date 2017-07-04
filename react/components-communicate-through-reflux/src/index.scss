@@ -123,12 +123,12 @@ ul {
 
 .basket {
     position: relative;
-    &--theme-default{}
-    &--theme-dark{
-        background-color: rgba( black,.5);
+    &--theme-default {}
+    &--theme-dark {
+        background-color: rgba( black, .5);
     }
-    &--theme-light{
-        background-color: rgba( white,.5);
+    &--theme-light {
+        background-color: rgba( white, .5);
         color: black;
     }
     &__info {
@@ -177,12 +177,12 @@ ul {
     padding-top: 1rem;
     min-height: 10rem;
     position: relative;
-    &--theme-default{}
-    &--theme-dark{
-        background-color: rgba( black,.5);
+    &--theme-default {}
+    &--theme-dark {
+        background-color: rgba( black, .5);
     }
-    &--theme-light{
-        background-color: rgba( white,.5);
+    &--theme-light {
+        background-color: rgba( white, .5);
         color: black;
     }
     &__title {
@@ -283,47 +283,50 @@ ul {
 .inventory-summary {
     position: relative;
     min-height: 6rem;
-    &--theme-default{}
-    &--theme-dark{
-        background-color: rgba( black,.5);
+    &--theme-default {}
+    &--theme-dark {
+        background-color: rgba( black, .5);
     }
-    &--theme-light{
-        background-color: rgba( white,.5);
+    &--theme-light {
+        background-color: rgba( white, .5);
         color: black;
     }
     &__title {
         margin-bottom: .5rem;
         color: inherit;
     }
-    &__items{
+    &__items {
         display: flex;
         flex-direction: column;
     }
 }
+
 .inventory-summary-item {
     display: flex;
-    display: inline-flex;
-    //flex-flow: row wrap;
+    display: inline-flex; //flex-flow: row wrap;
     margin-right: auto; // flex trick, minimize space
     align-items: center;
     border-radius: 2px;
     padding: .25rem .25rem;
     background: rgba(white, .1);
-    + *{margin-top: .5rem;}
-
-    &__name, &__count, &__icon {
+    +* {
+        margin-top: .5rem;
+    }
+    &__name,
+    &__count,
+    &__icon {
         display: inline-block;
         position: relative;
     }
-    &__icon{
+    &__icon {
         margin-right: .25rem;
     }
-    &__name{
+    &__name {
         margin-right: .25rem;
         font-size: 120%;
         min-width: 6rem;
     }
-    &__count{
+    &__count {
         min-width: 2rem;
     }
 }
@@ -331,12 +334,12 @@ ul {
 .inventory {
     position: relative;
     min-height: 6rem;
-    &--theme-default{}
-    &--theme-dark{
-        background-color: rgba( black,.5);
+    &--theme-default {}
+    &--theme-dark {
+        background-color: rgba( black, .5);
     }
-    &--theme-light{
-        background-color: rgba( white,.5);
+    &--theme-light {
+        background-color: rgba( white, .5);
         color: black;
     }
     &__title {
@@ -347,13 +350,12 @@ ul {
         display: flex;
         align-items: center;
         align-content: center;
-        flex-wrap: wrap;
-        //display: block;
-        > * {
+        flex-wrap: wrap; //display: block;
+        >* {
             //float: left;
             //transition: 200ms;
         }
-        &:after{
+        &:after {
             display: table;
             content: '';
             clear: both;
@@ -400,13 +402,13 @@ ul {
         display: flex;
         justify-content: center;
         align-content: center;
-        &:hover{
-            .inventory-item__name{
+        &:hover {
+            .inventory-item__name {
                 opacity: 1;
             }
         }
     }
-    &__name{
+    &__name {
         position: absolute;
         transition: 200ms;
         opacity: 0;
@@ -445,8 +447,10 @@ ul {
 }
 
 .loading-tracker {
+    // This is a wrapper component, dont style this level
     position: relative;
     &__overlay {
+        color: black;
         z-index: 10;
         position: absolute;
         top: 0;
@@ -457,7 +461,11 @@ ul {
         display: flex;
         justify-content: center;
         align-items: center;
-        + * {
+        &--is-error {
+            color: crimson;
+            font-weight: 400;
+        }
+        +* {
             pointer-events: none;
             filter: blur(2px);
         }
@@ -469,7 +477,7 @@ ul {
         height: 80%;
         max-height: 6rem;
         background: rgba(white, .8);
-        color: black;
+        color: inherit;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -509,6 +517,11 @@ ul {
     width: 100%;
     height: 6px;
     background-color: $color-primary;
+    &--animation-stopped {
+        .load-bar__item {
+            animation-play-state: paused;
+        }
+    }
     &__item {
         display: block;
         position: absolute;
@@ -516,14 +529,13 @@ ul {
         height: 100%;
         left: 50%;
         &:nth-child(1) {
-            background-color: mix(white,$color-primary,30%);
-            animation: loading 2s linear 1s infinite;
+            background-color: mix(white, $color-primary, 30%);
+            animation: loading 2s linear 0s infinite;
         }
         &:nth-child(2) {
             background-color: $color-primary;
-            animation: loading 2s linear infinite;
+            animation: loading 2s linear 1s infinite;
         }
-        
     }
 }
 
@@ -549,19 +561,18 @@ ul {
     $in: scaleX(1) scaleY(1) translateZ(0);
     $out: scaleX(0) scaleY(0) translateZ(0);
     $transition: transform 300ms;
-
     &-enter {
         transform: $out;
         transition: $transition ease-in;
         &.inventory-item-enter-active {
-            transform: $in;            
+            transform: $in;
         }
     }
     &-leave {
         transform: $in;
         transition: $transition ease-in;
         &.inventory-item-leave-active {
-            transform: $out;            
+            transform: $out;
         }
     }
     &-appear {

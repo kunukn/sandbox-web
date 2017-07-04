@@ -353,6 +353,7 @@ ul {
 .loading-tracker {
   position: relative; }
   .loading-tracker__overlay {
+    color: black;
     z-index: 10;
     position: absolute;
     top: 0;
@@ -363,6 +364,9 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center; }
+    .loading-tracker__overlay--is-error {
+      color: crimson;
+      font-weight: 400; }
     .loading-tracker__overlay + * {
       pointer-events: none;
       filter: blur(2px); }
@@ -373,7 +377,7 @@ ul {
     height: 80%;
     max-height: 6rem;
     background: rgba(255, 255, 255, 0.8);
-    color: black;
+    color: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -405,6 +409,8 @@ ul {
   width: 100%;
   height: 6px;
   background-color: #003d2b; }
+  .load-bar--animation-stopped .load-bar__item {
+    animation-play-state: paused; }
   .load-bar__item {
     display: block;
     position: absolute;
@@ -413,10 +419,10 @@ ul {
     left: 50%; }
     .load-bar__item:nth-child(1) {
       background-color: #4d776b;
-      animation: loading 2s linear 1s infinite; }
+      animation: loading 2s linear 0s infinite; }
     .load-bar__item:nth-child(2) {
       background-color: #003d2b;
-      animation: loading 2s linear infinite; }
+      animation: loading 2s linear 1s infinite; }
 
 @keyframes loading {
   0% {
