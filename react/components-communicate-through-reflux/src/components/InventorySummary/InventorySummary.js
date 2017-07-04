@@ -38,7 +38,7 @@ class InventorySummary extends Reflux.Component {
                     <h2 className='inventory-summary__title'>Inventory Summary</h2>
                     {inventory && inventory.length > 0 && 
                     <ReactCSSTransitionGroup
-                            component="div"
+                            component="ul"
                             className="inventory-summary__items"
                             transitionName="inventory-summary-item"
                             transitionAppear={true}
