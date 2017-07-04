@@ -2,7 +2,6 @@
 import React from 'react';
 import Reflux from 'reflux';
 import cx from 'classnames';
-
 // flux
 import {track} from '../../flux/actions/Tracker/TrackerActions';
 
@@ -21,7 +20,7 @@ class InventoryItem extends Reflux.Component {
 
         const onEnter = () => {
             this.setState({hover: true});
-            track({action: 'mouseOverRemoveInventory', productId: product.id});
+            track({action: 'mouseOverRemoveInventory', productId: product.productId});
         };
         const onLeave = () => this.setState({hover: false});
         const onRemoveInventoryItem = () => onRemove(this.domItem);
@@ -33,7 +32,7 @@ class InventoryItem extends Reflux.Component {
                    </div>
                     <i className="inventory-item__icon material-icons" aria-hidden="true">
                         {product.icon}
-                        </i>
+                    </i>
                 </div>
                 <button
                     onClick={onRemoveInventoryItem}

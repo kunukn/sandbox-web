@@ -52,7 +52,7 @@ class Products extends Reflux.Component {
                                 <li key={product.productId}>
                                     <ProductItem
                                         index={index}
-                                        id={product.productId}
+                                        productId={product.productId}
                                         name={product.name}
                                         type={product.type}
                                         icon={product.icon}
