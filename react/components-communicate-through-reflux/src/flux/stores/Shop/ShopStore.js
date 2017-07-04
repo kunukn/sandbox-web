@@ -103,7 +103,7 @@ class ShopStore extends Store {
 
     updateCompletedState({products, inventory, stock, isLoading}) {
         // simulate latency
-        const latencySimulate = 2000;
+        const latencySimulate = 0;
         setTimeout(() => {
             this.setState(() => ({
                 loadingTracker: {isLoading},

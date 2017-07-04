@@ -30,10 +30,15 @@ class Basket extends Reflux.Component {
 
     componentDidMount() {
         //ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
-        window.addEventListener('resize', this.onResize);        
+
+        // Wait until DOM has settled with data updates
+        setTimeout( () => {
         if(this.domBasketIcon){
             updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
-        }
+        }},1000);
+        
+
+        window.addEventListener('resize', this.onResize); 
     }
 
     // Not sure if nextState is properly working with Reflux store state sharing
