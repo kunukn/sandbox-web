@@ -133,6 +133,7 @@ class ShopStore extends Store {
 
     setupLoadingTracker({spinStart, longWaitStart}) {
         this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
+            // using _.cloneDeep instead might be easier to read
             const loadingTracker = {...(prevState.loadingTracker), isLoadingSpinner: true};
             return ({...prevState, loadingTracker});
         }), spinStart);
