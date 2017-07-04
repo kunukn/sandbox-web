@@ -54,7 +54,7 @@ class ShopStore extends Store {
             }
 
             stockItem.count--;
-            prevState.inventory.push({productId: product.productId, stamp: +new Date()});
+            prevState.inventory.push({productId: product.productId, timestamp: +new Date()});
 
             return {
                 inventory: _.cloneDeep(prevState.inventory),
@@ -123,7 +123,7 @@ class ShopStore extends Store {
         this.longLoadingTimer = setTimeout( () => this.setState(prevState => {
             const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong:true});
             return Object.assign({},prevState,{loadingTracker});
-        }), 3000);
+        }), 4000);
     }
 }
 

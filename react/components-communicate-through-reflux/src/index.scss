@@ -546,27 +546,27 @@ ul {
 .inventory-item {
     $in: scale3d(1,1,1);
     $out: scale3d(0,0,0);
-    $transition: transform;
+    $transition: transform 300ms;
 
     &-enter {
         transform: $out;
+        transition: $transition ease-in;
         &.inventory-item-enter-active {
-            transform: $in;
-            transition: $transition 200ms ease-in;
+            transform: $in;            
         }
     }
     &-leave {
         transform: $in;
+        transition: $transition ease-in;
         &.inventory-item-leave-active {
-            transform: $out;
-            transition: $transition 200ms ease-in;
+            transform: $out;            
         }
     }
     &-appear {
         transform: $out;
+        transition: $transition ease-in;
         &.inventory-item-appear-active {
             transform: $in;
-            transition: $transition 200ms ease-in;
         }
     }
 }

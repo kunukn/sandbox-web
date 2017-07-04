@@ -429,19 +429,19 @@ ul {
     width: 100%; } }
 
 .inventory-item-enter {
-  transform: scale3d(0, 0, 0); }
+  transform: scale3d(0, 0, 0);
+  transition: transform 300ms ease-in; }
   .inventory-item-enter.inventory-item-enter-active {
-    transform: scale3d(1, 1, 1);
-    transition: transform 200ms ease-in; }
+    transform: scale3d(1, 1, 1); }
 
 .inventory-item-leave {
-  transform: scale3d(1, 1, 1); }
+  transform: scale3d(1, 1, 1);
+  transition: transform 300ms ease-in; }
   .inventory-item-leave.inventory-item-leave-active {
-    transform: scale3d(0, 0, 0);
-    transition: transform 200ms ease-in; }
+    transform: scale3d(0, 0, 0); }
 
 .inventory-item-appear {
-  transform: scale3d(0, 0, 0); }
+  transform: scale3d(0, 0, 0);
+  transition: transform 300ms ease-in; }
   .inventory-item-appear.inventory-item-appear-active {
-    transform: scale3d(1, 1, 1);
-    transition: transform 200ms ease-in; }
+    transform: scale3d(1, 1, 1); }

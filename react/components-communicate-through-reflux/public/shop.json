@@ -26,8 +26,8 @@
         }
     ],
     "inventory": [
-        {"productId": 1, "stamp": 123},
-        {"productId": 3, "stamp": 456}
+        {"productId": 1, "timestamp": 123},
+        {"productId": 3, "timestamp": 456}
     ],
     "stock": [
         {

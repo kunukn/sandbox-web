@@ -45,11 +45,11 @@ class Inventory extends Reflux.Component {
                             component="ul"
                             className="inventory__list"
                             transitionName="inventory-item"
-                            transitionAppear={true}
-                            transitionAppearTimeout={200}
-                            transitionEnterTimeout={200}
-                            transitionLeaveTimeout={200}>
-                        {inventory.map(({productId,stamp}, index) => {
+                            transitionAppear={false}
+                            transitionAppearTimeout={300}
+                            transitionEnterTimeout={300}
+                            transitionLeaveTimeout={300}>
+                        {inventory.map(({productId,timestamp}, index) => {
                             const product = _.find(this.state.products, {productId});
                             const onRemove = (domInventoryItem) => {
                                 animateInventoryItem.call(this,domInventoryItem);
@@ -57,7 +57,7 @@ class Inventory extends Reflux.Component {
                                 track({action: 'remove', productId: product.productId});
                             }   
                             return (                                
-                                <InventoryItem key={stamp} product={product} onRemove={onRemove}/>
+                                <InventoryItem key={timestamp} product={product} onRemove={onRemove}/>
                             );
                         
                         })}
