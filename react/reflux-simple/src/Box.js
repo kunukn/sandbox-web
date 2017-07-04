@@ -2,7 +2,7 @@ import React from 'react';
 import {Component} from 'reflux';
 
 import BoxStore from './flux/BoxStore';
-//import BoxStore2 from './flux/BoxStore2';
+import BoxStore2 from './flux/BoxStore2';
 import BoxActions from './flux/BoxActions';
 
 class Box extends Component {
@@ -11,25 +11,18 @@ class Box extends Component {
     {
         super(props);
 
-        //this.state = {number: 1};
-
         this.stores = [BoxStore];
-        //this.storeKeys = ['number']; // <-- will only be mixed in from the store
 
-        /*
-            Performance uptimization, minimize object creation.
-            E.g. onClick is created once in constructor.
-        */
         this.onClick = () => BoxActions.update(this.props.index);
 
 
 
-
+        //this.state = {number: 1};
 
 
 
         if (this.props.local) {
-            this.onClick = () => this.setState({count: this.props.index});
+            this.onClick = () => this.setState({number: this.props.index});
         }
     }
 
