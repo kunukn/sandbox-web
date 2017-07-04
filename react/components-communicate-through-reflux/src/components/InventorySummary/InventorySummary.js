@@ -1,6 +1,7 @@
 // libs
 import React from 'react';
 import Reflux from 'reflux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 // utils
@@ -36,9 +37,16 @@ class InventorySummary extends Reflux.Component {
                 <div className={'box inventory-summary inventory-summary--theme-'+theme}>
                     <h2 className='inventory-summary__title'>Inventory Summary</h2>
                     {inventory && inventory.length > 0 && 
-                    <div className="inventory-summary__items">
+                    <ReactCSSTransitionGroup
+                            component="div"
+                            className="inventory-summary__items"
+                            transitionName="inventory-summary-item"
+                            transitionAppear={true}
+                            transitionAppearTimeout={300}
+                            transitionEnterTimeout={300}
+                            transitionLeaveTimeout={300}>
                         {this.getInventoryItems()}
-                    </div>}
+                    </ReactCSSTransitionGroup>}
                 </div>
             </LoadingTracker>
         );

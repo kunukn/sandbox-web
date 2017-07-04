@@ -454,3 +454,27 @@ ul {
   transition: transform 300ms ease-in; }
   .inventory-item-appear.inventory-item-appear-active {
     transform: scaleX(1) scaleY(1) translateZ(0); }
+
+.inventory-summary-item-enter {
+  transform: translateX(-10rem);
+  opacity: 0;
+  transition: 300ms ease-in-out; }
+  .inventory-summary-item-enter.inventory-summary-item-enter-active {
+    transform: translateX(0rem);
+    opacity: 1; }
+
+.inventory-summary-item-leave {
+  transform: translateX(0);
+  opacity: 1;
+  transition: 300ms ease-in-out; }
+  .inventory-summary-item-leave.inventory-summary-item-leave-active {
+    transform: translateX(-10rem);
+    opacity: 0; }
+
+.inventory-summary-item-appear {
+  transform: translateX(-10rem);
+  opacity: 0;
+  transition: 300ms ease-in-out; }
+  .inventory-summary-item-appear.inventory-summary-item-appear-active {
+    transform: translateX(0);
+    opacity: 1; }

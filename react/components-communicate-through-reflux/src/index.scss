@@ -281,6 +281,7 @@ ul {
 }
 
 .inventory-summary {
+  //  transform-style: preserve-3d;
     position: relative;
     min-height: 6rem;
     &--theme-default {}
@@ -302,6 +303,7 @@ ul {
 }
 
 .inventory-summary-item {
+    //transform-style: preserve-3d;
     display: flex;
     display: inline-flex; //flex-flow: row wrap;
     margin-right: auto; // flex trick, minimize space
@@ -580,6 +582,36 @@ ul {
         transition: $transition ease-in;
         &.inventory-item-appear-active {
             transform: $in;
+        }
+    }
+}
+.inventory-summary-item{
+    $transition: 300ms ease-in-out;
+    &-enter {
+        transform: translateX(-10rem);
+        opacity: 0;
+        transition: $transition;
+        &.inventory-summary-item-enter-active {
+            transform: translateX(0rem);
+            opacity: 1;
+        }
+    }
+    &-leave {
+        transform: translateX(0);
+        opacity: 1;
+        transition: $transition;
+        &.inventory-summary-item-leave-active {
+            transform: translateX(-10rem);
+            opacity: 0;
+        }
+    }
+    &-appear {
+        transform: translateX(-10rem);
+        opacity: 0;
+        transition: $transition;
+        &.inventory-summary-item-appear-active {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
 }

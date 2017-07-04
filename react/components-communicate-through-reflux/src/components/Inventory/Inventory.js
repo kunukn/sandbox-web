@@ -45,7 +45,7 @@ class Inventory extends Reflux.Component {
                             component="ul"
                             className="inventory__list"
                             transitionName="inventory-item"
-                            transitionAppear={false}
+                            transitionAppear={true}
                             transitionAppearTimeout={300}
                             transitionEnterTimeout={300}
                             transitionLeaveTimeout={300}>
