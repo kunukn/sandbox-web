@@ -155,6 +155,8 @@ ul {
         margin-right: .5rem;
     }
     &__value {
+        display: inline-block;
+        position: relative;
         &.anim {
             animation: basket $easing-in-out 180ms forwards;
         }
@@ -544,8 +546,8 @@ ul {
 
 // css-transition-animation
 .inventory-item {
-    $in: scale3d(1,1,1);
-    $out: scale3d(0,0,0);
+    $in: scaleX(1) scaleY(1) translateZ(0);
+    $out: scaleX(0) scaleY(0) translateZ(0);
     $transition: transform 300ms;
 
     &-enter {

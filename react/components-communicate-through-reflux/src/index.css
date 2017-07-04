@@ -125,8 +125,11 @@ ul {
     display: inline-block;
     position: relative;
     margin-right: .5rem; }
-  .basket__value.anim {
-    animation: basket cubic-bezier(0.4, 0, 0.2, 1) 180ms forwards; }
+  .basket__value {
+    display: inline-block;
+    position: relative; }
+    .basket__value.anim {
+      animation: basket cubic-bezier(0.4, 0, 0.2, 1) 180ms forwards; }
 
 @keyframes basket {
   0%,
@@ -429,19 +432,19 @@ ul {
     width: 100%; } }
 
 .inventory-item-enter {
-  transform: scale3d(0, 0, 0);
+  transform: scaleX(0) scaleY(0) translateZ(0);
   transition: transform 300ms ease-in; }
   .inventory-item-enter.inventory-item-enter-active {
-    transform: scale3d(1, 1, 1); }
+    transform: scaleX(1) scaleY(1) translateZ(0); }
 
 .inventory-item-leave {
-  transform: scale3d(1, 1, 1);
+  transform: scaleX(1) scaleY(1) translateZ(0);
   transition: transform 300ms ease-in; }
   .inventory-item-leave.inventory-item-leave-active {
-    transform: scale3d(0, 0, 0); }
+    transform: scaleX(0) scaleY(0) translateZ(0); }
 
 .inventory-item-appear {
-  transform: scale3d(0, 0, 0);
+  transform: scaleX(0) scaleY(0) translateZ(0);
   transition: transform 300ms ease-in; }
   .inventory-item-appear.inventory-item-appear-active {
-    transform: scale3d(1, 1, 1); }
+    transform: scaleX(1) scaleY(1) translateZ(0); }
