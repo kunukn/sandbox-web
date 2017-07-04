@@ -25,13 +25,13 @@ class ShopStore extends Store {
     onInit() {
         log('onInit');
 
-        this.setupLoadingTracker();
+        this.setupLoadingTracker({spinStart: 500, longWaitStart: 2000});
 
         log('loading data');
 
         //ShopActions.loadData();
   //      return;
-  
+
         fetchShopData({
             completed: ({products, inventory, stock}) => {
                 this.updateCompletedState({products, inventory, stock, isLoading: false})
@@ -103,23 +103,22 @@ class ShopStore extends Store {
 
     updateCompletedState({products, inventory, stock, isLoading}) {
         // simulate latency
+        const latencySimulate = 2000;
         setTimeout(() => {
-
             this.setState(() => ({
-                loadingTracker: {
-                    isLoading
-                },
+                loadingTracker: {isLoading},
                 products: _.cloneDeep(products),
                 inventory: _.cloneDeep(inventory),
                 stock: _.cloneDeep(stock)
             }));
 
             clearTimeout(this.longLoadingTimer);
-        }, 1000);
+        }, latencySimulate);
     }
 
     updateErrorState({isLoading, isLoadingFailed, exception}) {
         // simulate latency
+        const latencySimulate = 2000;
         setTimeout(() => {
             error(exception);
             this.setState(() => ({
@@ -129,18 +128,18 @@ class ShopStore extends Store {
                 }
             }));
             clearTimeout(this.longLoadingTimer);
-        }, 1000);
+        }, latencySimulate);
     }
 
-    setupLoadingTracker() {
+    setupLoadingTracker({spinStart, longWaitStart}) {
         this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingSpinner: true});
-            return Object.assign({}, prevState, {loadingTracker});
-        }), 500);
+            const loadingTracker = {...(prevState.loadingTracker), isLoadingSpinner: true};
+            return ({...prevState, loadingTracker});
+        }), spinStart);
         this.longLoadingTimer = setTimeout(() => this.setState(prevState => {
-            const loadingTracker = Object.assign({}, prevState.loadingTracker, {isLoadingLong: true});
-            return Object.assign({}, prevState, {loadingTracker});
-        }), 2000);
+            const loadingTracker = {...(prevState.loadingTracker), isLoadingLong: true};
+            return ({...prevState, loadingTracker});
+        }), longWaitStart);
     }
 }
 
