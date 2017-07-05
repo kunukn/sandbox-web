@@ -49,10 +49,10 @@ function getStylesFromState(number) {
     let styles = {};
     let colors = [
         '',
-        '#00a1f1',
-        '#7cbb00',
-        '#ffbb00',
         '#f65314',
+        '#7cbb00',
+        '#00a1f1',
+        '#ffbb00',
         '',
         '',
         '',
