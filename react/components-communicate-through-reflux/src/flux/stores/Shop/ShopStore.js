@@ -29,9 +29,11 @@ class ShopStore extends Reflux.Store {
 
         log('loading data');
 
+        // Action handles data loading
         //ShopActions.loadData();
-  //      return;
+        //return;
 
+        // Store handles data loading
         fetchShopData({
             completed: ({products, inventory, stock}) => {
                 this.updateCompletedState({products, inventory, stock, isLoading: false})
@@ -62,9 +64,10 @@ class ShopStore extends Reflux.Store {
                 .inventory
                 .push({
                     productId: product.productId,
-                    timestamp: + new Date()
+                    timestamp: +new Date()
                 });
 
+            // cloneDeep might not be needed
             return {
                 inventory: _.cloneDeep(prevState.inventory),
                 stock: _.cloneDeep(prevState.stock)
@@ -84,6 +87,7 @@ class ShopStore extends Reflux.Store {
                 .inventory
                 .splice(index, 1);
 
+            // cloneDeep might not be needed
             return {
                 inventory: _.cloneDeep(prevState.inventory),
                 stock: _.cloneDeep(prevState.stock)
@@ -133,13 +137,15 @@ class ShopStore extends Reflux.Store {
 
     setupLoadingTracker({spinStart, longWaitStart}) {
         this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
-            // using _.cloneDeep instead might be easier to read
-            const loadingTracker = {...(prevState.loadingTracker), isLoadingSpinner: true};
-            return ({...prevState, loadingTracker});
+            let {loadingTracker} = prevState;
+            loadingTracker.isLoadingSpinner = true;
+            return prevState;
         }), spinStart);
+
         this.longLoadingTimer = setTimeout(() => this.setState(prevState => {
-            const loadingTracker = {...(prevState.loadingTracker), isLoadingLong: true};
-            return ({...prevState, loadingTracker});
+            let {loadingTracker} = prevState;
+            loadingTracker.isLoadingLong = true;
+            return prevState;
         }), longWaitStart);
     }
 }
