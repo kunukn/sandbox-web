@@ -3,7 +3,6 @@ import React from 'react';
 import Reflux from 'reflux';
 // utils
 import _ from 'lodash';
-//import {log} from '../../utils';
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
 import {addToInventory} from '../../flux/actions/Shop/ShopActions';
@@ -29,7 +28,6 @@ class Products extends Reflux.Component {
     }
 
     componentDidMount() {
-        //ShopActions.init();
     }
 
     render() {
@@ -76,7 +74,7 @@ function animateProductItem(domProductItem) {
     }
 
     /*
-        imperative code which could be cleaned up 
+        imperative code which could potentially be cleaned up 
         into function calls
     */
 

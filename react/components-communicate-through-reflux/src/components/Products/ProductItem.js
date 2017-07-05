@@ -54,9 +54,7 @@ class ProductItem extends Reflux.Component {
           onClick={onAddProductItem}
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}
-          disabled={count <= 0
-          ? true
-          : null}>
+          disabled={count <= 0 ? true : null}>
           <i className="material-icons" aria-hidden="true">
             add_circle_outline
           </i>

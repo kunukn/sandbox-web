@@ -9,7 +9,6 @@ import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
 import {track} from '../../flux/actions/Tracker/TrackerActions';
 // utils
 import _ from 'lodash';
-//import {log} from '../../utils';
 // components
 import InventoryItem from './InventoryItem';
 import LoadingTracker from '../LoadingTracker/LoadingTracker';
@@ -29,7 +28,6 @@ class Inventory extends Reflux.Component {
     }
 
     componentDidMount() {
-        //ShopActions.init();
     }
 
     render() {

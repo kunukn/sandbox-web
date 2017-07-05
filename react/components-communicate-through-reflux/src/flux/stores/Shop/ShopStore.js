@@ -1,5 +1,5 @@
 // libs
-import {Store} from 'reflux';
+import Reflux from 'reflux';
 import _ from 'lodash';
 // flux
 import ShopActions from '../../actions/Shop/ShopActions';
@@ -7,7 +7,7 @@ import ShopActions from '../../actions/Shop/ShopActions';
 import {log, error} from '../../../utils';
 import {fetchShopData} from '../../../communication/shop';
 
-class ShopStore extends Store {
+class ShopStore extends Reflux.Store {
 
     constructor() {
         super();
@@ -103,7 +103,7 @@ class ShopStore extends Store {
 
     updateCompletedState({products, inventory, stock, isLoading}) {
         // simulate latency
-        const latencySimulate = 0;
+        const latencySimulate = 3000;
         setTimeout(() => {
             this.setState(() => ({
                 loadingTracker: {isLoading},

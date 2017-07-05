@@ -29,9 +29,10 @@ class Basket extends Reflux.Component {
     }
 
     componentDidMount() {
-        //ShopActions.init(); // https://stackoverflow.com/questions/27139366/why-do-the-react-docs-recommend-doing-ajax-in-componentdidmount-not-componentwi
-
-        // Wait until DOM has settled with data updates
+        // Temp solution. Wait until DOM has settled with data updates
+        // The position is known when all components are rendered with content.
+        // If the basket is at the top, then the position is known because this components height is known.
+        // Then we don't need setTimeout
         setTimeout( () => {
         if(this.domBasketIcon){
             updateBasketLocation(this.domBasketIcon.getBoundingClientRect());
@@ -41,8 +42,6 @@ class Basket extends Reflux.Component {
         window.addEventListener('resize', this.onResize); 
     }
 
-    // Not sure if nextState is properly working with Reflux store state sharing
-    // Seems to work.
     // https://facebook.github.io/react/docs/react-component.html#componentwillupdate about this lifecycle
     componentWillUpdate(nextProps, nextState){
         if (this.state.inventory.length > 0) {

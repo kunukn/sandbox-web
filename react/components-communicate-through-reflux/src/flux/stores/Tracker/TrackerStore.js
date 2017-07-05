@@ -1,9 +1,7 @@
 // libs
 import {Store} from 'reflux';
-
 // flux
 import TrackerActions from '../../actions/Tracker/TrackerActions';
-
 // utils
 import {log} from '../../../utils';
 
