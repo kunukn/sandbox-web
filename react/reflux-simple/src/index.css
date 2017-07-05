@@ -3,7 +3,7 @@
 }
 
 body {
-    margin: 0;    
+    margin: 0;
     font-family: sans-serif;
     min-height: 100vh;
     display: flex;
@@ -43,12 +43,13 @@ body {
     position: relative;
 }
 
-.box__text{
+.box__text {
     position: relative;
     display: block;
     transition: 200ms;
 }
-.box__text:after{
+
+.box__text:after {
     content: '';
     display: block;
     position: absolute;
@@ -59,10 +60,12 @@ body {
     background-color: black;
     opacity: 0;
     transition: 200ms;
-}    
-.box:focus >.box__text:after{
-    opacity: 1;    
 }
+
+.box:focus>.box__text:after {
+    opacity: 1;
+}
+
 .box__state {
     position: absolute;
     bottom: 10px;
@@ -72,7 +75,7 @@ body {
 }
 
 .box--1 {
-    background: #00a1f1;
+    background: #f65314;
 }
 
 .box--2 {
@@ -80,9 +83,9 @@ body {
 }
 
 .box--3 {
-    background: #ffbb00;
+    background: #00a1f1;
 }
 
 .box--4 {
-    background: #f65314;
+    background: #ffbb00;
 }
