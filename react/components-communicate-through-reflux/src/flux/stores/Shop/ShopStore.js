@@ -36,10 +36,10 @@ class ShopStore extends Reflux.Store {
         // Store handles data loading
         fetchShopData({
             completed: ({products, inventory, stock}) => {
-                this.updateCompletedState({products, inventory, stock, isLoading: false})
+                this.updateCompletedState({products, inventory, stock})
             },
             failed: exception => {
-                this.updateErrorState({isLoadingFailed: true, isLoading: false, exception})
+                this.updateErrorState({exception})
             }
         });
     }
@@ -63,14 +63,14 @@ class ShopStore extends Reflux.Store {
             prevState
                 .inventory
                 .push({
-                    productId: product.productId,
-                    timestamp: +new Date()
+                    productId: product.productId + 0,
+                    timestamp: +new Date(),
                 });
 
             // cloneDeep might not be needed
             return {
                 inventory: _.cloneDeep(prevState.inventory),
-                stock: _.cloneDeep(prevState.stock)
+                stock: _.cloneDeep(prevState.stock),
             };
         });
     }
@@ -83,11 +83,8 @@ class ShopStore extends Reflux.Store {
             let stockItem = _.find(prevState.stock, {productId: product.productId});
 
             stockItem.count++;
-            prevState
-                .inventory
-                .splice(index, 1);
+            prevState.inventory.splice(index, 1);
 
-            // cloneDeep might not be needed
             return {
                 inventory: _.cloneDeep(prevState.inventory),
                 stock: _.cloneDeep(prevState.stock)
@@ -97,20 +94,20 @@ class ShopStore extends Reflux.Store {
 
     onLoadDataCompleted({products, inventory, stock}) {
         log('onLoadCompleted');
-        this.updateCompletedState({products, inventory, stock, isLoading: false})
+        this.updateCompletedState({products, inventory, stock})
     }
 
     onLoadDataFailed(exception) {
         log('onLoadFailed');
-        this.updateErrorState({isLoadingFailed: true, isLoading: false, exception});
+        this.updateErrorState({exception});
     }
 
-    updateCompletedState({products, inventory, stock, isLoading}) {
+    updateCompletedState({products, inventory, stock}) {
         // simulate latency
         const latencySimulate = 3000;
         setTimeout(() => {
             this.setState(() => ({
-                loadingTracker: {isLoading},
+                loadingTracker: {isLoading: false},
                 products: _.cloneDeep(products),
                 inventory: _.cloneDeep(inventory),
                 stock: _.cloneDeep(stock)
@@ -120,15 +117,15 @@ class ShopStore extends Reflux.Store {
         }, latencySimulate);
     }
 
-    updateErrorState({isLoading, isLoadingFailed, exception}) {
+    updateErrorState({exception}) {
         // simulate latency
         const latencySimulate = 2000;
         setTimeout(() => {
             error(exception);
             this.setState(() => ({
                 loadingTracker: {
-                    isLoading,
-                    isLoadingFailed
+                    isLoading: false,
+                    isLoadingFailed: true,
                 }
             }));
             clearTimeout(this.longLoadingTimer);
@@ -139,13 +136,13 @@ class ShopStore extends Reflux.Store {
         this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
             let {loadingTracker} = prevState;
             loadingTracker.isLoadingSpinner = true;
-            return prevState;
+            return _.cloneDeep(prevState);
         }), spinStart);
 
         this.longLoadingTimer = setTimeout(() => this.setState(prevState => {
             let {loadingTracker} = prevState;
             loadingTracker.isLoadingLong = true;
-            return prevState;
+            return _.cloneDeep(prevState);
         }), longWaitStart);
     }
 }

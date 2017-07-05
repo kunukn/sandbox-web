@@ -8,7 +8,7 @@ import {log} from '../../../utils';
 class TrackerStore extends Store {
     constructor() {
         super();
-        this.listenables = TrackerActions; // convention
+        this.listenables = TrackerActions;
     }
 
     onTrack(event) {
