@@ -11,16 +11,26 @@ class ProductItem extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.stores = [ProductItemStore];
+    this.store = ProductItemStore;
+
+   this.onEnter = () => {
+      hover({hover: true, hoverIndex: this.props.index}); // store state
+      //this.setState({hover: true}); // local state
+      track({action: 'mouseOverAddProduct', productId: this.props.productId});
+    }
+    this.onLeave = () => {
+      hover({hover: false, hoverIndex: this.props.index}); // store state
+      //this.setState({hover: false}); // local state
+    };
+    this.onAddProductItem = () => this.props.onAdd(this.domItem);
+
   }
 
   render() {
     const {
       index,
-      productId,
       name,
       icon,
-      onAdd,
       count
     } = this.props;
 
@@ -29,17 +39,6 @@ class ProductItem extends Reflux.Component {
     }, {
       'disabled': count <= 0
     });
-
-    const onEnter = () => {
-      hover({hover: true, hoverIndex: index}); // store state
-      //this.setState({hover: true}); // local state
-      track({action: 'mouseOverAddProduct', productId: productId});
-    }
-    const onLeave = () => {
-      hover({hover: false, hoverIndex: index}); // store state
-      //this.setState({hover: false}); // local state
-    };
-    const onAddProductItem = () => onAdd(this.domItem);
 
     return (
       <div className={productItemClassName}>
@@ -51,9 +50,9 @@ class ProductItem extends Reflux.Component {
         <button
           className="btn product-item__action"
           aria-label="add"
-          onClick={onAddProductItem}
-          onMouseEnter={onEnter}
-          onMouseLeave={onLeave}
+          onClick={this.onAddProductItem}
+          onMouseEnter={this.onEnter}
+          onMouseLeave={this.onLeave}
           disabled={count <= 0 ? true : null}>
           <i className="material-icons" aria-hidden="true">
             add_circle_outline
