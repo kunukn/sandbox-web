@@ -23,6 +23,10 @@ body {
     overflow-x: hidden;
 }
 
+svg {
+    fill: currentColor;
+}
+
 main {
     color: $color-theme-light;
     background-color: #555;
@@ -83,8 +87,7 @@ ul {
     width: 24px;
     height: 24px;
     overflow: hidden;
-    font-style: normal; 
-    //color: $color-theme;
+    font-style: normal; //color: $color-theme;
 }
 
 .btn {
@@ -293,7 +296,8 @@ ul {
     }
     &--theme-light {
         background-color: rgba( white, .5);
-        color: $color-theme-dark;;
+        color: $color-theme-dark;
+        ;
     }
     &__title {
         margin-bottom: .5rem;
@@ -453,9 +457,6 @@ ul {
     &__image {
         color: inherit;
     }
-    svg {
-        fill: currentColor;
-    }
 }
 
 .loading-tracker {
@@ -595,7 +596,8 @@ ul {
         }
     }
 }
-.inventory-summary-item{
+
+.inventory-summary-item {
     $transition: 300ms ease-in-out;
     &-enter {
         transform: translateX(-10rem);

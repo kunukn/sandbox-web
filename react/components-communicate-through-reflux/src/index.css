@@ -14,6 +14,9 @@ body {
   background-color: #111;
   overflow-x: hidden; }
 
+svg {
+  fill: currentColor; }
+
 main {
   color: #bbb;
   background-color: #555;
@@ -355,8 +358,6 @@ ul {
       box-shadow: 0 0 10px #bbb; }
   .inventory-item__image {
     color: inherit; }
-  .inventory-item svg {
-    fill: currentColor; }
 
 .loading-tracker {
   position: relative; }

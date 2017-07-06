@@ -39,7 +39,7 @@ class InventoryItem extends Reflux.Component {
                     aria-label='delete'
                     onMouseEnter={this.onEnter}
                     onMouseLeave={this.onLeave}>
-                    <i className="material-icons" aria-hidden="true">remove_circle_outline</i>
+                    <Svg type='remove_circle_outline' />
                 </button>
             </li>
         );

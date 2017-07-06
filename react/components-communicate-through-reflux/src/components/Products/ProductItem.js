@@ -6,6 +6,8 @@ import cx from 'classnames';
 import {track} from '../../flux/actions/Tracker/TrackerActions';
 import ProductItemStore from '../../flux/stores/ProductItem/ProductItemStore';
 import {hover} from '../../flux/actions/ProductItem/ProductItemActions';
+// components 
+import Svg from '../Images/Svg';
 
 class ProductItem extends Reflux.Component {
   constructor(props) {
@@ -44,8 +46,7 @@ class ProductItem extends Reflux.Component {
       <div className={productItemClassName}>
         <div className="product-item__info">
           <i ref={el => this.domItem = el} className="product-item__icon material-icons">{icon}</i>
-          <span>{name}
-            ({count})</span>
+          <span>{name} ({count})</span>
         </div>
         <button
           className="btn product-item__action"
@@ -54,9 +55,7 @@ class ProductItem extends Reflux.Component {
           onMouseEnter={this.onEnter}
           onMouseLeave={this.onLeave}
           disabled={count <= 0 ? true : null}>
-          <i className="material-icons" aria-hidden="true">
-            add_circle_outline
-          </i>
+          <Svg type='add_circle_outline'/>
         </button>
       </div>
     );
