@@ -11,22 +11,22 @@ class InventoryItem extends Reflux.Component {
     constructor(props) {
         super(props);
         this.state = {};
+
+        this.onEnter = () => {
+            this.setState({hover: true});
+            track({action: 'mouseOverRemoveInventory', productId: this.props.product.productId});
+        };
+        this.onLeave = () => this.setState({hover: false});
+        this.onRemoveInventoryItem = () => this.props.onRemove(this.domItem);
     }
 
     render() {
-        const {product, onRemove} = this.props;
+        const {product} = this.props;
 
         let inventoryItemClassName = cx(
             'inventory-item', 
             {hover: this.state.hover});
 
-        const onEnter = () => {
-            this.setState({hover: true});
-            track({action: 'mouseOverRemoveInventory', productId: product.productId});
-        };
-        const onLeave = () => this.setState({hover: false});
-        const onRemoveInventoryItem = () => onRemove(this.domItem);
-        
         return (
             <li className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>
@@ -34,11 +34,11 @@ class InventoryItem extends Reflux.Component {
                     <Svg type={product.icon}/>
                 </div>
                 <button
-                    onClick={onRemoveInventoryItem}
+                    onClick={this.onRemoveInventoryItem}
                     className='btn inventory-item__action'
                     aria-label='delete'
-                    onMouseEnter={onEnter}
-                    onMouseLeave={onLeave}>
+                    onMouseEnter={this.onEnter}
+                    onMouseLeave={this.onLeave}>
                     <i className="material-icons" aria-hidden="true">remove_circle_outline</i>
                 </button>
             </li>
