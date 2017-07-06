@@ -4,6 +4,8 @@ import Reflux from 'reflux';
 import cx from 'classnames';
 // flux
 import {track} from '../../flux/actions/Tracker/TrackerActions';
+// components
+import Svg from '../Images/Svg';
 
 class InventoryItem extends Reflux.Component {
     constructor(props) {
@@ -28,11 +30,8 @@ class InventoryItem extends Reflux.Component {
         return (
             <li className={inventoryItemClassName}>
                 <div className='inventory-item__title' ref={ el => this.domItem = el }>
-                    <div className='inventory-item__name'> {product.name}
-                   </div>
-                    <i className="inventory-item__icon material-icons" aria-hidden="true">
-                        {product.icon}
-                    </i>
+                    <div className='inventory-item__name'>{product.name}</div>
+                    <Svg type={product.icon}/>
                 </div>
                 <button
                     onClick={onRemoveInventoryItem}

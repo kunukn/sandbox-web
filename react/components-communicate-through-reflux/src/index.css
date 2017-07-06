@@ -31,7 +31,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: #222;
   background: #eee;
   width: 100%; }
 
@@ -40,7 +40,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: #222;
   background: #eee;
   width: 100%; }
 
@@ -103,10 +103,11 @@ ul {
 .basket {
   position: relative; }
   .basket--theme-dark {
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #bbb; }
   .basket--theme-light {
     background-color: rgba(255, 255, 255, 0.5);
-    color: black; }
+    color: #222; }
   .basket__info {
     display: flex;
     justify-content: flex-end;
@@ -143,10 +144,11 @@ ul {
   min-height: 10rem;
   position: relative; }
   .products--theme-dark {
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #bbb; }
   .products--theme-light {
     background-color: rgba(255, 255, 255, 0.5);
-    color: black; }
+    color: #222; }
   .products__title {
     margin-bottom: .5rem;
     color: inherit; }
@@ -226,10 +228,11 @@ ul {
   position: relative;
   min-height: 6rem; }
   .inventory-summary--theme-dark {
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #bbb; }
   .inventory-summary--theme-light {
     background-color: rgba(255, 255, 255, 0.5);
-    color: black; }
+    color: #222; }
   .inventory-summary__title {
     margin-bottom: .5rem;
     color: inherit; }
@@ -263,10 +266,11 @@ ul {
   position: relative;
   min-height: 6rem; }
   .inventory--theme-dark {
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #bbb; }
   .inventory--theme-light {
     background-color: rgba(255, 255, 255, 0.5);
-    color: black; }
+    color: #222; }
   .inventory__title {
     margin-bottom: .5rem;
     color: inherit; }
@@ -349,6 +353,10 @@ ul {
     margin-left: .5rem; }
     .inventory-item__action:hover {
       box-shadow: 0 0 10px #bbb; }
+  .inventory-item__image {
+    color: inherit; }
+  .inventory-item svg {
+    fill: currentColor; }
 
 .loading-tracker {
   position: relative; }

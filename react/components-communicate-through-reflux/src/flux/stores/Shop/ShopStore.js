@@ -104,7 +104,7 @@ class ShopStore extends Reflux.Store {
 
     updateCompletedState({products, inventory, stock}) {
         // simulate latency
-        const latencySimulate = 3000;
+        const latencySimulate = 0;
         setTimeout(() => {
             this.setState(() => ({
                 loadingTracker: {isLoading: false},

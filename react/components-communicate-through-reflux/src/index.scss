@@ -1,7 +1,7 @@
 $color-primary: #003d2b;
 $color-theme-dark: #222;
 $color-theme-light: #bbb;
-$color-theme: #e2e2e2; // #3cb84d;
+$color-theme: #e2e2e2;
 $easing-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
 $easing-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 *,
@@ -41,7 +41,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: $color-theme-dark;
     background: #eee;
     width: 100%;
 }
@@ -51,7 +51,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: $color-theme-dark;
     background: #eee;
     width: 100%;
 }
@@ -83,7 +83,8 @@ ul {
     width: 24px;
     height: 24px;
     overflow: hidden;
-    font-style: normal; //color: $color-theme;
+    font-style: normal; 
+    //color: $color-theme;
 }
 
 .btn {
@@ -126,10 +127,11 @@ ul {
     &--theme-default {}
     &--theme-dark {
         background-color: rgba( black, .5);
+        color: $color-theme-light;
     }
     &--theme-light {
         background-color: rgba( white, .5);
-        color: black;
+        color: $color-theme-dark;
     }
     &__info {
         display: flex;
@@ -180,10 +182,11 @@ ul {
     &--theme-default {}
     &--theme-dark {
         background-color: rgba( black, .5);
+        color: $color-theme-light;
     }
     &--theme-light {
         background-color: rgba( white, .5);
-        color: black;
+        color: $color-theme-dark;
     }
     &__title {
         margin-bottom: .5rem;
@@ -281,16 +284,16 @@ ul {
 }
 
 .inventory-summary {
-  //  transform-style: preserve-3d;
     position: relative;
     min-height: 6rem;
     &--theme-default {}
     &--theme-dark {
         background-color: rgba( black, .5);
+        color: $color-theme-light;
     }
     &--theme-light {
         background-color: rgba( white, .5);
-        color: black;
+        color: $color-theme-dark;;
     }
     &__title {
         margin-bottom: .5rem;
@@ -339,10 +342,11 @@ ul {
     &--theme-default {}
     &--theme-dark {
         background-color: rgba( black, .5);
+        color: $color-theme-light;
     }
     &--theme-light {
         background-color: rgba( white, .5);
-        color: black;
+        color: $color-theme-dark;
     }
     &__title {
         margin-bottom: .5rem;
@@ -445,6 +449,12 @@ ul {
         &:hover {
             box-shadow: 0 0 10px $color-theme-light;
         }
+    }
+    &__image {
+        color: inherit;
+    }
+    svg {
+        fill: currentColor;
     }
 }
 
