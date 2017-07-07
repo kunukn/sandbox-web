@@ -4,18 +4,14 @@ import _ from 'lodash';
 // flux
 import ShopActions from '../../actions/Shop/ShopActions';
 // utils
-import {log, error} from '../../../utils';
+import {log, error, loadingTrackerLoading, loadingTrackerLoaded, loadingTrackerError} from '../../../utils';
 import {fetchShopData} from '../../../communication/shop';
 
 class ShopStore extends Reflux.Store {
 
     constructor() {
         super();
-        this.state = {
-            loadingTracker: {
-                isLoading: true
-            }
-        };
+        this.state = {};
         this.listenables = ShopActions; // convention
         // or this.listenToMany(ShopActions); // convention
 
@@ -25,9 +21,8 @@ class ShopStore extends Reflux.Store {
     onInit() {
         log('onInit');
 
-        this.setupLoadingTracker({spinStart: 500, longWaitStart: 2000});
-
         log('loading data');
+        loadingTrackerLoading.call(this);
 
         // Action handles data loading
         //ShopActions.loadData();
@@ -92,7 +87,7 @@ class ShopStore extends Reflux.Store {
         });
     }
 
-    onLoadDataCompleted({products, inventory, stock}) {
+    onLoadDataCompleted({products, inventory, stock}) {        
         log('onLoadCompleted');
         this.updateCompletedState({products, inventory, stock})
     }
@@ -104,7 +99,7 @@ class ShopStore extends Reflux.Store {
 
     updateCompletedState({products, inventory, stock}) {
         // simulate latency
-        const latencySimulate = 3000;
+        const latencySimulate = 4000;
         setTimeout(() => {
             this.setState(() => ({
                 loadingTracker: {isLoading: false},
@@ -113,7 +108,7 @@ class ShopStore extends Reflux.Store {
                 stock: _.cloneDeep(stock)
             }));
 
-            clearTimeout(this.longLoadingTimer);
+            loadingTrackerLoaded.call(this);
         }, latencySimulate);
     }
 
@@ -128,22 +123,8 @@ class ShopStore extends Reflux.Store {
                     isLoadingFailed: true,
                 }
             }));
-            clearTimeout(this.longLoadingTimer);
+            loadingTrackerError.call(this);
         }, latencySimulate);
-    }
-
-    setupLoadingTracker({spinStart, longWaitStart}) {
-        this.loadingSpinnerTimer = setTimeout(() => this.setState(prevState => {
-            let {loadingTracker} = prevState;
-            loadingTracker.isLoadingSpinner = true;
-            return _.cloneDeep(prevState);
-        }), spinStart);
-
-        this.longLoadingTimer = setTimeout(() => this.setState(prevState => {
-            let {loadingTracker} = prevState;
-            loadingTracker.isLoadingLong = true;
-            return _.cloneDeep(prevState);
-        }), longWaitStart);
     }
 }
 

@@ -35,7 +35,7 @@ class Products extends Reflux.Component {
         const {theme = 'default'} = this.props;
 
         return (
-            <LoadingTracker name={'products'} {...this.state.loadingTracker}>
+            <LoadingTracker name={'products'} loadingState={this.state.loadingState}>
                 <div className={'box products products--theme-'+theme}>
                     <h2 className='products__title'>Products</h2>
                     {products && products.length > 0 && <ul className='products__list'>

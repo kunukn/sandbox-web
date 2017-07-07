@@ -1,22 +1,25 @@
 import React from 'react';
 
+import {LOADINGSTATES} from '../../utils';
+
 class LoadingTracker extends React.Component {
 
     render() {
         
-        let {name, isLoading, isLoadingLong, isLoadingFailed, isLoadingSpinner,ignoreLoadingTracker} = this.props;
+        let {name, loadingState, ignoreLoadingTracker} = this.props;
         
         if(ignoreLoadingTracker){
             return React.Children.only(this.props.children);
         }
 
-            let loadingState = isLoading && isLoadingSpinner;
-            let errorState = isLoadingFailed;
+        const isLoadingState = loadingState === LOADINGSTATES.LOADING;
+        const isLongLoadingState = loadingState === LOADINGSTATES.LONGLOADING;
+        const isErrorState = loadingState === LOADINGSTATES.LOADINGERROR;
 
-        if(loadingState || errorState){
+        if(loadingState){
          return (
                 <div className="loading-tracker">
-                    {loadingState &&
+                    {(isLoadingState || isLongLoadingState) &&
                     <div className="loading-tracker__overlay">
                         <div className="loading-tracker__box">
                         <div className="load-bar">
@@ -24,11 +27,11 @@ class LoadingTracker extends React.Component {
                             <div className="load-bar__item"></div>
                         </div>
                             <span className="loading-tracker__name">{name} </span>
-                            <span className="loading-tracker__message">please wait... {isLoadingLong && ' long loading'}</span>
+                            <span className="loading-tracker__message">please wait... {isLongLoadingState && ' long loading'}</span>
                         </div>
                     </div>}
                     
-                    {errorState && 
+                    {isErrorState && 
                     <div className="loading-tracker__overlay loading-tracker__overlay--is-error">
                         <div className="loading-tracker__box">
                             <span className="loading-tracker__name">{name} </span>

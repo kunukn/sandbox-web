@@ -35,7 +35,7 @@ class Inventory extends Reflux.Component {
         const {theme = 'default'} = this.props;
 
         return (
-            <LoadingTracker name={'inventory'} {...this.state.loadingTracker}>
+            <LoadingTracker name={'inventory'} loadingState={this.state.loadingState}>
                 <div className={'box inventory inventory--theme-'+theme}>
                     <h2 className='inventory__title'>Inventory</h2>
                     {inventory && inventory.length > 0 
