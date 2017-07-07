@@ -28,34 +28,17 @@ export function createAndAppendById(id){
     return child;
 }
 
-export const LOADINGSTATES = {
+export const LOADING_STATES = {
     LOADING: 'Loading',
-    LONGLOADING: 'LongLoading',
     LOADED: 'Loaded',
-    LOADINGERROR: 'LoadingError',
+    LOADING_ERROR: 'LoadingError',
+};
+
+export const LOADING_TYPES = {
+    SHORT: 'short',
+    LONG: 'long',
 };
 
 export const LOADING_CONFIG = {
-    LONGLOADING_START_TIME: 2000,
+    LONG_LOADING_START_TIME: 2000,
 };
-
-export function loadingTrackerLoading() {
-    this.setState({loadingState: LOADINGSTATES.LOADING});
-    this.loadingTrackerCancelTimeout = setTimeout(() => {
-        this.setState({loadingState: LOADINGSTATES.LONGLOADING});
-    }, LOADING_CONFIG.LONGLOADING_START_TIME);
-}
-
-export function loadingTrackerLoaded() {
-    if (this.loadingTrackerCancelTimeout) {
-        window.clearTimeout(this.loadingTrackerCancelTimeout);
-    }
-    this.setState({loadingState: LOADINGSTATES.LOADED});
-}
-
-export function loadingTrackerError() {
-    if (this.loadingTrackerCancelTimeout) {
-        window.clearTimeout(this.loadingTrackerCancelTimeout);
-    }
-    this.setState({loadingState: LOADINGSTATES.LOADINGERROR});
-}

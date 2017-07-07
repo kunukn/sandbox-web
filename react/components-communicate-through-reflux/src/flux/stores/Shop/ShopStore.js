@@ -4,7 +4,7 @@ import _ from 'lodash';
 // flux
 import ShopActions from '../../actions/Shop/ShopActions';
 // utils
-import {log, error, loadingTrackerLoading, loadingTrackerLoaded, loadingTrackerError} from '../../../utils';
+import {log, error, LOADING_STATES} from '../../../utils';
 import {fetchShopData} from '../../../communication/shop';
 
 class ShopStore extends Reflux.Store {
@@ -22,7 +22,7 @@ class ShopStore extends Reflux.Store {
         log('onInit');
 
         log('loading data');
-        loadingTrackerLoading.call(this);
+        this.setState({loadingState: LOADING_STATES.LOADING});
 
         // Action handles data loading
         //ShopActions.loadData();
@@ -101,14 +101,12 @@ class ShopStore extends Reflux.Store {
         // simulate latency
         const latencySimulate = 4000;
         setTimeout(() => {
-            this.setState(() => ({
-                loadingTracker: {isLoading: false},
+           this.setState({
+                loadingState: LOADING_STATES.LOADED,
                 products: _.cloneDeep(products),
                 inventory: _.cloneDeep(inventory),
-                stock: _.cloneDeep(stock)
-            }));
-
-            loadingTrackerLoaded.call(this);
+                stock: _.cloneDeep(stock),
+           });
         }, latencySimulate);
     }
 
@@ -117,13 +115,7 @@ class ShopStore extends Reflux.Store {
         const latencySimulate = 2000;
         setTimeout(() => {
             error(exception);
-            this.setState(() => ({
-                loadingTracker: {
-                    isLoading: false,
-                    isLoadingFailed: true,
-                }
-            }));
-            loadingTrackerError.call(this);
+            this.setState({loadingState: LOADING_STATES.LOADING_ERROR});
         }, latencySimulate);
     }
 }
