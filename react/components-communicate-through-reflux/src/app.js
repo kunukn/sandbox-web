@@ -1,7 +1,7 @@
 // libs
 import {render} from 'react-dom';
 // utils
-import {toDOM, createAndAppendById} from './utils';
+import {toDOM, createAndAppendById, log} from './utils';
 // components
 import Basket from './components/Basket';
 import Products from './components/Products';
@@ -17,3 +17,5 @@ render(toDOM(InventorySummary, {theme: 'light'}), createAndAppendById('placehold
 //render(toDOM(Inventory, {theme: 'light'}), createAndAppendById('placeholder-3'));
 //render(toDOM(Inventory, {theme: 'default'}), createAndAppendById('placeholder-3'));
 
+log('%c You can type in console:','background: #003d2b; color: #fff');
+log('%c printShopState() printTrackerState() getShopState() getTrackerState()', 'background: #003d2b; color: #fff');

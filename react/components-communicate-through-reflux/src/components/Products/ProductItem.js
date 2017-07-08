@@ -22,7 +22,6 @@ class ProductItem extends Reflux.Component {
 
   render() {
     const {
-      index,
       name,
       icon,
       count
@@ -31,7 +30,7 @@ class ProductItem extends Reflux.Component {
 
 
     let productItemClassName = cx('product-item', {
-      'hover': this.state.hover && (this.state.hoverIndex === index)
+      'hover': this.state.hover
     }, {
       'disabled': count <= 0
     });

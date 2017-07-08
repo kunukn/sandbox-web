@@ -4,6 +4,9 @@ import {createElement} from 'react';
 export const log = console.log.bind(console); 
 
 /* eslint-disable no-console */
+export const warn = console.warn.bind(console); 
+
+/* eslint-disable no-console */
 export const error = console.error.bind(console); 
 
 export function byId(id) {
