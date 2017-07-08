@@ -26,14 +26,13 @@ class InventorySummary extends Reflux.Component {
     }
 
     componentDidMount() {
-        //ShopActions.init();
     }
 
     render() {
         const {inventory} = this.state;
         const {theme = 'default'} = this.props;
         return (
-            <LoadingTracker name={'inventory summary'} loadingState={this.state.loadingState}>
+            <LoadingTracker name={'inventory summary'} loadingState={this.state.loadingState} ignoreLoadingTracker={this.state.ignoreLoadingTracker}>
                 <div className={'box inventory-summary inventory-summary--theme-'+theme}>
                     <h2 className='inventory-summary__title'>Inventory Summary</h2>
                     {inventory && inventory.length > 0 && 

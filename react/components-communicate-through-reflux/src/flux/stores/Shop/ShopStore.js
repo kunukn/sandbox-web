@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 // flux
 import ShopActions from '../../actions/Shop/ShopActions';
+import {track} from '../../actions/Tracker/TrackerActions';
 // utils
 import {log, error, LOADING_STATES} from '../../../utils';
 import {fetchShopData} from '../../../communication/shop';
@@ -11,24 +12,27 @@ class ShopStore extends Reflux.Store {
 
     constructor() {
         super();
-        this.state = {};
-        this.listenables = ShopActions; // convention
-        // or this.listenToMany(ShopActions); // convention
+        this.state = {
+            ignoreLoadingTracker: true
+        };
+
+        this.listenables = ShopActions;
 
         this.onInit();
+
+        window.getShopState = () => this.state;
+        window.printShopState = () => JSON.stringify(this.state, null, '\t');
     }
 
     onInit() {
         log('onInit');
 
         log('loading data');
+        this.fetchData();
+    }
+
+    fetchData(){
         this.setState({loadingState: LOADING_STATES.LOADING});
-
-        // Action handles data loading
-        //ShopActions.loadData();
-        //return;
-
-        // Store handles data loading
         fetchShopData({
             completed: ({products, inventory, stock}) => {
                 this.updateCompletedState({products, inventory, stock})
@@ -42,52 +46,51 @@ class ShopStore extends Reflux.Store {
     onUpdateBasketLocation(basketLocation) {
         log('onUpdateBasketLocation');
         //log(basketLocation);
-        this.setState({basketLocation});
+        this.setState({basketLocation: basketLocation});
     }
 
-    onAddToInventory(product) {
+    onAddToInventory({product, eventTimestamp}) {
 
-        this.setState((prevState) => {
+        let {inventory, stock} = this.state;
 
-            let stockItem = _.find(prevState.stock, {productId: product.productId});
-            if (stockItem.count <= 0) {
-                return {};
-            }
+        let stockItem = _.find(stock, {productId: product.productId});
+        if (stockItem.count <= 0) {
+            return {};
+        }
 
-            stockItem.count--;
-            prevState
-                .inventory
-                .push({
-                    productId: product.productId + 0,
-                    timestamp: +new Date(),
-                });
-
-            // cloneDeep might not be needed
-            return {
-                inventory: _.cloneDeep(prevState.inventory),
-                stock: _.cloneDeep(prevState.stock),
-            };
+        stockItem.count--;
+        inventory.push({
+            productId: product.productId,
+            eventTimestamp,
+            timestamp: + new Date()
         });
-    }
 
-    onRemoveFromInventory(removeFromInventory) {
-
-        this.setState((prevState) => {
-
-            let {index, product} = removeFromInventory;
-            let stockItem = _.find(prevState.stock, {productId: product.productId});
-
-            stockItem.count++;
-            prevState.inventory.splice(index, 1);
-
-            return {
-                inventory: _.cloneDeep(prevState.inventory),
-                stock: _.cloneDeep(prevState.stock)
-            };
+        track({action: 'AddToState', productId: product.productId}, eventTimestamp);
+        this.setState({
+            inventory: _.cloneDeep(inventory),
+            stock: _.cloneDeep(stock)
         });
+
     }
 
-    onLoadDataCompleted({products, inventory, stock}) {        
+    onRemoveFromInventory({index, product, eventTimestamp}) {
+
+        let {stock, inventory} = this.state;
+        
+        let stockItem = _.find(stock, {productId: product.productId});
+
+        stockItem.count++;
+        inventory.splice(index, 1);
+
+        track({action: 'RemoveFromState', productId: product.productId, eventTimestamp});
+        this.setState({
+            inventory: _.cloneDeep(inventory),
+            stock: _.cloneDeep(stock)
+        });
+
+    }
+
+    onLoadDataCompleted({products, inventory, stock}) {
         log('onLoadCompleted');
         this.updateCompletedState({products, inventory, stock})
     }
@@ -99,14 +102,14 @@ class ShopStore extends Reflux.Store {
 
     updateCompletedState({products, inventory, stock}) {
         // simulate latency
-        const latencySimulate = 4000;
+        const latencySimulate = 0;
         setTimeout(() => {
-           this.setState({
+            this.setState({
                 loadingState: LOADING_STATES.LOADED,
                 products: _.cloneDeep(products),
                 inventory: _.cloneDeep(inventory),
-                stock: _.cloneDeep(stock),
-           });
+                stock: _.cloneDeep(stock)
+            });
         }, latencySimulate);
     }
 

@@ -4,8 +4,6 @@ import Reflux from 'reflux';
 import cx from 'classnames';
 // flux
 import {track} from '../../flux/actions/Tracker/TrackerActions';
-import ProductItemStore from '../../flux/stores/ProductItem/ProductItemStore';
-import {hover} from '../../flux/actions/ProductItem/ProductItemActions';
 // components 
 import Svg from '../Images/Svg';
 
@@ -13,19 +11,13 @@ class ProductItem extends Reflux.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.store = ProductItemStore;
 
    this.onEnter = () => {
-      hover({hover: true, hoverIndex: this.props.index}); // store state
-      //this.setState({hover: true}); // local state
+      this.setState({hover: true});
       track({action: 'mouseOverAddProduct', productId: this.props.productId});
     }
-    this.onLeave = () => {
-      hover({hover: false, hoverIndex: this.props.index}); // store state
-      //this.setState({hover: false}); // local state
-    };
-    this.onAddProductItem = () => this.props.onAdd(this.domItem);
-
+    this.onLeave = () => this.setState({hover: false});
+    this.onAddProductItem = () => this.props.onAdd({domProductItemIcon:this.domItem, eventTimestamp:+ new Date()});
   }
 
   render() {
@@ -35,6 +27,8 @@ class ProductItem extends Reflux.Component {
       icon,
       count
     } = this.props;
+
+
 
     let productItemClassName = cx('product-item', {
       'hover': this.state.hover && (this.state.hoverIndex === index)

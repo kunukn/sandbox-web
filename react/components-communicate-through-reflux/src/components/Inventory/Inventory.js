@@ -4,7 +4,7 @@ import Reflux from 'reflux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // flux
 import ShopStore from '../../flux/stores/Shop/ShopStore';
-import ShopActions from '../../flux/actions/Shop/ShopActions';
+import {removeFromInventory} from '../../flux/actions/Shop/ShopActions';
 import TrackerStore from '../../flux/stores/Tracker/TrackerStore';
 import {track} from '../../flux/actions/Tracker/TrackerActions';
 // utils
@@ -35,7 +35,7 @@ class Inventory extends Reflux.Component {
         const {theme = 'default'} = this.props;
 
         return (
-            <LoadingTracker name={'inventory'} loadingState={this.state.loadingState}>
+            <LoadingTracker name={'inventory'} loadingState={this.state.loadingState} ignoreLoadingTracker={this.state.ignoreLoadingTracker}>
                 <div className={'box inventory inventory--theme-'+theme}>
                     <h2 className='inventory__title'>Inventory</h2>
                     {inventory && inventory.length > 0 
@@ -50,9 +50,9 @@ class Inventory extends Reflux.Component {
                         {inventory.map(({productId,timestamp}, index) => {
                             const product = _.find(this.state.products, {productId});
                             const onRemove = (domInventoryItem) => {
-                                animateInventoryItem.call(this,domInventoryItem);
-                                ShopActions.removeFromInventory({index, product});
                                 track({action: 'remove', productId: product.productId});
+                                animateInventoryItem.call(this,domInventoryItem);
+                                removeFromInventory({index, product, eventTimestamp: +new Date()});
                             }   
                             return (                                
                                 <InventoryItem key={timestamp} product={product} onRemove={onRemove}/>

@@ -35,15 +35,15 @@ class Products extends Reflux.Component {
         const {theme = 'default'} = this.props;
 
         return (
-            <LoadingTracker name={'products'} loadingState={this.state.loadingState}>
+            <LoadingTracker name={'products'} loadingState={this.state.loadingState} ignoreLoadingTracker={this.state.ignoreLoadingTracker}>
                 <div className={'box products products--theme-'+theme}>
                     <h2 className='products__title'>Products</h2>
                     {products && products.length > 0 && <ul className='products__list'>
                         {products.map((product, index) => {
-                            const onAdd = (domProductItemIcon) => {
+                            const onAdd = ({domProductItemIcon, eventTimestamp}) => {
+                                track({action: 'add', productId: product.productId, eventTimestamp});
                                 animateProductItem.call(this,domProductItemIcon);
-                                addToInventory(product);
-                                track({action: 'add', productId: product.productId});
+                                addToInventory({product, eventTimestamp});
                             }
                             const stockItem = _.find(stock, {productId: product.productId});
                             return (
