@@ -7,12 +7,15 @@ const ShopActions = createActions({
     removeFromInventory: {},
     updateBasketLocation: {},
     loadData: {
+        // Code example of action which can listen and do stuff
+        // Not actually used in this webapp
         asyncResult: true,
         children: ['completed', 'failed']
     }
 });
 
 ShopActions.loadData.listen(function () {
+       // Listen on this action and do stuff
         fetchShopData({
             completed: this.completed, 
             failed: this.failed

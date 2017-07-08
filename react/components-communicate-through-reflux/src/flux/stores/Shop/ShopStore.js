@@ -102,7 +102,8 @@ class ShopStore extends Reflux.Store {
 
     updateCompletedState({products, inventory, stock}) {
         // simulate latency
-        const latencySimulate = 4000;
+        const latencySimulate = this.state.ignoreLoadingTracker ? 0 : 4000;
+
         setTimeout(() => {
             this.setState({
                 loadingState: LOADING_STATES.LOADED,
@@ -115,7 +116,7 @@ class ShopStore extends Reflux.Store {
 
     updateErrorState({exception}) {
         // simulate latency
-        const latencySimulate = 2000;
+        const latencySimulate = this.state.ignoreLoadingTracker ? 0 : 2000;
         setTimeout(() => {
             error(exception);
             this.setState({loadingState: LOADING_STATES.LOADING_ERROR});

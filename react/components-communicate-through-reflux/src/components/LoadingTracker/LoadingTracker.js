@@ -19,13 +19,13 @@ class LoadingTracker extends React.Component {
 
     render() {
 
-        let {name, loadingState, ignoreLoadingTracker} = this.props;
-        let isLongLoading = this.state.loadingType === LOADING_TYPES.LONG;
-
+        const {name, loadingState, ignoreLoadingTracker} = this.props;
+        
         if (ignoreLoadingTracker) {
             return React.Children.only(this.props.children);
         }
 
+        const isLongLoading = this.state.loadingType === LOADING_TYPES.LONG;
         const isLoadingState = loadingState === LOADING_STATES.LOADING;
         const isErrorState = loadingState === LOADING_STATES.LOADINGERROR;
 
@@ -57,9 +57,7 @@ class LoadingTracker extends React.Component {
             );
         }
 
-        return React
-            .Children
-            .only(this.props.children);
+        return React.Children.only(this.props.children);
     }
 }
 
