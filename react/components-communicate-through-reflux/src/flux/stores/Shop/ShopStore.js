@@ -13,7 +13,7 @@ class ShopStore extends Reflux.Store {
     constructor() {
         super();
         this.state = {
-            ignoreLoadingTracker: true
+            ignoreLoadingTracker: false,
         };
 
         this.listenables = ShopActions;
@@ -102,7 +102,7 @@ class ShopStore extends Reflux.Store {
 
     updateCompletedState({products, inventory, stock}) {
         // simulate latency
-        const latencySimulate = 0;
+        const latencySimulate = 4000;
         setTimeout(() => {
             this.setState({
                 loadingState: LOADING_STATES.LOADED,
