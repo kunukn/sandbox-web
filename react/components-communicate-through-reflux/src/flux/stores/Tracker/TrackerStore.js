@@ -1,5 +1,7 @@
 // libs
 import {Store} from 'reflux';
+// utils
+import {log} from '../../../utils';
 // flux
 import TrackerActions from '../../actions/Tracker/TrackerActions';
 
@@ -14,9 +16,10 @@ class TrackerStore extends Store {
         window.printTrackerState = () => JSON.stringify(this.state, null, '\t');
     }
 
-    onTrack(event) {
-        this.state.track.push(event);
-        //console.log(event);
+    onTrack(json) {
+        let trackInfo = {...json, trackTimestamp: +new Date()}
+        this.state.track.push(trackInfo);
+        log(`%c ${JSON.stringify(trackInfo)}`, 'color: #777');
     }
 }
 

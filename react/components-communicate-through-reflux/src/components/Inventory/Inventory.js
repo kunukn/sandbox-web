@@ -50,9 +50,10 @@ class Inventory extends Reflux.Component {
                         {inventory.map(({productId,timestamp}, index) => {
                             const product = _.find(this.state.products, {productId});
                             const onRemove = (domInventoryItem) => {
-                                track({action: 'remove', productId: product.productId});
+                                let eventTimestamp = +new Date();
+                                track({action: 'remove', productId: product.productId,eventTimestamp});
                                 animateInventoryItem.call(this,domInventoryItem);
-                                removeFromInventory({index, product, eventTimestamp: +new Date()});
+                                removeFromInventory({index, product, eventTimestamp});
                             }   
                             return (                                
                                 <InventoryItem key={timestamp} product={product} onRemove={onRemove}/>

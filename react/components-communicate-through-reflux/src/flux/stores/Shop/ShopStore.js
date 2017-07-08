@@ -65,7 +65,7 @@ class ShopStore extends Reflux.Store {
             timestamp: + new Date()
         });
 
-        track({action: 'AddToState', productId: product.productId}, eventTimestamp);
+        track({action: 'addToState', productId: product.productId, eventTimestamp});
         this.setState({
             inventory: _.cloneDeep(inventory),
             stock: _.cloneDeep(stock)
@@ -76,13 +76,13 @@ class ShopStore extends Reflux.Store {
     onRemoveFromInventory({index, product, eventTimestamp}) {
 
         let {stock, inventory} = this.state;
-        
+
         let stockItem = _.find(stock, {productId: product.productId});
 
         stockItem.count++;
         inventory.splice(index, 1);
 
-        track({action: 'RemoveFromState', productId: product.productId, eventTimestamp});
+        track({action: 'removeFromState', productId: product.productId, eventTimestamp});
         this.setState({
             inventory: _.cloneDeep(inventory),
             stock: _.cloneDeep(stock)
