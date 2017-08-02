@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Mouse move</title>
+  <style>
+    body{
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1rem;
+      height: 1rem;
+      background: tomato;
+    }
+  </style>
+
+</head>
+<script src="/node_modules/lodash/lodash.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<body>
+  <h1>Move the mouse</h1>
+  <div class="box" id="box"></div>
+
+  <script src="client.js"></script>
+
+</body>
+
+</html>
