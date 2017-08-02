@@ -14,8 +14,8 @@ app.use('/', express.static(public));
 io.on('connection', function(socket){
   console.log('A user connected');
   socket.on('position', function(data){
-    socket.emit('newPosition', data);  
-    socket.broadcast.emit('newPosition', data);
+    socket.emit('newPosition', data);  // notify component which was the messenger
+    socket.broadcast.emit('newPosition', data); // broadcast all other connected
   });
 });
 
