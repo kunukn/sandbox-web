@@ -5,7 +5,7 @@ var io = require('socket.io')(http);
 var public = __dirname + "/";
 
 app.get('/', function(req, res){
-  res.sendFile('index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 // file assets available
@@ -14,7 +14,8 @@ app.use('/', express.static(public));
 io.on('connection', function(socket){
   console.log('A user connected');
   socket.on('position', function(data){
-      socket.emit('newPosition', data);
+    socket.emit('newPosition', data);  
+    socket.broadcast.emit('newPosition', data);
   });
 });
 
