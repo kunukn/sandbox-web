@@ -14,8 +14,11 @@ function sendPosition(position) {
   socket.emit('position', position);
 }
 
+socket.on('newConnection', function(data){
+  box.style.backgroundColor = data.color;
+});
+
 socket.on('newPosition', function(position) {
   //console.log(position);
-  box.style.left = position.x + 'px';
-  box.style.top = position.y + 'px';
+  box.style.transform = 'translateX('+position.x+'px) translateY('+position.y+'px)'
 });
