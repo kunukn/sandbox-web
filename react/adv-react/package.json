@@ -1,0 +1,6 @@
+{
+  "name": "adv-react",
+  "version": "1.0.0",
+  "main": "lib/server.js",
+  "license": "MIT"
+}
