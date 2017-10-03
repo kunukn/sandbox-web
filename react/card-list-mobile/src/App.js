@@ -215,11 +215,13 @@ function createRowGrid({ number, rowData }) {
 function createActiveRow({ activeRowCss }) {
   let obj = { ...this.state.cards[this.state.activeItem] };
   delete obj.logo;
+  delete obj.price;
   return (
     <ActiveRow cssClass={activeRowCss}>
       <div> {JSON.stringify(obj)}</div>
       <button className="btn btn--product-toggle" onClick={this.onProductToggleClick}>
-      Vælg/Fravælg
+        {obj.hasProduct && "Fravælg"}
+        {!obj.hasProduct && "Vælg"}
     </button>
       <button className="btn btn--close" onClick={this.onCloseClick}>
         Luk
