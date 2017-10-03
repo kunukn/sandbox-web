@@ -1,0 +1,201 @@
+$card-size: 94px;
+$cards-width: $card-size * 3;
+$color-open: #eee;
+$device-size: 500px;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  min-width: 318px;
+  background: #eee;
+  background: #002219;
+}
+
+button {
+  // reset
+  margin: 0;
+  padding: 0;
+  box-shadow: 0;
+  border: 0;
+  background: transparent;
+  font-size: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  cursor: pointer;
+}
+
+
+.btn-close {
+  border: 1px solid gray;
+  padding: .25rem .5rem;
+}
+
+img {
+  // responsive
+  max-width: 100%;
+  height: auto;
+}
+
+.react-app {
+  outline: 1px solid gray;
+  max-width: $device-size;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+}
+.app {
+  text-align: center;
+  padding-bottom: 5rem;
+  > header {
+    padding: 1rem 0;
+    font-size: 200%;
+    font-weight: 300;
+  }
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: $card-size;
+}
+.row-active {
+  height: 2*$card-size;
+  max-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: 200ms;
+  overflow: hidden;
+  background: $color-open;
+  max-width: $cards-width;
+  margin: auto;
+  margin-top: -1px;
+  border: 0px solid #aaa;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-bottom-color: transparent;
+  
+  &.is-open {
+    max-height: 2*$card-size;
+  }
+  &.is-closed {
+    max-height: 0;
+  }
+  .btn-close{
+    width: 80%;
+    padding: .5rem 0;
+    background: white;
+  }
+}
+.card {
+  min-height: $card-size;
+  width: $card-size;
+  border: 1px solid #aaa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: gray;
+  &.has-product {
+    //outline: 2px solid red;
+    box-shadow: inset 0 0 20px lightgreen, inset 0 0 0 2px lightgreen;
+  }
+  &.is-open {
+    background: $color-open;
+    color: black;
+    border-bottom-color: transparent;
+  }
+
+  &:hover {
+    .content {
+      // transform: scale(1.1);
+    }
+  }
+
+  > * {
+    width: 100%;
+    transition: 200ms;
+  }
+  > .content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      //      outline: 1px solid gray;
+      vertical-align: bottom;
+      $scale: 0.75;
+      width: 80px * $scale;
+      height: 48px * $scale;
+    }
+  }
+  > .footer {
+    //background: #eee;
+    padding: 0.125rem;
+    font-size: 90%;
+    color: inherit;
+    transition: 200ms;
+  }
+}
+
+.filter-form {
+  background: #ddd;
+  max-width: $device-size;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    font-weight: 400;
+  }
+  select {
+    font-size: 100%;
+    font-weight: 300;
+  }
+}
+.filter-form-body {
+  > * {
+    flex: 1 1 auto;
+    line-height: 1.5;
+    padding: 0.25rem 0;
+  }
+
+  // background: rgba(white, .5);
+  width: 100%;
+  max-width: $cards-width;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.app__footer {
+  box-shadow: -1px 0 20px gray;
+  position: fixed;
+  width: $device-size;
+  max-width: $device-size;
+  bottom: 0;
+  left: 50%;
+  margin-left: -$device-size/2;
+  height: 4rem;
+  z-index: 1;
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
