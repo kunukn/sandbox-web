@@ -12,7 +12,7 @@ let cards = [];
 for (let i = 1; i <= 96; i++) {
   let card = {
     id: `id_${i}`,
-    name: "tv2",
+    name: "bbc",
     price: `${i + 10} kr./md.`,
     logo,
     type: "movie",
