@@ -33,7 +33,7 @@ button {
 }
 
 
-.btn-close {
+.btn {
   border: 1px solid gray;
   padding: .25rem .5rem;
 }
@@ -92,7 +92,12 @@ img {
   &.is-closed {
     max-height: 0;
   }
-  .btn-close{
+  .btn--close{
+    width: 80%;
+    padding: .5rem 0;
+    background: #eee;
+  }
+  .btn--product-toggle{
     width: 80%;
     padding: .5rem 0;
     background: white;

@@ -13,7 +13,7 @@ for (let i = 1; i <= 96; i++) {
   let card = {
     id: `id_${i}`,
     name: "bbc",
-    price: `${i + 10} kr./md.`,
+    price: i + 10,
     logo,
     type: "movie",
     hasProduct: false

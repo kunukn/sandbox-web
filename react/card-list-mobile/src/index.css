@@ -23,7 +23,7 @@ button {
   outline: none;
   cursor: pointer; }
 
-.btn-close {
+.btn {
   border: 1px solid gray;
   padding: .25rem .5rem; }
 
@@ -75,7 +75,11 @@ img {
     max-height: 188px; }
   .row-active.is-closed {
     max-height: 0; }
-  .row-active .btn-close {
+  .row-active .btn--close {
+    width: 80%;
+    padding: .5rem 0;
+    background: #eee; }
+  .row-active .btn--product-toggle {
     width: 80%;
     padding: .5rem 0;
     background: white; }

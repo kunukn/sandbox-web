@@ -14,6 +14,7 @@ class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.filter = this.filter.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
+    this.onProductToggleClick = this.onProductToggleClick.bind(this);
   }
 
   onClick({ row, item }) {
@@ -37,6 +38,15 @@ class App extends React.Component {
         prevActiveRow: prevState.activeRow
       };
     });
+  }
+  onProductToggleClick() {      
+    let cards = this.state.cards;
+    let card = cards[this.state.activeItem];
+    card.hasProduct = !card.hasProduct;
+    cards[this.state.activeItem] = card;
+    this.setState({
+      cards: {...cards},
+    })      
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -97,6 +107,9 @@ class App extends React.Component {
     const row9 = arr.slice(counter * step, ++counter * step);
     const row10 = arr.slice(counter * step, ++counter * step);
 
+    const hasProducts = _.filter(arr, card => card.hasProduct);
+    const sum = _.sumBy(hasProducts, card => card.price);
+
     return (
       <section className="app">
         <header>Ekstra kanaler</header>
@@ -147,7 +160,7 @@ class App extends React.Component {
         {createRowGrid.call(this, { number: 10, rowData: row10 })}
         {createActiveRow.call(this, { activeRowCss: this.state.activeRow10Css })}
         
-        <footer className="app__footer">Total: 60 kr./md.</footer>
+        <footer className="app__footer">Total: {sum} kr./md.</footer>
       </section>
     );
   }
@@ -166,7 +179,7 @@ class Card extends React.Component {
         <div className="content">
           <img src={this.props.logo} />
         </div>
-        <div className="footer">{this.props.price}</div>
+        <div className="footer">{this.props.price} kr./md.</div>
       </button>
     );
   }
@@ -205,7 +218,10 @@ function createActiveRow({ activeRowCss }) {
   return (
     <ActiveRow cssClass={activeRowCss}>
       <div> {JSON.stringify(obj)}</div>
-      <button className="btn-close" onClick={this.onCloseClick}>
+      <button className="btn btn--product-toggle" onClick={this.onProductToggleClick}>
+      Vælg/Fravælg
+    </button>
+      <button className="btn btn--close" onClick={this.onCloseClick}>
         Luk
       </button>
     </ActiveRow>
