@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import './textbox.css';
 import { getUsers, getTodos } from 'communications/api';
+import TextBoxOverlay from './TextBoxOverlay';
 const log = console.log.bind(console);
 
 export default class TextBox extends Component {
   state = {
     inputValue: '',
-    isOverlayOpen: false,
+    isOverlayOpen: true,
     isInputValid: false,
   };
 
@@ -21,8 +22,8 @@ export default class TextBox extends Component {
   };
 
   handleSubmit = event => {
-    alert('A name was submitted: ' + this.state.inputValue);
     event.preventDefault();
+    this.setState({ isOverlayOpen: true });
   };
 
   onOverlayClose = () => {
@@ -45,10 +46,10 @@ export default class TextBox extends Component {
         <form className="pure-form" onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>Calculator</legend>
-            <div className="textbox-form__group">
+            <div className="textbox__group">
               <label htmlFor="textbox-input">Alpha Numeric:</label>
               <input
-                className="textbox-form__input"
+                className="textbox__input"
                 id="textbox-input"
                 type="text"
                 value={this.state.inputValue}
@@ -65,16 +66,9 @@ export default class TextBox extends Component {
           </fieldset>
         </form>
         {this.state.isOverlayOpen && (
-          <div className="overlay">
-            <div className="overlay__content">overlay</div>
-            <button
-              type="button"
-              className="pure-button overlay__button"
-              onClick={this.onOverlayClose}
-            >
-              close overlay
-            </button>
-          </div>
+          <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
+            {this.state.inputValue}
+          </TextBoxOverlay>
         )}
       </div>
     );
