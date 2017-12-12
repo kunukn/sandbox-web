@@ -6,7 +6,7 @@ export function getUsers(){
 }
 
 export function getTodos(){
-    return window.fetch('https://jsonplaceholder.typicode.com/todos')
+    return window.fetch('http://echo.jsontest.com/key/value/one/two')
     .then(function(response) {
       return response.json()
     });
