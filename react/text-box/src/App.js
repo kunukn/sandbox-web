@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
+import { getUsers, getTodos } from './api';
 
 export default class App extends Component {
   constructor(props) {
@@ -17,6 +18,14 @@ export default class App extends Component {
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  componentDidMount(){
+    getUsers().then(function(json) {
+      console.log('parsed json', json)
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    });
   }
 
   render() {
