@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import './textbox.css';
-import { getUsers, getTodos } from 'communications/api';
 import TextBoxOverlay from './TextBoxOverlay';
-const log = console.log.bind(console);
+import { calculate } from 'services/calculatorService';
+import { log } from 'utilities/logging';
 
 export default class TextBox extends Component {
   state = {
     inputValue: '',
-    isOverlayOpen: true,
+    isOverlayOpen: false,
     isInputValid: false,
   };
 
@@ -23,22 +22,27 @@ export default class TextBox extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({ isOverlayOpen: true });
+    calculate({ value: this.state.inputValue })
+      .then(result => {
+        log(result);
+        this.setState({
+          calculationResult: JSON.stringify(result),
+          isOverlayOpen: true,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          calculationResult: error.toString(),
+          isOverlayOpen: true,
+        });
+      });
   };
 
   onOverlayClose = () => {
     this.setState({ isOverlayOpen: false });
   };
 
-  componentDidMount() {
-    // getUsers()
-    //   .then(function(json) {
-    //     log('parsed json', json);
-    //   })
-    //   .catch(function(ex) {
-    //     log('parsing failed', ex);
-    //   });
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -67,7 +71,7 @@ export default class TextBox extends Component {
         </form>
         {this.state.isOverlayOpen && (
           <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
-            {this.state.inputValue}
+            {this.state.calculationResult}
           </TextBoxOverlay>
         )}
       </div>

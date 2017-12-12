@@ -4,16 +4,20 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "json-mock": "^0.1.0",
     "node-sass-chokidar": "^0.0.3",
     "normalize.css": "^7.0.0",
+    "promise-polyfill": "^6.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
+    "api": "node src/mock/startDummyServer.js",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

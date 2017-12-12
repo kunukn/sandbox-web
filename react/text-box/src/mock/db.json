@@ -1,0 +1,59 @@
+{
+  "person": [
+    {
+      "id": 1,
+      "val1": "1",
+      "val2": "2"
+    }
+  ],
+  "facility": [
+    {
+      "id": 1,
+      "val3": "3",
+      "val4": "4"
+    }
+  ],
+  "exposure": [
+    {
+      "id": 1,
+      "val5": "5"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "therebelrobot",
+      "location": "USA"
+    },
+    {
+      "id": 2,
+      "name": "visiting-user",
+      "location": "UK"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-mock",
+      "body": "The internet is cool!",
+      "author": "therebelrobot",
+      "userId": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment from author",
+      "votes": 20,
+      "postId": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment from visitor",
+      "votes": 15,
+      "postId": 1,
+      "userId": 2
+    }
+  ]
+}
