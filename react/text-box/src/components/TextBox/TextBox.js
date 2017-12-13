@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import cn from 'classnames';
 import TextBoxOverlay from './TextBoxOverlay';
 import { calculate } from 'services/calculatorService';
 import { log } from 'utilities/logging';
 import {alphaNumericRegex} from 'utilities/calculations';
+import * as textboxActions from 'actions/textboxActions';
 
-export default class TextBox extends Component {
+class TextBox extends Component {
   state = {
     inputValue: '',
     isOverlayOpen: false,
@@ -23,10 +25,11 @@ export default class TextBox extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    this.props.dispatch(textboxActions.createCalculate(this.state.inputValue));
     
     this.setState({isSubmitEnabled: false});
     
-
     calculate({ value: this.state.inputValue })
       .then(jsonResponse => {
         this.setState({
@@ -66,13 +69,14 @@ export default class TextBox extends Component {
               <button
                 className="pure-button pure-button-primary"
                 type="submit"
-                disabled={!this.state.isSubmitEnabled && !this.state.isInputValid}
+                disabled={!this.state.isSubmitEnabled || !this.state.isInputValid}
               >
                 Submit
               </button>
             </div>
           </fieldset>
         </form>
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
         {this.state.isOverlayOpen && (
           <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
             {this.state.calculationResult}
@@ -82,3 +86,11 @@ export default class TextBox extends Component {
     );
   }
 }
+
+function mapStateToProps(state, ownProps){
+  return {
+    calculationResult: state.calculationResult
+  };
+}
+
+export default connect(mapStateToProps)(TextBox);
