@@ -26,7 +26,7 @@ class TextBox extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.dispatch(textboxActions.createCalculate(this.state.inputValue));
+    this.props.createCalculate(this.state.inputValue);
     
     this.setState({isSubmitEnabled: false});
     
@@ -94,4 +94,10 @@ function mapStateToProps(state, ownProps){
   };
 }
 
-export default connect(mapStateToProps)(TextBox);
+function mapDispatchToProps(dispatch){
+  return {
+    createCalculate: data => dispatch(textboxActions.createCalculate(data))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextBox);
