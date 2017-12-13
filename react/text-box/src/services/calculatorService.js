@@ -1,18 +1,8 @@
-import { getPerson, getFacility, getExposure } from 'communications/api';
+import { getPerson, getFacility, getExposure } from 'communications/mockApi/api';
 import { log } from 'utilities/logging';
+import { createSuccessPromise, createFailurePromise } from 'utilities/promises';
 
 export async function calculate({ value }) {
-  
-  function createSuccessPromise(result) {
-    return new Promise((resolve, reject) => {
-      resolve(result);
-    });
-  }
-  function createFailurePromise(result) {
-    return new Promise((resolve, reject) => {
-      reject(result);
-    });
-  }
 
   const person = await getPerson({ value });
   if (person && typeof person.val1 !== undefined && person.val2 !== undefined) {
