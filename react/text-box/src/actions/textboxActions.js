@@ -2,17 +2,17 @@ import { log } from 'utilities/logging';
 import * as ACTION from './actionTypes';
 import { calculateService } from 'services/calculatorServices';
 
-function calculateSuccess(data) {
+function calculateSuccess(payload) {
   return {
     type: ACTION.CALCULATE_SUCCESS,
-    data,
+    payload,
   };
 }
 
-function calculateFailure(data) {
+function calculateFailure(payload) {
   return {
     type: ACTION.CALCULATE_FAILURE,
-    data,
+    payload,
   };
 }
 

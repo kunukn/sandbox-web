@@ -11,12 +11,9 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-/* 
-  Remember to run: npm start api 
-  for mock server
-*/
-
-console.warn('Remember to run: npm start api');
+console.warn(
+  'Remember to run: npm start api',
+  'If you are using the mock api server');
 
 const store = configureStore();
 

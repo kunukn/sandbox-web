@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import calculationResult from './textboxReducer';
+import textbox from './textboxReducer';
 
 const rootReducer = combineReducers({
-    calculationResult
+    textbox,
 });
 
 export default rootReducer;

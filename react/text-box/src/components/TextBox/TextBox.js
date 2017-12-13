@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import cn from 'classnames';
@@ -24,7 +24,7 @@ class TextBox extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.actions.calculateData({value: this.state.inputValue});
+    this.props.actions.calculateData({ value: this.state.inputValue });
   };
 
   onOverlayClose = () => {
@@ -56,8 +56,12 @@ class TextBox extends Component {
             </div>
           </fieldset>
         </form>
-        <pre style={{display: 'none'}}>{JSON.stringify(this.state, null, 2)}</pre>
-        <pre style={{display: ''}}>{JSON.stringify(this.props, null, 2)}</pre>
+        {true &&
+          <Fragment>
+            <pre> {JSON.stringify(this.state, null, 2)} </pre>
+            <pre>{JSON.stringify(this.props, null, 2)}</pre>
+          </Fragment>
+        }
         {this.props.fromStore.isOverlayOpen && (
           <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
             {this.props.fromStore.calculationResult}
@@ -70,13 +74,13 @@ class TextBox extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    fromStore: state.calculationResult,
+    fromStore: state.textbox,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-      actions: bindActionCreators(textboxActions, dispatch),
+    actions: bindActionCreators(textboxActions, dispatch),
   };
 }
 
