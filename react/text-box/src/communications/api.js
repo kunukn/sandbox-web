@@ -6,11 +6,11 @@ export function getJson(url){
   return window.fetch(url).then(response => {
     if (!response.ok) {
       log(response.statusText);
-      throw new Error('Sorry, there are network problems at the moment');
+      throw new Error('There are network problems at the moment');
     }
     return response.json();
   }).catch(error => {
-    throw new Error('Sorry, no network exists, api servers are down');
+    throw new Error('No network at the moment, please try again later');
   });
 }
 

@@ -55,7 +55,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env ## used for usage with import absolute path
 
 #webstorm
 .idea/
