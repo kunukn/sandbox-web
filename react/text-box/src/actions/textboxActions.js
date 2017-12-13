@@ -27,7 +27,6 @@ export function calculateData({ value }) {
       .then(response => {
         dispatch(
           calculateSuccess({
-            response,
             calculationResult: response && response.result,
           })
         );
@@ -35,7 +34,6 @@ export function calculateData({ value }) {
       .catch(error => {
         dispatch(
           calculateFailure({
-            error,
             calculationResult: error.message,
           })
         );
