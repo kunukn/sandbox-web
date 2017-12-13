@@ -1,4 +1,4 @@
-const delay = 100;
+const delay = 50;
 
 export function getPerson({ value }) {
   return new Promise((resolve, reject) => {

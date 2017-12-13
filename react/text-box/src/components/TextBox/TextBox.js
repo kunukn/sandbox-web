@@ -3,17 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import cn from 'classnames';
 import TextBoxOverlay from './TextBoxOverlay';
-import { calculate } from 'services/calculatorService';
+import { calculateService } from 'services/calculatorServices';
 import { log } from 'utilities/logging';
 import { alphaNumericRegex } from 'utilities/calculations';
 import * as textboxActions from 'actions/textboxActions';
 
 class TextBox extends Component {
   state = {
-    inputValue: '',
-    isOverlayOpen: false,
-    isInputValid: false,
-    isSubmitEnabled: true,
+    inputValue: '1',
+    isInputValid: true,
   };
 
   handleChange = event => {
@@ -26,30 +24,11 @@ class TextBox extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    this.props.createCalculate(this.state.inputValue);
-
-    this.setState({ isSubmitEnabled: false });
-
-    calculate({ value: this.state.inputValue })
-      .then(jsonResponse => {
-        this.setState({
-          calculationResult: jsonResponse && jsonResponse.result,
-          isOverlayOpen: true,
-          isSubmitEnabled: true,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          calculationResult: error.toString(),
-          isOverlayOpen: true,
-          isSubmitEnabled: true,
-        });
-      });
+    this.props.actions.calculateData({value: this.state.inputValue});
   };
 
   onOverlayClose = () => {
-    this.setState({ isOverlayOpen: false });
+    this.props.actions.closeOverlay();
   };
 
   render() {
@@ -70,20 +49,18 @@ class TextBox extends Component {
               <button
                 className="pure-button pure-button-primary"
                 type="submit"
-                disabled={
-                  !this.state.isSubmitEnabled || !this.state.isInputValid
-                }
+                disabled={!this.state.isInputValid}
               >
                 Submit
               </button>
             </div>
           </fieldset>
         </form>
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
-        <pre>{JSON.stringify(this.props, null, 2)}</pre>
-        {this.state.isOverlayOpen && (
+        <pre style={{display: 'none'}}>{JSON.stringify(this.state, null, 2)}</pre>
+        <pre style={{display: ''}}>{JSON.stringify(this.props, null, 2)}</pre>
+        {this.props.fromStore.isOverlayOpen && (
           <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
-            {this.state.calculationResult}
+            {this.props.fromStore.calculationResult}
           </TextBoxOverlay>
         )}
       </div>
@@ -93,16 +70,13 @@ class TextBox extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    calculationResult: state.calculationResult,
+    fromStore: state.calculationResult,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    createCalculate: data => dispatch(textboxActions.createCalculate(data)),
-    /* Or use this helper method for the same (with actions)
       actions: bindActionCreators(textboxActions, dispatch),
-    */     
   };
 }
 

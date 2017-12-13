@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TextBoxOverlay = ({ children, onOverlayClose }) => (
-  <div className="textbox__overlay">
+  <div aria-live="polite" className="textbox__overlay">
     <div className="textbox__overlay-content">{children}</div>
     <button
       type="button"

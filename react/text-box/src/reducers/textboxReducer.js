@@ -1,11 +1,18 @@
 import _ from 'lodash';
 import { log } from 'utilities/logging';
+import * as ACTION from 'actions/actionTypes';
+import initialState from './initialState';
 
-export default function calculateReducer(state = {}, action) {
+export default function calculateReducer(state = initialState.textbox, action) {
   switch (action.type) {
-    case 'CALCULATE':
-      log('calculateReducer', action.data);
-      return _.cloneDeep(_.assign({}, state, {value: action.data}));
+    case ACTION.CALCULATE:
+      return _.assign({}, state, action.data, { isOverlayOpen: true });
+    case ACTION.CALCULATE_SUCCESS:
+      return _.assign({}, state, action.data, { isOverlayOpen: true });
+    case ACTION.CALCULATE_FAILURE:
+      return _.assign({}, state, action.data, { isOverlayOpen: true });
+    case ACTION.CLOSE_OVERLAY:
+      return _.assign({}, state, { isOverlayOpen: false });
     default:
       return state;
   }
