@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import cn from 'classnames';
 import TextBoxOverlay from './TextBoxOverlay';
 import { calculate } from 'services/calculatorService';
 import { log } from 'utilities/logging';
-import {alphaNumericRegex} from 'utilities/calculations';
+import { alphaNumericRegex } from 'utilities/calculations';
 import * as textboxActions from 'actions/textboxActions';
 
 class TextBox extends Component {
@@ -27,9 +28,9 @@ class TextBox extends Component {
     event.preventDefault();
 
     this.props.createCalculate(this.state.inputValue);
-    
-    this.setState({isSubmitEnabled: false});
-    
+
+    this.setState({ isSubmitEnabled: false });
+
     calculate({ value: this.state.inputValue })
       .then(jsonResponse => {
         this.setState({
@@ -69,7 +70,9 @@ class TextBox extends Component {
               <button
                 className="pure-button pure-button-primary"
                 type="submit"
-                disabled={!this.state.isSubmitEnabled || !this.state.isInputValid}
+                disabled={
+                  !this.state.isSubmitEnabled || !this.state.isInputValid
+                }
               >
                 Submit
               </button>
@@ -88,15 +91,18 @@ class TextBox extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
   return {
-    calculationResult: state.calculationResult
+    calculationResult: state.calculationResult,
   };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    createCalculate: data => dispatch(textboxActions.createCalculate(data))
+    createCalculate: data => dispatch(textboxActions.createCalculate(data)),
+    /* Or use this helper method for the same (with actions)
+      actions: bindActionCreators(textboxActions, dispatch),
+    */     
   };
 }
 
