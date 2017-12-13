@@ -1,8 +1,10 @@
+React Redux sample code. Started from create-react-app and then gradually add redux stuff.
+
 * yarn
 * yarn api
 * yarn start
 
-
+---
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
