@@ -9,6 +9,8 @@ export function getJson(url){
       throw new Error('Sorry, there are network problems at the moment');
     }
     return response.json();
+  }).catch(error => {
+    throw new Error('Sorry, no network exists, api servers are down');
   });
 }
 

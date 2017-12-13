@@ -3,6 +3,7 @@ import cn from 'classnames';
 import TextBoxOverlay from './TextBoxOverlay';
 import { calculate } from 'services/calculatorService';
 import { log } from 'utilities/logging';
+import {alphaNumericRegex} from 'utilities/calculations';
 
 export default class TextBox extends Component {
   state = {
@@ -12,7 +13,6 @@ export default class TextBox extends Component {
   };
 
   handleChange = event => {
-    const alphaNumericRegex = /^[a-z0-9]+$/i;
     const inputValue = event.target.value;
     this.setState({
       inputValue,
@@ -23,10 +23,9 @@ export default class TextBox extends Component {
   handleSubmit = event => {
     event.preventDefault();
     calculate({ value: this.state.inputValue })
-      .then(result => {
-        log(result);
+      .then(jsonResponse => {
         this.setState({
-          calculationResult: JSON.stringify(result),
+          calculationResult: jsonResponse && jsonResponse.result,
           isOverlayOpen: true,
         });
       })
@@ -41,8 +40,6 @@ export default class TextBox extends Component {
   onOverlayClose = () => {
     this.setState({ isOverlayOpen: false });
   };
-
-  componentDidMount() {}
 
   render() {
     return (
