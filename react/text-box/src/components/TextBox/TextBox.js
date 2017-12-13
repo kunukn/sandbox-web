@@ -10,6 +10,7 @@ export default class TextBox extends Component {
     inputValue: '',
     isOverlayOpen: false,
     isInputValid: false,
+    isSubmitEnabled: true,
   };
 
   handleChange = event => {
@@ -22,17 +23,23 @@ export default class TextBox extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
+    this.setState({isSubmitEnabled: false});
+    
+
     calculate({ value: this.state.inputValue })
       .then(jsonResponse => {
         this.setState({
           calculationResult: jsonResponse && jsonResponse.result,
           isOverlayOpen: true,
+          isSubmitEnabled: true,
         });
       })
       .catch(error => {
         this.setState({
           calculationResult: error.toString(),
           isOverlayOpen: true,
+          isSubmitEnabled: true,
         });
       });
   };
@@ -59,7 +66,7 @@ export default class TextBox extends Component {
               <button
                 className="pure-button pure-button-primary"
                 type="submit"
-                disabled={!this.state.isInputValid}
+                disabled={!this.state.isSubmitEnabled && !this.state.isInputValid}
               >
                 Submit
               </button>

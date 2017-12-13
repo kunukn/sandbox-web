@@ -14,7 +14,7 @@ export function getJson(url){
   });
 }
 
-
+/* external dummy api server */
 export function get12() {
     return getJson('http://echo.jsontest.com/val1/1/val2/2');
 }
@@ -27,20 +27,21 @@ export function get5() {
   return getJson('http://echo.jsontest.com/val5/5');
 }
 
+/* local dummy api server */
 export function getPerson({ value }) {
   //const url = `http://fubar.com/person/${value}`;
-  const url = `http://localhost:9000/person/1`;
+  const url = `http://localhost:9000/person/1`; // simulate usage of value
   return getJson(url);
 }
 
 export function getFacility({ value }) {
   //const url = `http://fubar.com/facility/${value}`;
-  const url = `http://localhost:9000/facility/1`;
+  const url = `http://localhost:9000/facility/1`; // simulate usage of value
   return getJson(url);
 }
 
 export function getExposure({ value }) {
   //const url = `http://fubar.com/exposure/${value}`;
-  const url = `http://localhost:9000/exposure/1`;
+  const url = `http://localhost:9000/exposure/1`; // simulate usage of value
   return getJson(url);
 }
