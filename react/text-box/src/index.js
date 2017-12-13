@@ -10,8 +10,10 @@ if (!window.Promise) {
 }
 
 /* 
-  Remember to run: yarn api 
+  Remember to run: npm start api 
   for mock server
 */
+
+console.warn('Remember to run: npm start api');
 
 ReactDOM.render(<App />, document.getElementById('root'));
