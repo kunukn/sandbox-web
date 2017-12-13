@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { log } from 'utilities/logging';
+//import { log } from 'utilities/logging';
 import * as ACTION from 'actions/actionTypes';
 import initialState from './initialState';
 

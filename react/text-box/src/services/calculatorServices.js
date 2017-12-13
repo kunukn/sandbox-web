@@ -1,11 +1,9 @@
 /* mock endpoint */
-//import { getPerson, getFacility, getExposure } from 'communications/mockApi/api';
+import { getPerson, getFacility, getExposure } from 'communications/mockApi/api';
 /* live endpoint */
-import { getPerson, getFacility, getExposure } from 'communications/api';
+//import { getPerson, getFacility, getExposure } from 'communications/api';
 
 import _ from 'lodash';
-
-import { log } from 'utilities/logging';
 import { createSuccessPromise, createFailurePromise } from 'utilities/promises';
 
 export async function calculateService({ value }) {

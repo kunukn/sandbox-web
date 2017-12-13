@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import cn from 'classnames';
+//import cn from 'classnames';
+import _ from 'lodash';
 import TextBoxOverlay from './TextBoxOverlay';
-import { calculateService } from 'services/calculatorServices';
-import { log } from 'utilities/logging';
+//import { log } from 'utilities/logging';
 import { alphaNumericRegex } from 'utilities/calculations';
 import * as textboxActions from 'actions/textboxActions';
 
 class TextBox extends Component {
   state = {
-    inputValue: '1',
-    isInputValid: true,
+    inputValue: '',
+    isInputValid: false,
   };
 
   handleChange = event => {
@@ -31,6 +31,10 @@ class TextBox extends Component {
     this.props.actions.closeOverlay();
   };
 
+  componentDidMount(){
+    this.inputElement.focus();
+  }
+
   render() {
     return (
       <div className="textbox">
@@ -40,6 +44,7 @@ class TextBox extends Component {
             <div className="textbox__group">
               <label htmlFor="textbox-input">Alpha Numeric:</label>
               <input
+                ref={el => this.inputElement = el}
                 className="textbox__input"
                 id="textbox-input"
                 type="text"
@@ -56,10 +61,12 @@ class TextBox extends Component {
             </div>
           </fieldset>
         </form>
-        {true &&
+        {this.props.isDebugMode &&
           <Fragment>
-            <pre> {JSON.stringify(this.state, null, 2)} </pre>
-            <pre>{JSON.stringify(this.props, null, 2)}</pre>
+            <h4>state</h4>
+            <pre>{JSON.stringify(this.state, null, 2)} </pre>
+            <h4>props</h4>
+            <pre>{JSON.stringify(_.pick(this.props,['fromStore']), null, 2)}</pre>
           </Fragment>
         }
         {this.props.fromStore.isOverlayOpen && (
@@ -75,6 +82,7 @@ class TextBox extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     fromStore: state.textbox,
+    isDebugMode: state.debug.isDebugMode,
   };
 }
 

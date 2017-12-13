@@ -1,4 +1,3 @@
-import { log } from 'utilities/logging';
 import * as ACTION from './actionTypes';
 import { calculateService } from 'services/calculatorServices';
 

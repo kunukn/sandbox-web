@@ -11,7 +11,7 @@ export function getJson(url){
     return response.json();
   }).catch(error => {
     log(error);
-    throw new Error('No network at the moment, please try again later');
+    throw new Error('No network at the moment');
   });
 }
 
