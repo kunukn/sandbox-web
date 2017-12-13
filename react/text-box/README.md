@@ -6,13 +6,13 @@ React Redux sample code. Started from create-react-app and then gradually add re
 
 ---
 
-<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-1.png?raw=true">
+<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-1.png?raw=true" width="500">
 
-<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-2.png?raw=true" width="">
+<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-2.png?raw=true" width="500">
 
-<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-3.png?raw=true" width="">
+<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-3.png?raw=true" width="500">
 
-<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-4.png?raw=true" width="">
+<img src="https://github.com/kunukn/sandbox-web/blob/master/react/text-box/media/screen-4.png?raw=true" width="500">
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
