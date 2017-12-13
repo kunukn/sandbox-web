@@ -77,6 +77,7 @@ class TextBox extends Component {
           </fieldset>
         </form>
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        <pre>{JSON.stringify(this.props, null, 2)}</pre>
         {this.state.isOverlayOpen && (
           <TextBoxOverlay onOverlayClose={this.onOverlayClose}>
             {this.state.calculationResult}
