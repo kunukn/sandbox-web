@@ -1,3 +1,5 @@
 export default {
-  textbox: {},
+  textbox: {
+    isOverlayOpen: true,
+  },
 }
