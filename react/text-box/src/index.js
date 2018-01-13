@@ -15,7 +15,8 @@ console.warn(
   'Remember to run: npm start api',
   'If you are using the mock api server');
 
-const store = configureStore();
+const store = configureStore();    
+
 
 ReactDOM.render(
   <Provider store={store}>
