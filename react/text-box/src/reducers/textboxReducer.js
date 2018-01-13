@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import * as ACTION from 'actions/actionTypes';
-import initialState from './initialState';
+import initialState from 'reducers/initialState';
 
-export default function calculateReducer(state = initialState.textbox, action) {
+export default function calculateReducer(state = {}, action) {
   switch (action.type) {
     case ACTION.CALCULATE_SUCCESS:
       return _.assign({}, state, action.payload, { isSuccess: true, isOverlayOpen: true });

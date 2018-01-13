@@ -1,5 +1,7 @@
 export default {
   textbox: {
-    isOverlayOpen: true,
+    isOverlayOpen: false,
+    calculationResult: null,
+    isSuccess: null,
   },
 }
